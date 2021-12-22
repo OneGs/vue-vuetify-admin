@@ -10,6 +10,8 @@
   },
   "main": "index.js",
   "dependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
@@ -44,7 +46,8 @@
   },
   "_id": "zero-web@1.0.0",
   "gitHooks": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "commit-msg": "npx commitlint --edit $1"
   },
   "license": "MIT",
   "lint-staged": {
