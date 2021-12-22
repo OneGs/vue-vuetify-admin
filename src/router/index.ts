@@ -2,6 +2,7 @@ import Vue, { CreateElement } from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import RouteGenerate from "ea-router";
 import page404 from "@/layouts/error-page/404.vue";
+import beforeEachCombine from "@/router/beforeEachCombine";
 
 const eaRouterGenerator = new RouteGenerate(
   require.context("../views", true, /\.vue$/)
@@ -19,6 +20,8 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = eaRouterGenerator.generate();
 
+routes[0].redirect = "/home";
+
 console.log(routes);
 
 const router = new VueRouter({
@@ -26,5 +29,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+router.beforeEach(beforeEachCombine);
 
 export default router;
