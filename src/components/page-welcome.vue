@@ -54,7 +54,7 @@
         </v-row>
       </v-col>
 
-      <v-col class="mb-5" cols="12">
+      <v-col class="mb-5" cols="12" v-for="index in 10" :key="index">
         <h2 class="headline font-weight-bold mb-3">Ecosystem</h2>
 
         <v-row justify="center">

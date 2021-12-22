@@ -1,7 +1,7 @@
 import Vue, { CreateElement } from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import RouteGenerate from "ea-router";
-import page404 from "@/layouts/error-page/404.vue";
+import page404 from "@/components/page-error/404.vue";
 import beforeEachCombine from "@/router/beforeEachCombine";
 
 const eaRouterGenerator = new RouteGenerate(

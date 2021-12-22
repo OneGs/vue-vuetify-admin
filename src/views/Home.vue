@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import HelloWorld from "@/components/HelloWorld.vue";
+import HelloWorld from "@/components/page-welcome.vue";
 import { Component, Vue } from "vue-property-decorator";
 import { RouteName } from "ea-router";
 
