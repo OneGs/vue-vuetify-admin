@@ -6,13 +6,15 @@
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "commit": "cz"
+    "commit": "cz",
+    "release": "standard-version"
   },
   "main": "index.js",
   "dependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "core-js": "^3.6.5",
+    "standard-version": "^9.3.2",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2",
