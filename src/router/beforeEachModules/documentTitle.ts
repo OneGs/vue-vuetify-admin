@@ -1,4 +1,4 @@
-import { PipeBeforeEach } from "@/types/router";
+import { PipeBeforeEach } from "@/router/beforeEach";
 
 const title = "pipelineBeforeEach";
 

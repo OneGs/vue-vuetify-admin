@@ -1,4 +1,4 @@
-import { PipeBeforeEach } from "@/types/router";
+import { PipeBeforeEach } from "@/router/beforeEach";
 import { isEnvDep } from "@/utils/tools";
 import { RawLocation, Route } from "vue-router";
 

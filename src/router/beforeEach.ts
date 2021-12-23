@@ -1,8 +1,5 @@
 import { RawLocation, Route } from "vue-router";
-
-export interface NamedRoute {
-  name: string;
-}
+import { NamedRoute } from "@/types/router";
 
 export class PipeBeforeEach {
   order = Infinity;

@@ -1,4 +1,5 @@
-import { NamedRoute, PipeBeforeEach } from "@/types/router";
+import { NamedRoute } from "@/types/router";
+import { PipeBeforeEach } from "@/router/beforeEach";
 import { Route } from "vue-router";
 
 const isLogin = () => {
