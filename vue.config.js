@@ -4,6 +4,13 @@ const _ = require("path");
 module.exports = {
   transpileDependencies: ["vuetify"],
 
+  pages: {
+    index: {
+      entry: "src/main.ts",
+      title: "title",
+    },
+  },
+
   configureWebpack: {
     resolve: {
       alias: {

@@ -7,7 +7,7 @@
       <app-navigator />
 
       <!-- 给应用提供合适的间距 -->
-      <v-container fluid>
+      <v-container style="margin-left: 256px; box-sizing: border-box">
         <!-- 如果使用 vue-router -->
         <router-view />
       </v-container>

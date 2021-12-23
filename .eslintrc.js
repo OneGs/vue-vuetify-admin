@@ -70,11 +70,6 @@ module.exports = {
       {
         blankLine: "always",
         prev: "*",
-        next: "expression",
-      },
-      {
-        blankLine: "always",
-        prev: "*",
         next: "multiline-block-like",
       }, // 多类{}前填充空行
       {

@@ -15,8 +15,6 @@ import { RouteName } from "ea-router";
 })
 export default class Login extends Vue {
   login(): void {
-    console.log("login");
-
     localStorage.setItem("accessToken", "token");
 
     this.$router.push({ name: "Home" });
