@@ -4,6 +4,7 @@ import Directory from "@/libs/auto-router/src/directory";
 import { LoopAny } from "@/types/commone";
 import View from "@/libs/auto-router/src/view";
 import { RouteConfig } from "vue-router";
+import { camelCase, upperFirst } from "lodash";
 
 const CONTEXT_SPLIT_CHAR = ":";
 
@@ -36,7 +37,10 @@ export class VueRouterAdapter extends Adapter {
   convertDirectory(directory: Directory, options: LoopAny): RouteConfig {
     const layout = this.getLayoutView(directory, options);
 
-    const route = this.convertView(layout, true);
+    const route =
+      layout === options.defaultLayout
+        ? this.convertView(layout, true, directory.getPath())
+        : this.convertView(layout, true);
 
     route.path = directory.getPath();
     route.children = route.children?.concat(
@@ -58,12 +62,12 @@ export class VueRouterAdapter extends Adapter {
     throw Error(`[${directory.Path}]: 目录下没有Layout组件.`);
   }
 
-  convertView(view: View, ignorePath?: boolean): RouteConfig {
+  convertView(view: View, ignorePath?: boolean, dir?: string): RouteConfig {
     const instance = view.Component;
 
     let route: any = {
       path: "",
-      name: instance && instance.name,
+      name: upperFirst(camelCase(dir)) || (instance && instance.name),
       component: instance,
       children: [],
       componentPath: view.Path,
@@ -78,6 +82,8 @@ export class VueRouterAdapter extends Adapter {
   }
 
   convertConfig(instance: any, route: RouteConfig): RouteConfig {
+    // console.log(instance.options);
+
     if (!instance[AutoRouteConfigProperty]) {
       return route;
     }

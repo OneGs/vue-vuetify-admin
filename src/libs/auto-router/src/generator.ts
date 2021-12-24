@@ -70,6 +70,8 @@ class RouteProvider {
       notFoundPage: this._notFoundPage,
     };
 
+    console.log(this._directory, "dir");
+
     return adapter.convertDirectories([this._directory], config);
   }
 
