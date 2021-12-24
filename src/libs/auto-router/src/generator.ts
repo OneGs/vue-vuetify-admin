@@ -83,8 +83,6 @@ class RouteProvider {
       deep: this._deep,
     };
 
-    console.log(this._directory, "dir");
-
     return adapter.convertDirectories([this._directory], config);
   }
 

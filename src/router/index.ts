@@ -1,5 +1,5 @@
 import Vue, { CreateElement } from "vue";
-import VueRouter from "vue-router";
+import VueRouter, { RouteConfig } from "vue-router";
 import EaRouter from "@/libs/auto-router/index";
 import page404 from "@/views/components/page-error/404.vue";
 import beforeEachCombine from "@/router/beforeEachCombine";
@@ -15,20 +15,18 @@ eaGenerator
   .setNotFoundPage(page404)
   .ignoreDir("components");
 
-console.log(eaGenerator.generate());
-
 Vue.use(VueRouter);
 
-// const routes: Array<RouteConfig> = eaRouterGenerator.generate();
+const routes: Array<RouteConfig> = eaGenerator.generate();
 
-// routes[0].redirect = "/home";
+routes[0].redirect = "/home";
 
-// console.log(routes);
+console.log(routes);
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: [],
+  routes,
 });
 
 router.beforeEach(beforeEachCombine);

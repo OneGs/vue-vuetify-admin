@@ -69,11 +69,14 @@ export class VueRouterAdapter extends Adapter {
 
     let route: any = {
       path: "",
-      name: upperFirst(camelCase(dir)) || (instance && instance.name),
+      // name: upperFirst(camelCase(dir)) || (instance && instance.name),
       component: instance,
       children: [],
       componentPath: view.Path,
     };
+
+    // 如果是默认的layout，则不设置名称
+    if (!dir) route.name = instance && instance.name;
 
     if (!ignorePath) {
       route.path = view.IsIndex ? "" : view.LastInfo;
@@ -84,8 +87,6 @@ export class VueRouterAdapter extends Adapter {
   }
 
   convertConfig(instance: any, route: RouteConfig): RouteConfig {
-    // console.log(instance.options);
-
     if (!instance[AutoRouteConfigProperty]) {
       return route;
     }
@@ -126,8 +127,6 @@ export class VueRouterAdapter extends Adapter {
     }
 
     for (const index in directory.SubDirectories) {
-      console.log(options.deep, "deep");
-
       if (options.deep) {
         // 深度搜索，只要是ignore就忽略
         if (directory.SubDirectories[index].getPath() === options.ignore)
