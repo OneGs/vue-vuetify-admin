@@ -33,7 +33,7 @@ export default class toolAlert extends Vue {
 
   verticalOffset = 0;
 
-  timer: number | undefined;
+  timer: any | undefined;
 
   onClose: (() => void) | undefined;
 

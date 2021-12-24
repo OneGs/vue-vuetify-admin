@@ -7,9 +7,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { RouteName } from "ea-router";
 
-@RouteName("Login")
 @Component({
   name: "Login",
 })

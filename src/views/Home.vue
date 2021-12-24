@@ -5,11 +5,11 @@
 <script lang="ts">
 import HelloWorld from "@/components/page-welcome.vue";
 import { Component, Vue } from "vue-property-decorator";
-import { RouteName } from "ea-router";
+import { RouteName } from "@/libs/auto-router/src/decorators/RouteName";
 
 @RouteName("Home")
 @Component({
-  name: "Home",
+  name: "HomeHome",
 
   components: {
     HelloWorld,

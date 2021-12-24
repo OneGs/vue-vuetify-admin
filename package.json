@@ -1,6 +1,11 @@
 {
   "name": "zero-web",
   "version": "1.0.0",
+  "description": "零和云前端项目-开源",
+  "keywords": [
+    "zeroSumCloud",
+    "project"
+  ],
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve",
@@ -14,7 +19,6 @@
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "core-js": "^3.6.5",
-    "ea-router": "^3.0.7",
     "standard-version": "^9.3.2",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",

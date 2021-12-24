@@ -19,12 +19,12 @@
 
 <script>
 import { Component, Vue } from "vue-property-decorator";
-import { RouteName } from "ea-router";
 import AppBar from "@cps/app-bar/index.vue";
 import AppNavigator from "@cps/app-navigator/index.vue";
 import AppFooter from "@cps/app-footer/index.vue";
+import { RouteName } from "@/libs/auto-router";
 
-@RouteName("Layout")
+@RouteName("RootLayout")
 @Component({
   name: "Layout",
   components: { AppFooter, AppNavigator, AppBar },
