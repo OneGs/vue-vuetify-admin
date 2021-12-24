@@ -45,6 +45,10 @@ class Directory {
     return this._path.split("/");
   }
 
+  get Deep(): number {
+    return this.PathInfos.length;
+  }
+
   get Path(): string {
     return this._path;
   }

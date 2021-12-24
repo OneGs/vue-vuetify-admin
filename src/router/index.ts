@@ -4,15 +4,18 @@ import EaRouter from "@/libs/auto-router/index";
 import page404 from "@/views/components/page-error/404.vue";
 import beforeEachCombine from "@/router/beforeEachCombine";
 
-const ea = new EaRouter(require.context("../views", true, /\.vue$/));
+const eaGenerator = new EaRouter(require.context("../views", true, /\.vue$/));
 
-ea.setDefaultLayout(
-  Vue.component("layout-view", {
-    render: (h: CreateElement) => h("router-view"),
-  })
-).setNotFoundPage(page404);
+eaGenerator
+  .setDefaultLayout(
+    Vue.component("layout-view", {
+      render: (h: CreateElement) => h("router-view"),
+    })
+  )
+  .setNotFoundPage(page404)
+  .ignoreDir("components");
 
-console.log(ea.generate());
+console.log(eaGenerator.generate());
 
 Vue.use(VueRouter);
 

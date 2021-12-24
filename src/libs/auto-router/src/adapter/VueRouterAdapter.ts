@@ -18,6 +18,8 @@ export class VueRouterAdapter extends Adapter {
     const result: RouteConfig[] = [];
 
     for (const index in directories) {
+      if (directories[index].getPath() === options.ignore) continue;
+
       const directory = directories[index];
 
       const route = this.convertDirectory(directory, options);
@@ -124,7 +126,24 @@ export class VueRouterAdapter extends Adapter {
     }
 
     for (const index in directory.SubDirectories) {
+      console.log(options.deep, "deep");
+
+      if (options.deep) {
+        // 深度搜索，只要是ignore就忽略
+        if (directory.SubDirectories[index].getPath() === options.ignore)
+          continue;
+      } else {
+        // 否则，只能在第一层时，才忽略
+        if (
+          directory.Deep <= 1 &&
+          directory.SubDirectories[index].getPath() === options.ignore
+        )
+          continue;
+      }
+
       const subDirectory = directory.SubDirectories[index];
+
+      // console.log(subDirectory.getPath(), "sub");
 
       const subRoute = this.convertDirectory(subDirectory, options);
 

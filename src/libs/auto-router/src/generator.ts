@@ -39,6 +39,10 @@ class RouteProvider {
 
   _notFoundPage: view | undefined;
 
+  _ignore = "";
+
+  _deep: boolean | undefined = true;
+
   constructor(dir: __WebpackModuleApi.RequireContext) {
     this._dir = dir;
     this._views = this._getViews(this._dir);
@@ -58,6 +62,13 @@ class RouteProvider {
     return this;
   }
 
+  ignoreDir(ignore: string, deep?: boolean): RouteProvider {
+    this._ignore = ignore;
+    deep !== undefined && (this._deep = deep);
+
+    return this;
+  }
+
   /**
    * 根据目录生成路由对象的数组，供vue-router使用（routes选项）
    * @return {Array}
@@ -68,6 +79,8 @@ class RouteProvider {
     const config = {
       defaultLayout: this._defaultLayout,
       notFoundPage: this._notFoundPage,
+      ignore: this._ignore,
+      deep: this._deep,
     };
 
     console.log(this._directory, "dir");
