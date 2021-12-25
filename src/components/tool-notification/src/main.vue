@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import { LoopString } from "@/types/commone";
+import { LoopString } from "@/types/common";
 
 @Component({
   name: "toolAlert",

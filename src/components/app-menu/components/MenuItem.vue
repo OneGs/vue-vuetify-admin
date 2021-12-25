@@ -20,7 +20,7 @@
     </template>
 
     <menu-item
-      v-for="child in item.children"
+      v-for="child in children"
       :key="menuKey(child)"
       :is-sub="true"
       :item="child"
@@ -29,31 +29,26 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
 import { RouteConfig } from "vue-router";
+import MenuTools from "@/components/app-menu/menuTools";
 
 @Component({
   name: "MenuItem",
 })
-export default class MenuItem extends Vue {
+export default class MenuItem extends Mixins(MenuTools) {
   @Prop({ type: Object, default: () => ({}) }) item: RouteConfig | undefined;
 
   @Prop({ type: Boolean, default: false }) isSub: boolean | undefined;
 
-  menuKey(menu: RouteConfig): string {
-    return menu.name || menu.path || menu.meta?.title;
-  }
-
-  menuTitle(menu: RouteConfig): string {
-    return menu.meta ? menu.meta.title : menu.path || "set a title";
-  }
-
-  menuIcon(menu: RouteConfig): string {
-    return menu.meta ? menu.meta.icon : "";
-  }
-
   get hasChildren(): boolean {
     return !!this.item?.children?.length;
+  }
+
+  get children(): RouteConfig[] {
+    if (!this.item?.children) return [];
+
+    return this.filter(this.item?.children);
   }
 }
 </script>
