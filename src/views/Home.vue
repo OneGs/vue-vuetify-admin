@@ -15,5 +15,5 @@ import { RouteName } from "@/libs/auto-router/src/decorators/RouteName";
     HelloWorld,
   },
 })
-export default class extends Vue {}
+export default class Home extends Vue {}
 </script>

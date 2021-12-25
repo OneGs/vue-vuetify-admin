@@ -17,7 +17,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import NotificationRun from "@/components/tool-alert/notification";
 
 export default Vue.extend({
   name: "HelloWorld",
@@ -75,8 +74,8 @@ export default Vue.extend({
   }),
   methods: {
     click() {
-      NotificationRun({
-        type: "error",
+      this.$notify({
+        type: "info",
         message: "这是一个错误信息",
       });
     },

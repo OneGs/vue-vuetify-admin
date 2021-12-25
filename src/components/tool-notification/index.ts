@@ -1,19 +1,19 @@
 import Vue from "vue";
 import vuetify from "@/plugins/vuetify";
-import Main from "./main.vue";
-import { notificationOptions, notificationVue } from "@/types/notification";
+import Main from "./src/main.vue";
+import { notificationOptions, notificationVue } from "./types/notification";
 
 const NotificationConstructor = Vue.extend(Main);
 
 const instances: notificationVue[] = [];
 
-class Notification {
+class ToolNotification {
   id = "";
 
   static seed = 1;
 
   constructor() {
-    this.id = "notification_" + Notification.seed++;
+    this.id = "notification_" + ToolNotification.seed++;
   }
 
   add(options?: notificationOptions): Vue {
@@ -22,7 +22,7 @@ class Notification {
     const userOnClose = options?.onClose;
 
     _options.onClose = () => {
-      Notification.close(this.id, userOnClose);
+      ToolNotification.close(this.id, userOnClose);
     };
 
     const instance = new NotificationConstructor({
@@ -80,12 +80,12 @@ class Notification {
   }
 }
 
-function NotificationRun(options?: notificationOptions): void {
-  const instance = new Notification().add(options);
+function Notification(options?: notificationOptions): void {
+  const instance = new ToolNotification().add(options);
 
   if (instance) {
     instances.push(instance);
   }
 }
 
-export default NotificationRun;
+export default Notification;
