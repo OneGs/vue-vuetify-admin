@@ -21,8 +21,6 @@ const routes: Array<RouteConfig> = eaGenerator.generate();
 
 routes[0].redirect = "/home";
 
-console.log(routes);
-
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
@@ -32,3 +30,5 @@ const router = new VueRouter({
 router.beforeEach(beforeEachCombine);
 
 export default router;
+
+export { routes };

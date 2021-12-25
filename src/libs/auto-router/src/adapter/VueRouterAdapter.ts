@@ -69,14 +69,16 @@ export class VueRouterAdapter extends Adapter {
 
     let route: any = {
       path: "",
-      // name: upperFirst(camelCase(dir)) || (instance && instance.name),
+      name: instance && instance.name,
       component: instance,
       children: [],
       componentPath: view.Path,
     };
 
     // 如果是默认的layout，则不设置名称
-    if (!dir) route.name = instance && instance.name;
+    if (dir) route.name = "";
+
+    route.name = upperFirst(camelCase(route.name));
 
     if (!ignorePath) {
       route.path = view.IsIndex ? "" : view.LastInfo;
@@ -92,7 +94,7 @@ export class VueRouterAdapter extends Adapter {
     }
     const config = instance[AutoRouteConfigProperty];
 
-    route.name = config.name ?? route.name;
+    route.name = upperFirst(camelCase(config.name || route.name));
 
     if (config.alias) route.alias = config.alias;
     route.props = config.useProp;

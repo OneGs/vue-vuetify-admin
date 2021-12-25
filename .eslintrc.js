@@ -97,5 +97,6 @@ module.exports = {
         skipComments: true,
       },
     ],
+    "vue/no-multiple-template-root": "off",
   },
 };
