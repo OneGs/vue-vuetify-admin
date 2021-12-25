@@ -45,6 +45,8 @@ class View {
    * @constructor
    */
   get LastInfo(): string {
+    if (!this._infos.length) return "";
+
     return this._infos[this.Deep - 1].replace(".vue", "");
   }
 

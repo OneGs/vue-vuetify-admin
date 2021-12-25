@@ -1,5 +1,5 @@
 export interface LoopString {
-  [key: string]: string;
+  [key: string]: string | number;
 }
 
 export interface LoopAny {

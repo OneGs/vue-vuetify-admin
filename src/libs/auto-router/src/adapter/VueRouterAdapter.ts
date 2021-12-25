@@ -1,7 +1,7 @@
 import { Adapter } from "./base";
 import { AutoRouteConfigProperty } from "../RouteConfig";
 import Directory from "@/libs/auto-router/src/directory";
-import { LoopAny } from "@/types/commone";
+import { LoopAny } from "@/types/common";
 import View from "@/libs/auto-router/src/view";
 import { RouteConfig } from "vue-router";
 import { camelCase, upperFirst } from "lodash";
@@ -39,10 +39,7 @@ export class VueRouterAdapter extends Adapter {
   convertDirectory(directory: Directory, options: LoopAny): RouteConfig {
     const layout = this.getLayoutView(directory, options);
 
-    const route =
-      layout === options.defaultLayout
-        ? this.convertView(layout, true, directory.getPath())
-        : this.convertView(layout, true);
+    const route = this.convertView(layout, true, directory.getPath());
 
     route.path = directory.getPath();
     route.children = route.children?.concat(
