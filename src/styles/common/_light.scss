@@ -1,0 +1,7 @@
+.theme--light {
+  .router-view-bg {
+    background-color: #ffffff !important;
+    box-shadow: 2px 1px 10px rgba(150, 150, 150, .3),
+            -1px -1px 3px rgba(150, 150, 150, .1);
+  }
+}

@@ -75,7 +75,7 @@ export default Vue.extend({
   methods: {
     click() {
       this.$notify({
-        type: "info",
+        type: "success",
         message: "这是一个错误信息",
       });
     },

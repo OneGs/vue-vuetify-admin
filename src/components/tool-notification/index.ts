@@ -80,7 +80,7 @@ class ToolNotification {
   }
 }
 
-function Notification(options?: notificationOptions): void {
+function NotificationFun(options?: notificationOptions): void {
   const instance = new ToolNotification().add(options);
 
   if (instance) {
@@ -88,4 +88,4 @@ function Notification(options?: notificationOptions): void {
   }
 }
 
-export default Notification;
+export default NotificationFun;

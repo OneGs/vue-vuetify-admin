@@ -4,11 +4,11 @@
 
 import Vue from "vue";
 import Notify from "@/plugins";
-import Notification from "../index";
+import NotificationFun from "../index";
 
 declare module "vue/types/vue" {
   interface Vue {
-    $notify: Notification;
+    $notify: NotificationFun;
   }
 }
 

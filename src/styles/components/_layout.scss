@@ -1,0 +1,12 @@
+$--margin-size: 1rem;
+
+.layout-container {
+  margin: $--margin-size $--margin-size $--margin-size calc(256px + #{$--margin-size});
+  box-sizing: border-box;
+}
+
+.theme--light {
+  &.v-application {
+    background-color: #f8f9fe;
+  }
+}

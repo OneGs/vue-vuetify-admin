@@ -3,14 +3,16 @@
     <app-bar app />
 
     <!-- 根据应用组件来调整你的内容 -->
-    <v-main class="flex">
+    <v-main>
       <app-navigator />
 
       <!-- 给应用提供合适的间距 -->
-      <v-container style="margin-left: 256px; box-sizing: border-box">
+      <div id="container" class="layout-container">
         <!-- 如果使用 vue-router -->
-        <router-view />
-      </v-container>
+        <v-slide-x-reverse-transition mode="out-in">
+          <router-view class="router-view-bg pa-3 rounded-sm min-100-pre" />
+        </v-slide-x-reverse-transition>
+      </div>
     </v-main>
 
     <app-footer app v-if="false" />

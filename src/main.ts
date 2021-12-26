@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import Notify from "@/components/tool-notification/install";
+import "@/styles/index.scss";
 
 Vue.use(Notify);
 

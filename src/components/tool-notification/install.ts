@@ -1,4 +1,4 @@
-import Notification from "./index";
+import NotificationFun from "./index";
 import { VueConstructor } from "vue";
 
 let vue: VueConstructor;
@@ -24,7 +24,7 @@ Notify.install = function (_vue: VueConstructor): void {
 
       if (!notify) return;
 
-      vue.prototype.$notify = Notification;
+      vue.prototype.$notify = NotificationFun;
     },
   });
 };
