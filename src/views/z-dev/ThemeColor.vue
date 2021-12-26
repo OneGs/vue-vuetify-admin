@@ -1,8 +1,9 @@
 <template>
   <div>
     <div>
-      <h1>亮色</h1>
-      <div class="d-flex" style="margin: 1rem 0">
+      <rule-h1> 亮色 </rule-h1>
+      <v-divider />
+      <div class="d-flex mt-6" style="margin: 1rem 0">
         <v-btn
           v-for="item in preset"
           :key="item"
@@ -14,9 +15,10 @@
       </div>
     </div>
 
-    <div style="margin-top: 3rem">
-      <h1>暗色</h1>
-      <div class="d-flex" style="margin: 1rem 0">
+    <div style="margin-top: 4rem">
+      <rule-h1>暗色</rule-h1>
+      <v-divider />
+      <div class="d-flex mt-6" style="margin: 1rem 0">
         <v-btn
           v-for="item in preset"
           :key="item"

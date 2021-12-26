@@ -4,9 +4,16 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import Notify from "@/components/tool-notification/install";
+import ruleTitle from "@/components/rule-title/install";
+import formItem from "@/components/tool-form-item/install";
+
 import "@/styles/index.scss";
 
 Vue.use(Notify);
+
+Vue.use(ruleTitle);
+
+Vue.use(formItem);
 
 const name = "notify";
 

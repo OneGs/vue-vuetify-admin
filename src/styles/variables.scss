@@ -1,7 +1,7 @@
 // 全局变量
 $body-font-family: 'Work Sans', serif;
 $border-radius-root: 6px;
-$font-size-root: 18px;
+$font-size-root: 16px;
 
 // 变量必须定义在 import 之前
 $btn-letter-spacing: 0;
@@ -16,14 +16,20 @@ $btn-sizes: (
         'default': 41,
         'large': 54
 );
-
 $headings: (
         'h1': (
-                'size': 3.3125rem,
-                'line-height': 1.15em
+                'size': 1.5rem,
+                'weight': 600,
+                'line-height': 1.5,
         ),
         'h2': (
-                'size': 2.25rem,
-                'line-height': 1.5em
+                'size': 1.3rem,
+                'weight': 500,
+                'line-height': 1.5,
+        ),
+        'h3': (
+                'size': 1.15rem,
+                'weight': 400,
+                'line-height': 1.5,
         )
 );
