@@ -3,17 +3,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import TheForm from "./Main.vue";
+import { Component, Mixins } from "vue-property-decorator";
+import Input from "./mixins/input";
 
 @Component({
   name: "ToolTextField",
 })
-export default class ToolTextField extends Vue {
-  get label(): string | undefined {
-    return (this.$parent.$options.propsData as TheForm).label;
-  }
-}
+export default class ToolTextField extends Mixins(Input) {}
 </script>
 
 <style scoped lang="scss">

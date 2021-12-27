@@ -7,19 +7,19 @@
     :items="options"
     item-text="label"
     item-value="value"
+    :label="label"
   />
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import { selectProp } from "@/components/tool-form-item/types/select";
+import { Component, Mixins } from "vue-property-decorator";
+import Input from "./mixins/input";
+import MOptions from "@/components/tool-form-item/src/mixins/options";
 
 @Component({
   name: "RuleSelect",
 })
-export default class RuleFormSelect extends Vue {
-  @Prop({ type: Array, default: () => ({}) }) options: selectProp[] | undefined;
-}
+export default class RuleFormSelect extends Mixins(Input, MOptions) {}
 </script>
 
 <style scoped></style>

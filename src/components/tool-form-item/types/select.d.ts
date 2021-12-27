@@ -1,4 +1,5 @@
-export interface selectProp {
-  label?: string;
-  value?: string;
-}
+import { OptionsProp } from "./common";
+
+// export interface selectOptions extends Options {
+//
+// }

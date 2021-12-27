@@ -23,9 +23,15 @@
             </v-row>
 
             <v-row>
-              <v-col cols="12">
+              <v-col cols="12" sm="6">
                 <tool-form-item label="性别">
                   <rule-select :options="sex" />
+                </tool-form-item>
+              </v-col>
+
+              <v-col cols="12" sm="6">
+                <tool-form-item label="是否已婚">
+                  <rule-checkbox />
                 </tool-form-item>
               </v-col>
             </v-row>
