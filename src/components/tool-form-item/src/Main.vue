@@ -1,7 +1,9 @@
 <template>
   <div>
-    <label class="label-color" style="font-weight: 600">{{ label }}</label>
-    <slot />
+    <label class="label label-color">{{ label }}</label>
+    <div class="mt-3">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -13,26 +15,13 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 })
 export default class ToolFormItem extends Vue {
   @Prop({ type: String, default: "" }) label: string | undefined;
-
-  mounted(): void {
-    if (!this.$children) return;
-
-    const children = this.$children.filter((child) => {
-      if (child.$vnode.tag?.includes("v-text-field")) {
-        return true;
-      }
-    })[0];
-
-    console.log(children);
-
-    // (children as any).solo = true;
-  }
 }
 </script>
 
 <style scoped lang="scss">
 .label {
   font-weight: 600;
+  margin-bottom: 12px;
 
   &-color {
     color: #525f7f;

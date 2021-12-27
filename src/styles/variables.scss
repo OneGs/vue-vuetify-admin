@@ -1,3 +1,8 @@
+// 自定义
+$--primary-color: #6246ea;
+$--primary-color-light: lighten($--primary-color, 20%);
+$--form-placeholder-color: #8898aa !default;
+
 // 全局变量
 $body-font-family: 'Work Sans', serif;
 $border-radius-root: 6px;
@@ -33,3 +38,8 @@ $headings: (
                 'line-height': 1.5,
         )
 );
+
+/**
+  v-text-field
+ */
+$text-field-outlined-fieldset-border: 1px solid $--primary-color-light;

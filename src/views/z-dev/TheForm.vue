@@ -11,7 +11,7 @@
             <v-row>
               <v-col cols="12" sm="6">
                 <tool-form-item label="姓名">
-                  <v-text-field label="Last Name" />
+                  <rule-text-field />
                 </tool-form-item>
               </v-col>
 

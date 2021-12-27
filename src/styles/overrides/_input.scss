@@ -1,0 +1,11 @@
+@import "../variables";
+
+.v-text-field--outlined fieldset {
+  border-color: rgb(150, 150, 150, .5);
+}
+
+.theme--light {
+  &.v-label {
+    color: $--form-placeholder-color;
+  }
+}
