@@ -10,13 +10,23 @@
           <v-container>
             <v-row>
               <v-col cols="12" sm="6">
-                <tool-form-item label="姓名">
+                <tool-form-item label="名">
                   <rule-text-field />
                 </tool-form-item>
               </v-col>
 
               <v-col cols="12" sm="6">
-                <v-text-field label="Last Name" solo-inverted />
+                <tool-form-item label="姓">
+                  <rule-text-field />
+                </tool-form-item>
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col cols="12">
+                <tool-form-item label="性别">
+                  <rule-select :options="sex" />
+                </tool-form-item>
               </v-col>
             </v-row>
           </v-container>
@@ -34,7 +44,12 @@ import { Meta } from "@/libs/auto-router/index";
 @Component({
   name: "TheForm",
 })
-export default class TheForm extends Vue {}
+export default class TheForm extends Vue {
+  sex = [
+    { label: "男", value: 1 },
+    { label: "女", value: 0 },
+  ];
+}
 </script>
 
 <style scoped></style>
