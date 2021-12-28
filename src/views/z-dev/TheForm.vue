@@ -1,5 +1,5 @@
 <template>
-  <div class="no-inherit-background">
+  <div class="no-inherit-background pa-0">
     <v-card>
       <v-card-title><rule-h1>基础表单</rule-h1></v-card-title>
 

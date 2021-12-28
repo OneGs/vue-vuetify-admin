@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="white">
     <rule-h1>标题</rule-h1>
 
     <v-divider />

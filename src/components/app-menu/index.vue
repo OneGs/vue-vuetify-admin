@@ -1,23 +1,29 @@
 <template>
   <v-list>
-    <menu-item v-for="menu in menus" :key="menuKey(menu)" :item="menu" />
+    <menu-item
+      v-for="(menu, index) in menus"
+      :key="menuKey(menu) + index"
+      :item="menu"
+    />
   </v-list>
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from "vue-property-decorator";
-import { routes } from "@/router";
+import { Component, Mixins, Prop } from "vue-property-decorator";
 import { RouteConfig } from "vue-router";
-import MenuItem from "@/components/app-menu/components/MenuItem.vue";
-import MenuTools from "@/components/app-menu/menuTools";
+import MenuItem from "./components/MenuItem.vue";
+import MenuTools from "./menuTools";
 
 @Component({
   name: "AppMenu",
+
   components: { MenuItem },
 })
 export default class AppMenu extends Mixins(MenuTools) {
+  @Prop({ type: Array, default: () => [] }) readonly menu?: RouteConfig[];
+
   get menus(): RouteConfig[] {
-    return this.filter(routes[0].children || []);
+    return this.filter(this.menu || []);
   }
 
   menuKey(menu: RouteConfig): string {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="white">
     <div>
       <rule-h1> 亮色 </rule-h1>
       <v-divider />

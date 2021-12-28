@@ -13,7 +13,13 @@
       class="flex-grow-0"
     />
 
-    <div class="flex-grow-1">menu</div>
+    <div class="flex-grow-1 ml-4">
+      <horizontal
+        :menu="routes"
+        style="background: transparent !important"
+        color="white"
+      />
+    </div>
 
     <div class="flex-grow-0 d-flex align-center flex-row-reverse">
       <div class="d-flex align-center">
@@ -49,14 +55,18 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Horizontal from "@/components/app-menu/Horizontal.vue";
+import { routes } from "@/router";
 
 @Component({
   name: "appBar",
-
+  components: { Horizontal },
   inheritAttrs: false,
 })
 export default class appBar extends Vue {
   userAvatar = "";
+
+  routes = routes[0].children;
 }
 </script>
 

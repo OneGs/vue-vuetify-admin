@@ -10,7 +10,7 @@
       <div id="container" class="layout-container">
         <!-- 如果使用 vue-router -->
         <v-slide-x-reverse-transition mode="out-in">
-          <router-view class="router-view-bg pa-4 rounded-sm min-100-pre" />
+          <router-view class="router-view-bg p-4 rounded-sm min-100-pre" />
         </v-slide-x-reverse-transition>
       </div>
     </v-main>
@@ -34,4 +34,8 @@ import { RouteName } from "@/libs/auto-router";
 export default class Layout extends Vue {}
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.p-4 {
+  padding: 16px;
+}
+</style>

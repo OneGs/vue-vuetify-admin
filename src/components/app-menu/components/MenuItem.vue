@@ -1,9 +1,10 @@
 <template>
   <v-list-item
-    link
+    :link="isSub"
     v-if="!hasChildren"
     :class="{ 'nest-item': isSub }"
     :to="item"
+    v-on="$listeners"
   >
     <v-list-item-icon v-show="menuIcon(item)">
       <v-icon>{{ menuIcon(item) }}</v-icon>
@@ -31,15 +32,15 @@
 <script lang="ts">
 import { Component, Prop, Mixins } from "vue-property-decorator";
 import { RouteConfig } from "vue-router";
-import MenuTools from "@/components/app-menu/menuTools";
+import MenuTools from "../menuTools";
 
 @Component({
   name: "MenuItem",
 })
 export default class MenuItem extends Mixins(MenuTools) {
-  @Prop({ type: Object, default: () => ({}) }) item: RouteConfig | undefined;
+  @Prop({ type: Object, default: () => ({}) }) item?: RouteConfig;
 
-  @Prop({ type: Boolean, default: false }) isSub: boolean | undefined;
+  @Prop({ type: Boolean, default: false }) isSub?: boolean;
 
   get hasChildren(): boolean {
     return !!this.item?.children?.length;

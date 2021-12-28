@@ -1,5 +1,5 @@
 <template>
-  <div class="text-body-1">
+  <div class="text-body-1 white">
     <rule-h1>内容溢出</rule-h1>
 
     <v-divider />
