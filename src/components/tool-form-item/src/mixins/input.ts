@@ -1,11 +1,15 @@
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import TheForm from "../Main.vue";
 
 @Component({
   name: "Input",
 })
 export default class Input extends Vue {
+  @Prop({ type: Boolean, default: false }) hiddenLabel?: boolean;
+
   get label(): string | undefined {
+    if (this.hiddenLabel) return "";
+
     return (this.$parent.$options.propsData as TheForm).label;
   }
 }

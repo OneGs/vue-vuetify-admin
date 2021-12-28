@@ -44,8 +44,16 @@
               </v-col>
 
               <v-col cols="12" sm="6">
-                <tool-form-item label="是否已婚">
-                  <rule-checkbox :options="marry" />
+                <tool-form-item label="是否开启配置">
+                  <rule-switch hidden-label />
+                </tool-form-item>
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col cols="12">
+                <tool-form-item label="家庭情况描述">
+                  <rule-textarea />
                 </tool-form-item>
               </v-col>
             </v-row>
