@@ -1,5 +1,5 @@
 <template>
-  <v-text-field solo outlined flat dense :label="label" class="text-filed" />
+  <v-text-field solo outlined flat dense :label="_label" class="text-filed" />
 </template>
 
 <script lang="ts">

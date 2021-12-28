@@ -1,13 +1,12 @@
 <template>
-  <v-select
-    outlined
+  <v-file-input
     solo
     flat
     dense
-    :items="options"
-    item-text="label"
-    item-value="value"
+    outlined
+    append-icon="mdi-eye-refresh"
     :label="_label"
+    @click:append="views"
     v-bind="$attrs"
   />
 </template>
@@ -15,12 +14,15 @@
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
 import Input from "./mixins/input";
-import MOptions from "@/components/tool-form-item/src/mixins/options";
 
 @Component({
-  name: "RuleSelect",
+  name: "RuleFile",
 })
-export default class RuleFormSelect extends Mixins(Input, MOptions) {}
+export default class RuleFile extends Mixins(Input) {
+  views(): void {
+    console.log("views");
+  }
+}
 </script>
 
 <style scoped></style>

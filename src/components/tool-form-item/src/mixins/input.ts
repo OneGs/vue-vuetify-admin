@@ -3,13 +3,17 @@ import TheForm from "../Main.vue";
 
 @Component({
   name: "Input",
+
+  inheritAttrs: false,
 })
 export default class Input extends Vue {
   @Prop({ type: Boolean, default: false }) hiddenLabel?: boolean;
 
-  get label(): string | undefined {
+  @Prop({ type: String, default: "" }) label?: string;
+
+  get _label(): string | undefined {
     if (this.hiddenLabel) return "";
 
-    return (this.$parent.$options.propsData as TheForm).label;
+    return this.label || (this.$parent.$options.propsData as TheForm).label;
   }
 }

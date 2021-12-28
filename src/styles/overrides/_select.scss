@@ -1,0 +1,12 @@
+@import "../variables";
+
+.theme--light {
+  .v-select.v-input--dense {
+    .v-select__selection--comma {
+      color: #fff;
+      padding: 4px;
+      border-radius: 4px;
+      background: $--primary-color-light;
+    }
+  }
+}

@@ -51,6 +51,20 @@
             </v-row>
 
             <v-row>
+              <v-col cols="12" sm="6">
+                <tool-form-item label="选修课程">
+                  <rule-select :options="lessons" multiple />
+                </tool-form-item>
+              </v-col>
+
+              <v-col cols="12" sm="6">
+                <tool-form-item label="上传照片">
+                  <rule-file label="请上传不大于4kb的图片" />
+                </tool-form-item>
+              </v-col>
+            </v-row>
+
+            <v-row>
               <v-col cols="12">
                 <tool-form-item label="家庭情况描述">
                   <rule-textarea />
@@ -85,6 +99,16 @@ export default class TheForm extends Vue {
     { label: "后端", value: "back" },
     { label: "运维", value: "yunwei" },
     { label: "大数据", value: "bigValue" },
+  ];
+
+  lessons = [
+    { label: "离散数学", value: "0" },
+    { label: "线性代数", value: "1" },
+    { label: "软件工程", value: "2" },
+    { label: "大学物理", value: "3" },
+    { label: "组成原理", value: "4" },
+    { label: "算法", value: "6" },
+    { label: "c++", value: "7" },
   ];
 }
 </script>

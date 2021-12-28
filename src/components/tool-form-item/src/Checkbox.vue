@@ -28,5 +28,9 @@ export default class RuleCheckbox extends Mixins(Input, MOptions) {
 .check-inline {
   display: inline-block;
   margin-left: 12px;
+
+  &:first-child {
+    margin-left: 0;
+  }
 }
 </style>
