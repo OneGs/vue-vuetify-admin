@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="text-color">
     <app-bar app />
 
     <!-- 根据应用组件来调整你的内容 -->
@@ -8,9 +8,14 @@
 
       <!-- 给应用提供合适的间距 -->
       <div id="container" class="layout-container">
+        <v-breadcrumbs
+          :items="items"
+          divider="-"
+          class="layout-bread px-0 pt-0"
+        />
         <!-- 如果使用 vue-router -->
-        <v-slide-x-reverse-transition mode="out-in">
-          <router-view class="router-view-bg p-4 rounded-sm min-100-pre" />
+        <v-slide-x-reverse-transition mode="out-in" style="z-index: 10">
+          <router-view class="router-view-bg p-4 rounded-sm" />
         </v-slide-x-reverse-transition>
       </div>
     </v-main>
@@ -31,7 +36,25 @@ import { RouteName } from "@/libs/auto-router";
   name: "Layout",
   components: { AppFooter, AppNavigator, AppBar },
 })
-export default class Layout extends Vue {}
+export default class Layout extends Vue {
+  items = [
+    {
+      text: "Dashboard",
+      disabled: false,
+      href: "breadcrumbs_dashboard",
+    },
+    {
+      text: "Link 1",
+      disabled: false,
+      href: "breadcrumbs_link_1",
+    },
+    {
+      text: "Link 2",
+      disabled: true,
+      href: "breadcrumbs_link_2",
+    },
+  ];
+}
 </script>
 
 <style scoped lang="scss">

@@ -1,5 +1,5 @@
 <template>
-  <v-list>
+  <v-list class="pa-0 list">
     <menu-item
       v-for="(menu, index) in menus"
       :key="menuKey(menu) + index"
@@ -32,4 +32,10 @@ export default class AppMenu extends Mixins(MenuTools) {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.list {
+  .v-list-item__icon {
+    //margin-right: 12px !important;
+  }
+}
+</style>

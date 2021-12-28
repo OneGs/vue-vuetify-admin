@@ -7,17 +7,28 @@
     v-on="$listeners"
   >
     <v-list-item-icon v-show="menuIcon(item)">
-      <v-icon>{{ menuIcon(item) }}</v-icon>
+      <v-icon :color="menuColor(item)" class="font-icon lighten-2">{{
+        menuIcon(item)
+      }}</v-icon>
     </v-list-item-icon>
 
     <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>
   </v-list-item>
 
-  <v-list-group v-else :prepend-icon="menuIcon(item)" :sub-group="isSub">
+  <v-list-group v-else :sub-group="isSub">
     <template #activator>
       <v-list-item-content>
         <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>
       </v-list-item-content>
+    </template>
+
+    <template #prependIcon v-if="menuIcon(item)">
+      <v-icon
+        v-text="menuIcon(item)"
+        :color="menuColor(item)"
+        class="lighten-2 font-icon"
+        dense
+      />
     </template>
 
     <menu-item
@@ -57,5 +68,9 @@ export default class MenuItem extends Mixins(MenuTools) {
 <style scoped lang="scss">
 .nest-item {
   padding-left: 32px;
+}
+
+.font-icon {
+  font-size: 16px !important;
 }
 </style>

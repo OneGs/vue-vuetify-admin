@@ -1,5 +1,5 @@
 <template>
-  <div class="white">
+  <div class="white box-shadow">
     <div>
       <rule-h1> 亮色 </rule-h1>
       <v-divider />
@@ -30,12 +30,6 @@
         </v-btn>
       </div>
     </div>
-
-    <div style="margin-top: 4rem; text-align: right">
-      <v-btn @click="changeTheme" color="primary" style="margin-left: 1rem"
-        >change theme</v-btn
-      >
-    </div>
   </div>
 </template>
 
@@ -43,7 +37,12 @@
 import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
 
-@Meta({ title: "配色", order: 10 })
+@Meta({
+  title: "配色",
+  order: 10,
+  icon: "mdi-eyedropper-variant",
+  color: "blue lighten-2",
+})
 @Component({
   name: "ThemeColor",
 })

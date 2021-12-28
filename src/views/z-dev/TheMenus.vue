@@ -33,7 +33,7 @@ import AppMenu from "@/components/app-menu/index.vue";
 import { RouteConfig } from "vue-router";
 import Horizontal from "@/components/app-menu/Horizontal.vue";
 
-@Meta({ title: "横纵向菜单" })
+@Meta({ title: "横纵向菜单", icon: "mdi-menu", color: "green" })
 @Component({
   name: "TheMenus",
   components: { Horizontal, AppMenu },

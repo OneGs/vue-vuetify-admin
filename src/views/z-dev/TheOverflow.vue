@@ -1,5 +1,5 @@
 <template>
-  <div class="text-body-1 white">
+  <div class="text-body-1 white box-shadow">
     <rule-h1>内容溢出</rule-h1>
 
     <v-divider />
@@ -14,7 +14,7 @@
 import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
 
-@Meta({ title: "溢出 & 滚动条" })
+@Meta({ title: "溢出 & 滚动条", icon: "mdi-clover", color: "orange" })
 @Component({
   name: "TheOverflow",
 })

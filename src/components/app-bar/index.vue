@@ -3,7 +3,7 @@
     v-bind="$attrs"
     color="primary"
     flat
-    class="lighten-1 app-bar d-flex justify-space-between"
+    class="app-bar d-flex justify-space-between"
   >
     <v-img
       src="@/assets/logo.png"
@@ -73,6 +73,7 @@ export default class appBar extends Vue {
 <style scoped lang="scss">
 .app-bar {
   color: white;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.3);
 }
 </style>
 

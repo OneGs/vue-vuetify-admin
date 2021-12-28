@@ -1,5 +1,5 @@
 <template>
-  <div class="white">
+  <div class="white box-shadow">
     <rule-h1>标题</rule-h1>
 
     <v-divider />
@@ -41,7 +41,12 @@
 import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
 
-@Meta({ title: "标题 & 文本", order: 2 })
+@Meta({
+  title: "标题 & 文本",
+  order: 2,
+  icon: "mdi-format-text",
+  color: "indigo",
+})
 @Component({
   name: "TheTitle",
 })

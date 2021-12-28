@@ -23,6 +23,6 @@ export default class appNavigator extends Vue {
 .app-navigator {
   position: fixed;
   top: 64px !important;
-  box-shadow: 0px 2px 10px rgba(150, 150, 150, 0.3);
+  box-shadow: 0 2px 10px rgba(150, 150, 150, 0.3);
 }
 </style>

@@ -1,12 +1,16 @@
+@import "../variables";
+
 $--margin-size: 1rem;
 
 .layout-container {
+  position: relative;
   margin: $--margin-size $--margin-size $--margin-size calc(256px + #{$--margin-size});
   box-sizing: border-box;
+  height: calc(100% - 2 * #{$--margin-size});
 }
 
 .theme--light {
   &.v-application {
-    background-color: #f8f9fe;
+    background-color: $--background-color;
   }
 }

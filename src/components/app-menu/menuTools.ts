@@ -15,6 +15,14 @@ export default class MenuTools extends Vue {
     return menu.meta ? menu.meta.icon : "";
   }
 
+  menuColor(menu: RouteConfig): string {
+    if (!menu.meta) return "";
+
+    return menu.meta.color?.includes("lighten")
+      ? menu.meta.color
+      : `${menu.meta.color} lighten-2`;
+  }
+
   filter(menus: RouteConfig[]): RouteConfig[] {
     return (
       [...menus]

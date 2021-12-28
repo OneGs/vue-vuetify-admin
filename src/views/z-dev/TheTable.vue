@@ -1,5 +1,5 @@
 <template>
-  <div class="the-table">
+  <div class="the-table pa-0">
     <v-card>
       <v-card-title>
         <rule-h1>简单表格</rule-h1>
@@ -31,7 +31,12 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/src/decorators/Meta";
 
-@Meta({ title: "表格", order: 9 })
+@Meta({
+  title: "表格",
+  order: 9,
+  icon: "mdi-table-large",
+  color: "pink",
+})
 @Component({
   name: "TheTable",
 })
