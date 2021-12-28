@@ -31,7 +31,21 @@
 
               <v-col cols="12" sm="6">
                 <tool-form-item label="是否已婚">
-                  <rule-checkbox />
+                  <rule-checkbox :options="marry" />
+                </tool-form-item>
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col cols="12" sm="6">
+                <tool-form-item label="分类">
+                  <rule-checkbox :options="like" inline />
+                </tool-form-item>
+              </v-col>
+
+              <v-col cols="12" sm="6">
+                <tool-form-item label="是否已婚">
+                  <rule-checkbox :options="marry" />
                 </tool-form-item>
               </v-col>
             </v-row>
@@ -54,6 +68,15 @@ export default class TheForm extends Vue {
   sex = [
     { label: "男", value: 1 },
     { label: "女", value: 0 },
+  ];
+
+  marry = [{ label: "是", value: 1 }];
+
+  like = [
+    { label: "前端", value: "front" },
+    { label: "后端", value: "back" },
+    { label: "运维", value: "yunwei" },
+    { label: "大数据", value: "bigValue" },
   ];
 }
 </script>
