@@ -43,7 +43,7 @@
 import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
 
-@Meta({ title: "主题配色", order: 10 })
+@Meta({ title: "配色", order: 10 })
 @Component({
   name: "ThemeColor",
 })
