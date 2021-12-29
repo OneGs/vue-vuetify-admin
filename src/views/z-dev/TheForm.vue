@@ -82,7 +82,12 @@
 import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
 
-@Meta({ title: "表单 & 验证", icon: "mdi-format-list-group", color: "cyan" })
+@Meta({
+  title: "表单 & 验证",
+  icon: "mdi-format-list-group",
+  color: "cyan",
+  order: 6,
+})
 @Component({
   name: "TheForm",
 })

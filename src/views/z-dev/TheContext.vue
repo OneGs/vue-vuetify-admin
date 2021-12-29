@@ -43,7 +43,7 @@ import { Meta } from "@/libs/auto-router/index";
 
 @Meta({
   title: "标题 & 文本",
-  order: 2,
+  order: 10,
   icon: "mdi-format-text",
   color: "indigo",
 })

@@ -14,7 +14,7 @@
 import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
 
-@Meta({ title: "溢出 & 滚动条", icon: "mdi-clover", color: "orange" })
+@Meta({ title: "溢出 & 滚动条", icon: "mdi-clover", color: "orange", order: 9 })
 @Component({
   name: "TheOverflow",
 })

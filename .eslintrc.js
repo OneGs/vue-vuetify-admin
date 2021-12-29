@@ -98,5 +98,6 @@ module.exports = {
       },
     ],
     "vue/no-multiple-template-root": "off",
+    "vue/valid-v-slot": "off",
   },
 };
