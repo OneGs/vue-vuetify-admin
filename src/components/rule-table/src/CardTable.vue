@@ -25,10 +25,10 @@
 
     <v-divider />
 
-    <v-data-table class="table pa-4" :headers="headers" :items="desserts2">
+    <v-data-table class="table py-4" :headers="headers" :items="desserts2">
       <template #top>
-        <div style="text-align: right">
-          <v-btn small color="primary">额外操作</v-btn>
+        <div style="text-align: right" class="px-4 pb-4">
+          <rule-btn>额外操作</rule-btn>
         </div>
       </template>
 
@@ -198,6 +198,15 @@ export default class CardTable extends Vue {
 .card-table {
   .v-input--dense > .v-input__control > .v-input__slot {
     margin: 0 !important;
+  }
+
+  .theme--light.v-data-table > .v-data-table__wrapper thead th {
+    background: #eef3fc;
+    border-right: 1px solid rgba(150, 150, 150, 0.2);
+  }
+
+  .v-data-table > .v-data-table__wrapper tbody td {
+    border-right: 1px solid rgba(150, 150, 150, 0.2);
   }
 }
 </style>
