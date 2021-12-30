@@ -1,5 +1,23 @@
 <template>
-  <v-navigation-drawer v-bind="$attrs" absolute class="app-navigator">
+  <v-navigation-drawer
+    v-bind="$attrs"
+    absolute
+    class="app-navigator"
+    :mini-variant.sync="miniVariant"
+  >
+    <v-list-item>
+      <v-list-item-content>
+        <v-list-item-title class="text-h6"> Application </v-list-item-title>
+        <v-list-item-subtitle> subtext </v-list-item-subtitle>
+      </v-list-item-content>
+
+      <rule-btn
+        icon="mdi-menu"
+        color="black"
+        @click="miniVariant = !miniVariant"
+      />
+    </v-list-item>
+
     <app-menu :menu="routes" />
   </v-navigation-drawer>
 </template>
@@ -16,13 +34,7 @@ import { routes } from "@/router";
 })
 export default class appNavigator extends Vue {
   routes = routes[0].children;
+
+  miniVariant = true;
 }
 </script>
-
-<style scoped lang="scss">
-.app-navigator {
-  position: fixed;
-  top: 64px !important;
-  box-shadow: 0 2px 10px rgba(150, 150, 150, 0.3);
-}
-</style>

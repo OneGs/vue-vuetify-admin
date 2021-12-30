@@ -1,64 +1,16 @@
 <template>
-  <v-app class="text-color">
-    <app-bar app />
-
-    <!-- 根据应用组件来调整你的内容 -->
-    <v-main>
-      <app-navigator />
-
-      <!-- 给应用提供合适的间距 -->
-      <div id="container" class="layout-container">
-        <v-breadcrumbs
-          :items="items"
-          divider="-"
-          class="layout-bread px-0 pt-0"
-        />
-        <!-- 如果使用 vue-router -->
-        <v-slide-x-reverse-transition mode="out-in" style="z-index: 10">
-          <router-view class="router-view-bg p-4 rounded-sm" />
-        </v-slide-x-reverse-transition>
-      </div>
-    </v-main>
-
-    <app-footer app v-if="false" />
-  </v-app>
+  <layouts />
 </template>
 
 <script>
 import { Component, Vue } from "vue-property-decorator";
-import AppBar from "@cps/app-bar/index.vue";
-import AppNavigator from "@cps/app-navigator/index.vue";
-import AppFooter from "@cps/app-footer/index.vue";
 import { RouteName } from "@/libs/auto-router";
+import Layouts from "@/layouts/index.vue";
 
 @RouteName("RootLayout")
 @Component({
   name: "Layout",
-  components: { AppFooter, AppNavigator, AppBar },
+  components: { Layouts },
 })
-export default class Layout extends Vue {
-  items = [
-    {
-      text: "Dashboard",
-      disabled: false,
-      href: "breadcrumbs_dashboard",
-    },
-    {
-      text: "Link 1",
-      disabled: false,
-      href: "breadcrumbs_link_1",
-    },
-    {
-      text: "Link 2",
-      disabled: true,
-      href: "breadcrumbs_link_2",
-    },
-  ];
-}
+export default class Layout extends Vue {}
 </script>
-
-<style scoped lang="scss">
-.p-4 {
-  padding: 16px;
-}
-</style>

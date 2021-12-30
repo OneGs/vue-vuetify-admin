@@ -3,6 +3,8 @@ import Vuetify from "vuetify/lib/framework";
 
 Vue.use(Vuetify);
 
+// #4b5fd1
+
 const primary = "#5e72e4";
 
 export default new Vuetify({

@@ -3,15 +3,28 @@
     v-bind="$attrs"
     color="primary"
     flat
-    class="app-bar d-flex justify-space-between"
+    height="84px"
+    class="app-bar d-flex justify-space-between border-bottom"
   >
     <v-img
+      v-if="false"
       src="@/assets/logo.png"
       width="46"
       height="46"
       contain
       class="flex-grow-0"
     />
+
+    <div class="btn-search" :class="{ 'btn-width': extend }">
+      <rule-text-field
+        no-message
+        rounded
+        label="搜索"
+        prepend-inner-icon="mdi-magnify"
+        @focus="extendWidth"
+        @blur="rollupWidth"
+      />
+    </div>
 
     <div class="flex-grow-1 ml-4">
       <horizontal
@@ -39,15 +52,9 @@
       </div>
 
       <div class="mr-2">
-        <v-btn icon color="#fff">
-          <v-icon v-text="'mdi-magnify'" />
-        </v-btn>
-        <v-btn icon color="#fff">
-          <v-icon v-text="'mdi-bell'" />
-        </v-btn>
-        <v-btn icon color="#fff">
-          <v-icon v-text="'mdi-cog-outline'" />
-        </v-btn>
+        <rule-btn icon="mdi-magnify" color="#fff" class="mr-3" />
+        <rule-btn icon="mdi-bell" color="#fff" class="mr-3" />
+        <rule-btn icon="mdi-cog-outline" color="#fff" class="mr-3" />
       </div>
     </div>
   </v-app-bar>
@@ -67,13 +74,22 @@ export default class appBar extends Vue {
   userAvatar = "";
 
   routes = routes[0].children;
+
+  extend = false;
+
+  extendWidth(): void {
+    this.extend = true;
+  }
+
+  rollupWidth(): void {
+    this.extend = false;
+  }
 }
 </script>
 
 <style scoped lang="scss">
 .app-bar {
   color: white;
-  border-bottom: 1px solid rgba(250, 250, 250, 0.3);
 }
 </style>
 
@@ -81,6 +97,21 @@ export default class appBar extends Vue {
 .app-bar {
   .v-toolbar__content {
     width: 100%;
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.08);
   }
+
+  .btn-search {
+    transition: width 0.25s ease;
+    width: 300px;
+  }
+
+  .btn-width {
+    width: 360px;
+  }
+}
+
+.v-application .border-bottom {
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.08) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
 }
 </style>

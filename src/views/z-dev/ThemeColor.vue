@@ -1,36 +1,44 @@
 <template>
-  <div class="white box-shadow">
-    <div>
-      <rule-h1> 亮色 </rule-h1>
-      <v-divider />
-      <div class="d-flex mt-6" style="margin: 1rem 0">
-        <v-btn
-          v-for="item in preset"
-          :key="item"
-          style="margin-left: 1rem"
-          :color="item"
-        >
-          {{ item }}
-        </v-btn>
-      </div>
+  <v-card>
+    <v-card-title>
+      <rule-h1>颜色主题</rule-h1>
+    </v-card-title>
+
+    <v-divider />
+
+    <v-card-title>
+      <rule-h2> 亮色 </rule-h2>
+    </v-card-title>
+
+    <div class="d-flex mt-6" style="margin: 1rem 0">
+      <v-btn
+        v-for="item in preset"
+        :key="item"
+        style="margin-left: 1rem"
+        :color="item"
+      >
+        {{ item }}
+      </v-btn>
     </div>
 
-    <div style="margin-top: 4rem">
-      <rule-h1>暗色</rule-h1>
-      <v-divider />
-      <div class="d-flex mt-6" style="margin: 1rem 0">
-        <v-btn
-          v-for="item in preset"
-          :key="item"
-          style="margin-left: 1rem"
-          :color="item"
-          small
-        >
-          {{ item }}
-        </v-btn>
-      </div>
+    <v-divider />
+
+    <v-card-title>
+      <rule-h2>暗色</rule-h2>
+    </v-card-title>
+
+    <div class="d-flex mt-6 py-4" style="margin: 1rem 0">
+      <v-btn
+        v-for="item in preset"
+        :key="item"
+        style="margin-left: 1rem"
+        :color="item"
+        small
+      >
+        {{ item }}
+      </v-btn>
     </div>
-  </div>
+  </v-card>
 </template>
 
 <script lang="ts">
