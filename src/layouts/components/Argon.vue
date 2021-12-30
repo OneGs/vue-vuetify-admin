@@ -7,10 +7,7 @@
     <!-- 根据应用组件来调整你的内容 -->
     <v-main>
       <div class="transform-origin: center top;">
-        <v-container
-          fluid
-          class="bg-primary pt-0 px-6 pb-16 d-flex align-center"
-        >
+        <v-container fluid class="primary pt-0 px-6 pb-16 d-flex align-center">
           <rule-btn icon="mdi-home" color="#fff" class="mr-3" />
 
           <v-breadcrumbs :items="items" divider="-" large class="px-0" />
@@ -62,10 +59,8 @@ export default class Argon extends Vue {
 </script>
 
 <style lang="scss">
-@import "/src/styles/variables";
-
 .app {
-  background: $--background-color !important;
+  background: #f8f9fe !important;
 
   .v-breadcrumbs__item {
     font-weight: 600;

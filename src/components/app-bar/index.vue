@@ -26,15 +26,15 @@
       />
     </div>
 
-    <div class="flex-grow-1 ml-4">
-      <horizontal
-        :menu="routes"
-        style="background: transparent !important"
-        color="white"
-      />
-    </div>
+    <!--    <div class="flex-grow-1 ml-4">-->
+    <!--      <horizontal-->
+    <!--        :menu="routes"-->
+    <!--        style="background: transparent !important"-->
+    <!--        color="white"-->
+    <!--      />-->
+    <!--    </div>-->
 
-    <div class="flex-grow-0 d-flex align-center flex-row-reverse">
+    <div class="flex-grow-1 d-flex align-center flex-row-reverse">
       <div class="d-flex align-center">
         <v-avatar size="36" class="lighten-1">
           <v-img lazy-src="@/assets/user.png" :src="userAvatar" />

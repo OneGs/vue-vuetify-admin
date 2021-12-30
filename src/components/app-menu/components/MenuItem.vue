@@ -2,14 +2,16 @@
   <v-list-item
     :link="isSub"
     v-if="!hasChildren"
-    :class="{ 'nest-item': isSub }"
+    :class="{ 'nest-item': !menuToggle && isSub }"
     :to="item"
     v-on="$listeners"
   >
     <v-list-item-icon v-show="menuIcon(item)">
-      <v-icon :color="menuColor(item)" class="font-icon lighten-2">{{
-        menuIcon(item)
-      }}</v-icon>
+      <v-icon
+        :color="!menuToggle ? menuColor(item) : 'black'"
+        class="font-icon lighten-2"
+        >{{ !menuToggle ? menuIcon(item) : menuTitle(item)[0] }}</v-icon
+      >
     </v-list-item-icon>
 
     <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>
@@ -41,9 +43,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Mixins } from "vue-property-decorator";
+import { Component, Prop, Mixins, Inject } from "vue-property-decorator";
 import { RouteConfig } from "vue-router";
 import MenuTools from "../menuTools";
+import AppMenu from "../Vertial.vue";
 
 @Component({
   name: "MenuItem",
@@ -52,6 +55,12 @@ export default class MenuItem extends Mixins(MenuTools) {
   @Prop({ type: Object, default: () => ({}) }) item?: RouteConfig;
 
   @Prop({ type: Boolean, default: false }) isSub?: boolean;
+
+  @Inject("menu") menu?: AppMenu;
+
+  get menuToggle(): boolean {
+    return !!this.menu?.toggle;
+  }
 
   get hasChildren(): boolean {
     return !!this.item?.children?.length;
@@ -72,5 +81,6 @@ export default class MenuItem extends Mixins(MenuTools) {
 
 .font-icon {
   font-size: 16px !important;
+  font-style: normal;
 }
 </style>

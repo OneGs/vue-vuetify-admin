@@ -3,7 +3,7 @@
  */
 
 import Vue from "vue";
-import Notify from "@/plugins";
+import Notify from "../install";
 import NotificationFun from "../index";
 
 declare module "vue/types/vue" {

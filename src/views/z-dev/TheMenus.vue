@@ -29,7 +29,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/src/decorators/Meta";
-import AppMenu from "@/components/app-menu/index.vue";
+import AppMenu from "@/components/app-menu/Vertial.vue";
 import { RouteConfig } from "vue-router";
 import Horizontal from "@/components/app-menu/Horizontal.vue";
 

@@ -9,8 +9,6 @@ import formItem from "@/components/tool-form-item/install";
 import ruleTable from "@/components/rule-table/install";
 import ruleBtn from "@/components/rule-btn/install";
 
-import "@/styles/index.scss";
-
 Vue.use(Notify);
 
 Vue.use(ruleTitle);

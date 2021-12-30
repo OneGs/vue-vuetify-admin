@@ -1,0 +1,50 @@
+// ————————————————————————————————————
+//* ——— CUSTOM
+// ————————————————————————————————————
+
+//* ——— color ——————————————————
+//
+
+// #region color
+
+// #endregion
+
+// ————————————————————————————————————
+//* ——— Vuetify
+// ————————————————————————————————————
+
+//* ——— preset Photography ——————————————————
+//
+
+// #region preset Photography
+
+$font-size-root: 14px;
+$body-font-family: Segoe UI, Roboto, PingFang SC, Helvetica Neue, Noto Sans, Noto Sans CJK SC, Microsoft Yahei, Arial, Hiragino Sans GB, sans-serif;
+$headings: (
+        'h1': (
+                'size': 1.5rem,
+                'weight': 600,
+                'line-height': 1.5,
+        ),
+        'h2': (
+                'size': 1.3rem,
+                'weight': 500,
+                'line-height': 1.5,
+        ),
+        'h3': (
+                'size': 1.15rem,
+                'weight': 400,
+                'line-height': 1.5,
+        )
+);
+
+// #endregion
+
+//* ——— preset Border ——————————————————
+//
+
+// #region preset Border
+
+$border-radius-root: 5px;
+
+// #endregion

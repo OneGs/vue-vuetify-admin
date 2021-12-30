@@ -7,7 +7,7 @@ const NotificationConstructor = Vue.extend(Main);
 
 const instances: notificationVue[] = [];
 
-class ToolNotification {
+export class ToolNotification {
   id = "";
 
   static seed = 1;
