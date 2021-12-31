@@ -4,20 +4,20 @@
     v-if="!hasChildren"
     :class="{ 'nest-item': !menuToggle && isSub }"
     :to="item"
+    color="rgba(0,0,0,.87)"
+    :ripple="false"
     v-on="$listeners"
   >
     <v-list-item-icon v-show="menuIcon(item)">
-      <v-icon
-        :color="!menuToggle ? menuColor(item) : 'black'"
-        class="font-icon lighten-2"
-        >{{ !menuToggle ? menuIcon(item) : menuTitle(item)[0] }}</v-icon
-      >
+      <v-icon :color="'rgba(0,0,0,.6)'" class="font-icon lighten-2">{{
+        !menuToggle ? "" : menuTitle(item)[0]
+      }}</v-icon>
     </v-list-item-icon>
 
     <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>
   </v-list-item>
 
-  <v-list-group v-else :sub-group="isSub">
+  <v-list-group v-else :sub-group="isSub" :ripple="false">
     <template #activator>
       <v-list-item-content>
         <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>
@@ -73,14 +73,3 @@ export default class MenuItem extends Mixins(MenuTools) {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.nest-item {
-  padding-left: 32px;
-}
-
-.font-icon {
-  font-size: 16px !important;
-  font-style: normal;
-}
-</style>

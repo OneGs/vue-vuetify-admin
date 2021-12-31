@@ -111,3 +111,13 @@
     @content ($color, $value);
   }
 }
+
+// ————————————————————————————————————
+//* ——— CUSTOM mixin
+// ————————————————————————————————————
+
+@mixin hover($component) {
+  .#{$component}:hover {
+    @content
+  }
+}

@@ -1,5 +1,5 @@
 @import "variables";
-//@import "mixins";
+@import "mixins";
 @import "~vuetify/src/styles/styles";
 
 //* ——— Card Overrides ——————————————————
@@ -11,6 +11,32 @@
   .v-card__text {
     line-height: 1.5;
   }
+}
+
+// #endregion
+
+//* ——— List of Menu Overrides ——————————————————
+//
+
+// #region List of Menu Overrides
+
+$--menu-item-color: rgba(0, 0, 0, 0.87);
+
+@include theme(v-list-item) using ($type) {
+  @if $type == $material-light {
+    &:not(.v-list-item--active):not(.v-list-item--disabled) {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+
+@include hover(v-list-item) {
+  color: $--menu-item-color !important;
+}
+
+.v-list-group__header.v-list-item.v-list-item--active {
+  color: $--menu-item-color;
+  background: #f6f9fc;
 }
 
 // #endregion
