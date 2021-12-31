@@ -2,6 +2,38 @@
 @import "mixins";
 @import "~vuetify/src/styles/styles";
 
+//* ——— Change The font-* of content ——————————————————
+//
+
+// #region Change The font-* of content
+
+@include theme(v-application) using($material) {
+  color: map-deep-get($material, 'text', 'secondary') !important;
+}
+
+@include theme(v-card) using($material) {
+  color: map-deep-get($material, 'text', 'secondary') !important;
+}
+
+@include theme(v-sheet) using($material) {
+  color: map-deep-get($material, 'text', 'secondary') !important;
+
+  .v-card__title {
+    color: map-deep-get($material, 'text', 'primary') !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: map-deep-get($material, 'text', 'primary') !important;
+  }
+}
+
+// #endregion
+
 //* ——— Card Overrides ——————————————————
 //
 
@@ -22,7 +54,7 @@
 
 $--menu-item-color: rgba(0, 0, 0, 0.87);
 
-@include theme(v-list-item) using ($type) {
+@include theme(v-list-item) using($type) {
   @if $type == $material-light {
     &:not(.v-list-item--active):not(.v-list-item--disabled) {
       color: rgba(0, 0, 0, 0.6);
@@ -37,6 +69,23 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
 .v-list-group__header.v-list-item.v-list-item--active {
   color: $--menu-item-color;
   background: #f6f9fc;
+}
+
+.v-list--dense .v-list-item .v-list-item__title {
+  font-size: 0.9rem !important;
+}
+
+// #endregion
+
+//* ——— Divider Overrides ——————————————————
+//
+
+// #region Divider Overrides
+
+@include theme(v-divider) using($type) {
+  @if $type == $material-light {
+    border-color: rgba(0, 0, 0, 0.06);
+  }
 }
 
 // #endregion

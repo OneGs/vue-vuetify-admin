@@ -1,16 +1,16 @@
 <template>
-  <router-view />
+  <div>this is grid</div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/src/decorators/Meta";
 
-@Meta({ title: "配置" })
+@Meta({ title: "网格" })
 @Component({
-  name: "SettingLayout",
+  name: "TheGrid",
 })
-export default class SettingLayout extends Vue {}
+export default class TheGrid extends Vue {}
 </script>
 
 <style scoped></style>

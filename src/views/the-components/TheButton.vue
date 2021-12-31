@@ -82,8 +82,8 @@ import { Component, Vue } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/src/decorators/Meta";
 
 @Meta({
-  title: "按钮 & 按钮组",
-  order: 4,
+  title: "按钮",
+  order: 100,
   icon: "mdi-card-outline",
   color: "orange",
 })

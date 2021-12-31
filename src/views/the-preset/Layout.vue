@@ -2,14 +2,14 @@
   <router-view />
 </template>
 
-<script>
+<script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import { Meta } from "@/libs/auto-router/index";
+import { Meta } from "@/libs/auto-router";
 
 @Meta({
   title: "预设",
   order: 10,
-  icon: "mdi-clipboard-text-multiple-outline",
+  icon: "mdi-presentation",
   color: "red lighten-2",
 })
 @Component

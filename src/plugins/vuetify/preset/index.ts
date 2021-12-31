@@ -5,7 +5,7 @@ export default {
     themes: {
       light: {
         primary: "#5e72e4",
-        secondary: "#a786df",
+        secondary: "#525f7f",
 
         warning: "#ff8e3c",
         error: "#d9376e",
