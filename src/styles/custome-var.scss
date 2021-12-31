@@ -1,8 +1,85 @@
-//* ——— color ——————————————————
+@import "variables";
+@import "~vuetify/src/styles/styles.sass";
+
+//* ——— Color ——————————————————
 //
 
-// #region color
+// #region Color
 
 $--background-color: #f8f9fe;
 
+// #endregion
+
+//* ——— Text ——————————————————
+//
+
+// #region Text
+
+.font-size-root {
+  font-size: 1rem !important;
+}
+
+.heading {
+  font-size: .95rem;
+  letter-spacing: .025em;
+}
+
+.heading-title {
+  font-size: 1.375rem;
+  letter-spacing: .025em;
+}
+
+.text-body {
+  color: #525f7f !important;
+}
+
+.text-muted {
+  color: #8898aa !important;
+}
+
+.text-typo {
+  color: #32325d !important;
+}
+
+.lead {
+  font-size: 1.25rem;
+
+  &, p {
+    line-height: 1.7;
+  }
+}
+
+@each $name, $color in $theme-colors {
+  .text-#{$name} {
+    color: $color;
+  }
+}
+
+$--display-each: 3.3 2.5 2.1875 1.6275;
+
+@each $display in $--display-each {
+  $index: index($--display-each, $display);
+
+  .display-h-#{$index} {
+    font-size: #{$display}rem !important;
+    line-height: 1.5;
+  }
+}
+
+// #endregion
+
+//* ——— Font-Weight ——————————————————
+//
+
+// #region Font-Weight
+
+.font-weight-semibold {
+  font-weight: 600 !important;
+}
+
+@for $i from 1 through 8 {
+  .font-weight-#{$i * 100} {
+    font-weight: $i * 100;
+  }
+}
 // #endregion
