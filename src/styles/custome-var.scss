@@ -141,3 +141,11 @@ $--display-each: 3.3 2.5 2.1875 1.6275;
     outline: none !important;
   }
 }
+
+$--positions: relative absolute fixed;
+
+@each $position in $--positions {
+  .position-#{$position} {
+    position: $position;
+  }
+}

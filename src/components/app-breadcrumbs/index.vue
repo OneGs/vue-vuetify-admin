@@ -43,16 +43,12 @@ export default class AppBreadcrumbs extends Vue {
     matched.forEach((match, index) => {
       if (match.name === "RootLayout") return;
 
-      console.log(this.$route);
-
       result.push({
         text: match.meta?.title || "no",
         to: match.name,
         disabled: matched.length === index + 1,
       });
     });
-
-    console.log(result);
 
     return result;
   }

@@ -16,9 +16,18 @@
     <v-container fluid>
       <v-row>
         <v-col lg="4" class="px-0">
-          <card-describe class="pa-0" />
+          <card-describe-more class="mb-6" />
+
+          <card-describe class="pa-0 mb-6" />
+
+          <card-user />
         </v-col>
-        <v-col lg="4">sss</v-col>
+        <v-col lg="4">
+          <card-describe
+            class="mb-6"
+            message="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis non dolore est fuga nobis ipsum illum eligendi nemo iure repellat, soluta, optio minus ut reiciendis voluptates enim impedit veritatis officiis."
+          />
+        </v-col>
         <v-col lg="4">sss</v-col>
       </v-row>
     </v-container>
@@ -31,11 +40,13 @@ import { Meta } from "@/libs/auto-router/src/decorators/Meta";
 import CardTraffic from "@/components/app-card/CardTraffic.vue";
 import Argon from "@/layouts/components/Argon.vue";
 import CardDescribe from "@/components/app-card/CardDescribe.vue";
+import CardDescribeMore from "@/components/app-card/CardDescribeMore.vue";
+import CardUser from "@/components/app-card/CardUser.vue";
 
 @Meta({ title: "面板", order: 100 })
 @Component({
   name: "TheCard",
-  components: { CardDescribe, CardTraffic },
+  components: { CardUser, CardDescribeMore, CardDescribe, CardTraffic },
 })
 export default class TheCard extends Vue {
   @Inject("argon") argon?: Argon;

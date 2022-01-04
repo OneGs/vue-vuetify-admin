@@ -2,8 +2,8 @@
   <v-btn
     v-bind="$attrs"
     v-on="$listeners"
-    class="rule-btn px-6 py-3 elevation-0 text-capitalize"
-    :class="{ 'move-up': moveUp }"
+    class="rule-btn elevation-0 text-capitalize"
+    :class="{ 'move-up': moveUp, 'px-6': !isSmall, 'py-3': !isSmall }"
     :icon="!!icon"
     :color="color"
     @mouseenter="moveUpFun"
@@ -35,12 +35,23 @@ export default class RuleBtn extends Vue {
     return this.icon !== "" && typeof this.icon === "string";
   }
 
+  get isSmall(): boolean {
+    return (
+      Object.keys(this.$attrs).includes("small") ||
+      Object.keys(this.$attrs).includes("x-small")
+    );
+  }
+
   moveUpFun(): void {
     this.moveUp = true;
   }
 
   modeDownFun(): void {
     this.moveUp = false;
+  }
+
+  created() {
+    console.log(this.isSmall);
   }
 }
 </script>
