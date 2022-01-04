@@ -84,8 +84,6 @@ import { Meta } from "@/libs/auto-router/src/decorators/Meta";
 @Meta({
   title: "按钮",
   order: 100,
-  icon: "mdi-card-outline",
-  color: "orange",
 })
 @Component({
   name: "TheButton",

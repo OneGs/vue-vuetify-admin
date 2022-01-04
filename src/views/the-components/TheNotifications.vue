@@ -2,9 +2,11 @@
   <div>this is the notifications</div>
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { Meta } from "@/libs/auto-router/src/decorators/Meta";
 
+@Meta({ title: "消息" })
 @Component({
   name: "TheNotifications",
 })

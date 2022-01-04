@@ -8,9 +8,9 @@ import { Meta } from "@/libs/auto-router";
 
 @Meta({
   title: "组件",
-  order: 10,
+  order: 40,
   icon: "mdi-google-podcast",
-  color: "green",
+  color: "cyan",
 })
 @Component
 export default class TheComponentLayout extends Vue {}

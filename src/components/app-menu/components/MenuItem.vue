@@ -8,10 +8,14 @@
     :ripple="false"
     v-on="$listeners"
   >
-    <v-list-item-icon v-show="menuIcon(item)">
-      <v-icon :color="'rgba(0,0,0,.6)'" class="font-icon lighten-2">{{
-        !menuToggle ? "" : menuTitle(item)[0]
-      }}</v-icon>
+    <v-list-item-icon>
+      <v-icon
+        :color="isSub ? 'rgba(0,0,0,.6)' : menuColor(item)"
+        class="font-icon lighten-2"
+        >{{
+          !menuToggle ? (isSub ? "" : menuIcon(item)) : menuTitle(item)[0]
+        }}</v-icon
+      >
     </v-list-item-icon>
 
     <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>

@@ -9,8 +9,8 @@ import { Meta } from "@/libs/auto-router";
 @Meta({
   title: "示例",
   order: 50,
-  icon: "mdi-google-podcast",
-  color: "green",
+  icon: "mdi-checkbox-multiple-blank-outline",
+  color: "red",
 })
 @Component
 export default class TheExampleLayout extends Vue {}
