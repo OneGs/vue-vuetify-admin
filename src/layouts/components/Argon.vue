@@ -7,10 +7,8 @@
     <!-- 根据应用组件来调整你的内容 -->
     <v-main>
       <div class="transform-origin: center top;">
-        <v-container fluid class="primary pt-0 px-6 pb-16 d-flex align-center">
-          <rule-btn icon="mdi-home" color="#fff" class="mr-3" />
-
-          <v-breadcrumbs :items="items" divider="-" large class="px-0" />
+        <v-container fluid class="primary pt-0 px-6 pb-16">
+          <app-breadcrumbs class="px-0" style="height: 80px" />
         </v-container>
       </div>
       <!-- 给应用提供合适的间距 -->
@@ -31,31 +29,14 @@ import { Component, Vue } from "vue-property-decorator";
 import AppFooter from "@cps/app-footer/index.vue";
 import AppNavigator from "@cps/app-navigator/index.vue";
 import AppBar from "@cps/app-bar/index.vue";
+import AppBreadcrumbs from "@/components/app-breadcrumbs/index.vue";
 
 @Component({
   name: "Argon",
 
-  components: { AppFooter, AppNavigator, AppBar },
+  components: { AppBreadcrumbs, AppFooter, AppNavigator, AppBar },
 })
-export default class Argon extends Vue {
-  items = [
-    {
-      text: "Dashboard",
-      disabled: false,
-      href: "breadcrumbs_dashboard",
-    },
-    {
-      text: "Link 1",
-      disabled: false,
-      href: "breadcrumbs_link_1",
-    },
-    {
-      text: "Link 2",
-      disabled: true,
-      href: "breadcrumbs_link_2",
-    },
-  ];
-}
+export default class Argon extends Vue {}
 </script>
 
 <style lang="scss">
