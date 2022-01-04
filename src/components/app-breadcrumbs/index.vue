@@ -1,8 +1,8 @@
 <template>
   <div class="d-flex align-center white--text">
     <h1
-      class="font-weight-semibold white--text text-h1 text-capitalize mr-4"
-      style="transform: translateY(-3px)"
+      class="font-weight-semibold white--text text-h2 text-capitalize mr-4"
+      style="transform: translateY(-1px)"
     >
       {{ nameTitle }}
     </h1>

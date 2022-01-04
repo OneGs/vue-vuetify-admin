@@ -152,7 +152,7 @@ import { Meta } from "@/libs/auto-router/src/decorators/Meta";
 
 @Meta({
   title: "按钮",
-  order: 100,
+  order: 101,
 })
 @Component({
   name: "TheButton",
@@ -174,10 +174,6 @@ export default class TheButton extends Vue {
 .btn {
   &:not(:first-child) {
     margin-left: 12px;
-  }
-
-  &-height {
-    //    height: 43px !important;
   }
 }
 </style>

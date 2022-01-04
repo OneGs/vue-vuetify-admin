@@ -35,7 +35,7 @@ $headings: (
         'size': 1.625rem,
         'weight': 600,
         'line-height': 1.5,
-        'letter-spacing': normal,
+        'letter-spacing': 1px,
     ),
     'h2': (
         'size': 1.25rem,
@@ -53,19 +53,19 @@ $headings: (
         'size': 0.9375rem,
         'weight': 600,
         'line-height': 1.5,
-        'letter-spacing': normal,
+        'letter-spacing': 1px,
     ),
     'h5': (
         'size': 0.8125rem,
         'weight': 600,
         'line-height': 1.5,
-        'letter-spacing': normal,
+        'letter-spacing': 1px,
     ),
     'h6': (
         'size': 0.625rem,
         'weight': 600,
         'line-height': 1.5,
-        'letter-spacing': normal,
+        'letter-spacing': 1px,
     )
 );
 
@@ -102,6 +102,15 @@ $btn-sizes: (
     'default': 43,
     'large': 51,
     'x-large': 60
-)
+);
+
+// #endregion
+
+//* ——— Breadcrumb Preset ——————————————————
+//
+
+// #region Breadcrumb Preset
+
+$breadcrumbs-item-font-size: 15px;
 
 // #endregion

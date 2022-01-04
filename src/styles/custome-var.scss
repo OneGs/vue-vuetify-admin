@@ -101,6 +101,34 @@ $--display-each: 3.3 2.5 2.1875 1.6275;
   padding: 1.25rem 1.5rem;
 }
 
+.card-stats-padding {
+  padding: 1rem 1.5rem;
+}
+
+.bg-gradient-danger {
+  background: linear-gradient(87deg, map-get($theme-colors, danger), #f56036) !important;
+}
+
+.bg-gradient-warning {
+  background: linear-gradient(87deg, map-get($theme-colors, warning), #fbb140) !important;
+}
+
+.bg-gradient-success {
+  background: linear-gradient(87deg, map-get($theme-colors, success), #2dcecc) !important;
+}
+
+.bg-gradient-info {
+  background: linear-gradient(87deg, map-get($theme-colors, info), #1171ef) !important;
+}
+
+.bg-gradient-default {
+  background: linear-gradient(87deg, map-get($theme-colors, default), #1a174d) !important;
+}
+
+.bg-gradient-secondary {
+  background: linear-gradient(87deg, map-get($theme-colors, secondary) ,#f7f8fc) !important;
+}
+
 // #endregion
 
 // ————————————————————————————————————

@@ -99,6 +99,8 @@ $--v-application: v-application;
 // #region Card Overrides
 
 .v-card {
+  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+
   .v-card__text {
     line-height: 1.5;
   }
