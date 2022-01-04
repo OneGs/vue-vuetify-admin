@@ -3,6 +3,7 @@
     :link="isSub"
     v-if="!hasChildren"
     :class="{ 'nest-item': !menuToggle && isSub }"
+    class="pb-1 mb-1"
     :to="item"
     color="rgba(0,0,0,.87)"
     :ripple="false"
@@ -21,7 +22,7 @@
     <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>
   </v-list-item>
 
-  <v-list-group v-else :sub-group="isSub" :ripple="false">
+  <v-list-group v-else :sub-group="isSub" :ripple="false" class="pb-1 mb-1">
     <template #activator>
       <v-list-item-content>
         <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>

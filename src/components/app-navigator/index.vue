@@ -6,7 +6,7 @@
     permanent
     width="250px"
   >
-    <v-list-item>
+    <v-list-item style="height: 78px">
       <v-list-item-content v-if="!miniVariant">
         <v-list-item-title class="text-h6"> Application </v-list-item-title>
         <v-list-item-subtitle> subtext </v-list-item-subtitle>

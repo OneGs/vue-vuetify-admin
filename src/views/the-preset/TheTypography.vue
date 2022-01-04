@@ -213,13 +213,3 @@ export default class TheTitle extends Vue {
   displays = ["3.3rem", "2.5rem", "2.1875rem", "1.6275rem"];
 }
 </script>
-
-<style scoped lang="scss">
-.card-padding {
-  padding: 1.5rem !important;
-}
-
-.card-shadow {
-  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
-}
-</style>

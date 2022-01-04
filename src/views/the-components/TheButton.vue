@@ -1,80 +1,149 @@
 <template>
-  <v-card class="pa-0">
-    <v-card-title>
-      <rule-h1>按钮 & 按钮组</rule-h1>
-    </v-card-title>
+  <v-row>
+    <v-col cols="8" class="mx-auto">
+      <v-card class="card-shadow">
+        <v-card-title class="card-heading-padding">
+          <h3 class="text-h3 text-typo">样式</h3>
+        </v-card-title>
 
-    <v-divider />
+        <v-divider />
 
-    <v-card-title>
-      <rule-h2>标准按钮</rule-h2>
-    </v-card-title>
+        <v-card-text class="card-padding">
+          <rule-btn color="primary" class="btn-height">按钮</rule-btn>
+          <rule-btn color="primary" class="ml-2 btn-height">
+            <v-icon left>mdi-format-paint</v-icon>
+            按钮</rule-btn
+          >
+          <rule-btn color="primary" class="ml-2 btn-height">
+            <v-icon dense>mdi-cog-outline</v-icon>
+          </rule-btn>
+        </v-card-text>
+      </v-card>
+    </v-col>
 
-    <div class="text-body-1 pa-4">
-      默认采用small样式，同时赋予了简单的动效，让交互更灵动。
-    </div>
+    <v-col cols="8" class="mx-auto">
+      <v-card class="card-shadow">
+        <v-card-title class="card-heading-padding">
+          <h3 class="text-h3 text-typo">颜色</h3>
+        </v-card-title>
 
-    <div class="pa-4">
-      <rule-btn v-for="btn in preset" :key="btn" :color="btn" class="btn"
-        >按钮</rule-btn
-      >
-    </div>
+        <v-divider />
 
-    <v-divider />
+        <v-card-text class="card-padding">
+          <rule-btn
+            :color="color"
+            v-for="color in preset"
+            :key="color"
+            class="my-2 me-2 btn-height text-capitalize"
+            >{{ color }}</rule-btn
+          >
+        </v-card-text>
+      </v-card>
+    </v-col>
 
-    <v-card-title>
-      <rule-h2>纯文本按钮</rule-h2>
-    </v-card-title>
+    <v-col cols="8" class="mx-auto">
+      <v-card class="card-shadow">
+        <v-card-title class="card-heading-padding">
+          <h3 class="text-h3 text-typo">外边框</h3>
+        </v-card-title>
 
-    <div class="text-body-1 pa-4">纯文本只保留数字！</div>
+        <v-divider />
 
-    <div class="pa-4">
-      <rule-btn v-for="btn in preset" :key="btn" :color="btn" class="btn" plain
-        >按钮</rule-btn
-      >
-    </div>
+        <v-card-text class="card-padding">
+          <rule-btn
+            :color="color"
+            v-for="color in preset"
+            :key="color"
+            outlined
+            class="my-2 me-2 btn-height text-capitalize font-weight-semibold"
+            >{{ color }}</rule-btn
+          >
+        </v-card-text>
+      </v-card>
+    </v-col>
 
-    <v-divider />
+    <v-col cols="8" class="mx-auto">
+      <v-card class="card-shadow">
+        <v-card-title class="card-heading-padding">
+          <h3 class="text-h3 text-typo">大小</h3>
+        </v-card-title>
 
-    <v-card-title>
-      <rule-h2>图标按钮</rule-h2>
-    </v-card-title>
+        <v-divider />
 
-    <div class="text-body-1 pa-4">
-      允许通过 slot或 icon=""
-      的形式将按钮转化为图标按钮。同时，即使是默认size为small，你仍可以通过large改变大小。
-    </div>
+        <v-card-text class="card-padding">
+          <rule-btn class="text-capitalize" large style="height: 51px"
+            >Large Button</rule-btn
+          >
+          <rule-btn
+            class="text-capitalize ml-2"
+            large
+            style="height: 51px"
+            color="secondary"
+            >大按钮</rule-btn
+          >
 
-    <div class="pa-4">
-      <rule-btn
-        v-for="btn in preset"
-        :key="btn"
-        :color="btn"
-        class="btn"
-        icon="mdi-home"
-        large
-      />
-    </div>
+          <v-divider class="my-8" />
 
-    <v-divider />
+          <rule-btn class="text-capitalize" small style="line-height: 1"
+            >small Button</rule-btn
+          >
+          <rule-btn class="text-capitalize ml-2" small color="secondary"
+            >小按钮</rule-btn
+          >
 
-    <v-card-title>
-      <rule-h2>组合按钮</rule-h2>
-    </v-card-title>
+          <v-divider class="my-8" />
 
-    <div class="pa-4 text-body-1">
-      允许通过 slot 同时存在icon和text，这样可以起到更好的美观和提示效果。
-    </div>
+          <rule-btn class="text-capitalize" large block>block 按钮</rule-btn>
 
-    <div class="pa-4">
-      <rule-btn v-for="btn in preset" :key="btn" :color="btn" class="btn">
-        <v-icon v-text="'mdi-home'" small left />
-        按钮
-      </rule-btn>
-    </div>
+          <rule-btn class="text-capitalize mt-2" color="secondary" large block
+            >block 按钮</rule-btn
+          >
+        </v-card-text>
+      </v-card>
+    </v-col>
 
-    <v-divider />
-  </v-card>
+    <v-col cols="8" class="mx-auto">
+      <v-card class="card-shadow">
+        <v-card-title class="card-heading-padding">
+          <h3 class="text-h3 text-typo">组</h3>
+        </v-card-title>
+
+        <v-divider />
+
+        <v-card-text class="card-padding text-capitalize">
+          <v-btn-toggle tile borderless>
+            <v-btn value="left" :ripple="false"> Left </v-btn>
+
+            <v-btn value="center" :ripple="false"> Center </v-btn>
+
+            <v-btn value="right" :ripple="false"> Right </v-btn>
+
+            <v-btn value="justify" :ripple="false"> Justify </v-btn>
+          </v-btn-toggle>
+
+          <v-divider class="my-8" />
+
+          <v-btn-toggle borderless>
+            <rule-btn value="left" :ripple="false" color="default">
+              Left
+            </rule-btn>
+
+            <rule-btn value="center" :ripple="false" color="default">
+              Center
+            </rule-btn>
+
+            <rule-btn value="right" :ripple="false" color="default">
+              Right
+            </rule-btn>
+
+            <rule-btn value="justify" :ripple="false" color="default">
+              Justify
+            </rule-btn>
+          </v-btn-toggle>
+        </v-card-text>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">
@@ -92,7 +161,6 @@ export default class TheButton extends Vue {
   preset = [
     "primary",
     "secondary",
-    "accent",
     "error",
     "info",
     "success",
@@ -106,6 +174,10 @@ export default class TheButton extends Vue {
 .btn {
   &:not(:first-child) {
     margin-left: 12px;
+  }
+
+  &-height {
+    //    height: 43px !important;
   }
 }
 </style>

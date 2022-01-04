@@ -84,6 +84,25 @@ $--display-each: 3.3 2.5 2.1875 1.6275;
 }
 // #endregion
 
+//* ——— Card Classes ——————————————————
+//
+
+// #region Card Classes
+
+.card-padding {
+  padding: 1.5rem !important;
+}
+
+.card-shadow {
+  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+}
+
+.card-heading-padding {
+  padding: 1.25rem 1.5rem;
+}
+
+// #endregion
+
 // ————————————————————————————————————
 //* ——— CUSTOM CLASSES
 // ————————————————————————————————————

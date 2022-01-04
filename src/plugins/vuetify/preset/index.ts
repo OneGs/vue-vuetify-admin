@@ -5,12 +5,13 @@ export default {
     themes: {
       light: {
         primary: "#5e72e4",
-        secondary: "#525f7f",
+        secondary: "#f7fafc",
 
-        warning: "#ff8e3c",
-        error: "#d9376e",
-        success: "#2cb67d",
-        info: "#5cd4f2",
+        warning: "#fb6340",
+        error: "#f5365c",
+        success: "#2dce89",
+        info: "#11cdef",
+        default: "#172b4d",
       },
 
       dark: {

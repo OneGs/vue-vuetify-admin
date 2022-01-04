@@ -2,13 +2,13 @@
   <v-btn
     v-bind="$attrs"
     v-on="$listeners"
-    small
-    class="rule-btn"
+    class="rule-btn px-6 py-3 elevation-0"
     :class="{ 'move-up': moveUp }"
     :icon="!!icon"
     :color="color"
     @mouseenter="moveUpFun"
     @mouseleave="modeDownFun"
+    :ripple="false"
   >
     <slot>
       <v-icon v-if="hasIconString" v-text="icon" />
@@ -50,7 +50,7 @@ export default class RuleBtn extends Vue {
   transition: all 0.25s ease;
 
   &.move-up {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
 }
 </style>

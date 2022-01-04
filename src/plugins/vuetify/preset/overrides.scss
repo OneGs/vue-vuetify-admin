@@ -2,6 +2,8 @@
 @import "mixins";
 @import "~vuetify/src/styles/styles";
 
+$--v-application: v-application;
+
 //* ——— Change The font-* of content ——————————————————
 //
 
@@ -29,6 +31,63 @@
   h5,
   h6 {
     color: map-deep-get($material, 'text', 'primary') !important;
+  }
+}
+
+// #endregion
+
+//* ——— Button Overrides ——————————————————
+//
+
+// #region Button Overrides
+
+.default {
+  color: #fff !important;
+  background-color: rgb(23, 43, 77) !important;
+  border-color: rgb(23, 43, 77) !important;
+}
+
+@each $colorName, $colorValue in $theme-colors {
+  .v-application .v-btn.#{$colorName}--text:hover {
+    color: #ffffff !important;
+    @include background-color($colorValue);
+  }
+}
+
+@include theme($--v-application) using ($type) {
+  @if $type == $material-light {
+    .v-btn:hover::before {
+      opacity: 0;
+    }
+
+    .v-btn.secondary--text {
+      @include text-color(#4385b1);
+
+      &:hover {
+        @include text-color(#000);
+      }
+    }
+  }
+}
+
+// group
+
+@include theme($--v-application) using ($type) {
+  .v-btn-toggle {
+    box-shadow:  0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08) !important;
+  }
+
+  // TODO 这应该是组件
+  @if $type == $material-light {
+    .v-btn-toggle > .v-btn {
+      background-color: #f7fafc;
+      border-color: #f7fafc;
+    }
+
+    .v-btn-toggle > .v-btn.v-btn--active {
+      background-color: #d2e3ee;
+      border-color: #d2e3ee;
+    }
   }
 }
 
@@ -86,6 +145,21 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
 @include theme(v-divider) using($type) {
   @if $type == $material-light {
     border-color: rgba(0, 0, 0, 0.06);
+  }
+}
+
+// #endregion
+
+//* ——— Color Overrides ——————————————————
+//
+
+// #region Color Overrides
+
+@include theme(v-application) using ($type) {
+  @if $type == $material-light {
+    .secondary {
+      color: #212529;
+    }
   }
 }
 
