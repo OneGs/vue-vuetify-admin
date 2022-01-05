@@ -18,7 +18,11 @@ $--v-application: v-application;
 }
 
 @include theme(v-sheet) using($material) {
-  color: map-deep-get($material, 'text', 'secondary') !important;
+  @if $material == $material-dark {
+    color: #fff !important;
+  } @else  {
+    color: map-deep-get($material, 'text', 'secondary') !important;
+  }
 
   .v-card__title {
     color: map-deep-get($material, 'text', 'primary') !important;
@@ -174,6 +178,27 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
   @if $type == $material-light {
     .secondary {
       color: #212529;
+    }
+  }
+}
+
+// #endregion
+
+//* ——— Alter Overrides ——————————————————
+//
+
+// #region Alter Overrides
+
+@include theme($--v-application) using ($type) {
+  .v-alert {
+    &.secondary {
+      .v-icon, .v-alert__content {
+        color: #000;
+      }
+    }
+
+    .v-icon {
+      color: #fff;
     }
   }
 }
