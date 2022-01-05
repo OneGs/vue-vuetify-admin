@@ -49,10 +49,6 @@ export default class RuleBtn extends Vue {
   modeDownFun(): void {
     this.moveUp = false;
   }
-
-  created() {
-    console.log(this.isSmall);
-  }
 }
 </script>
 

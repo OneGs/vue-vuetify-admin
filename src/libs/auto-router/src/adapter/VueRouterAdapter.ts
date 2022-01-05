@@ -141,8 +141,6 @@ export class VueRouterAdapter extends Adapter {
 
       const subDirectory = directory.SubDirectories[index];
 
-      // console.log(subDirectory.getPath(), "sub");
-
       const subRoute = this.convertDirectory(subDirectory, options);
 
       routes.push(subRoute);

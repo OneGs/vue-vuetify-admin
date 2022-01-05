@@ -36,6 +36,22 @@ $--v-application: v-application;
 
 // #endregion
 
+//* ——— Color Or Font Overrides ——————————————————
+//
+
+// #region Color Or Font Overrides
+
+.text--white {
+  @include text-color(white);
+}
+
+.bg-white {
+  @include background-color(white);
+}
+
+// #endregion
+
+
 //* ——— Button Overrides ——————————————————
 //
 
@@ -54,7 +70,7 @@ $--v-application: v-application;
   }
 }
 
-@include theme($--v-application) using ($type) {
+@include theme($--v-application) using($type) {
   @if $type == $material-light {
     .v-btn:hover::before {
       opacity: 0;
@@ -72,9 +88,9 @@ $--v-application: v-application;
 
 // group
 
-@include theme($--v-application) using ($type) {
+@include theme($--v-application) using($type) {
   .v-btn-toggle {
-    box-shadow:  0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08) !important;
+    box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08) !important;
   }
 
   // TODO 这应该是组件
@@ -147,6 +163,8 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
 @include theme(v-divider) using($type) {
   @if $type == $material-light {
     border-color: rgba(0, 0, 0, 0.06);
+  } @else {
+    border-color: rgba(0, 0, 0, .05);
   }
 }
 
@@ -157,7 +175,7 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
 
 // #region Color Overrides
 
-@include theme(v-application) using ($type) {
+@include theme(v-application) using($type) {
   @if $type == $material-light {
     .secondary {
       color: #212529;

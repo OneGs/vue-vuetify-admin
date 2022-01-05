@@ -15,8 +15,10 @@ $--background-color: #f8f9fe;
 
 // #region Text
 
-.font-size-root {
-  font-size: 1rem !important;
+@include theme(v-application) using ($type) {
+  .font-size-root {
+    font-size: 1rem !important;
+  }
 }
 
 .heading {
@@ -105,6 +107,10 @@ $--display-each: 3.3 2.5 2.1875 1.6275;
   padding: 1rem 1.5rem;
 }
 
+.bg-gradient-white {
+  background: linear-gradient(87deg, #fff, #fcfcfc) !important;
+}
+
 .bg-gradient-danger {
   background: linear-gradient(87deg, map-get($theme-colors, danger), #f56036) !important;
 }
@@ -127,6 +133,10 @@ $--display-each: 3.3 2.5 2.1875 1.6275;
 
 .bg-gradient-secondary {
   background: linear-gradient(87deg, map-get($theme-colors, secondary) ,#f7f8fc) !important;
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(87deg, map-get($theme-colors, primary), #825ee4)!important;
 }
 
 // #endregion
