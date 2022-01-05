@@ -5,7 +5,7 @@
 
       <v-col cols="12">
         <v-img
-          :src="require('../assets/logo.svg')"
+          :src="require('@ast/svgs/logo.svg')"
           class="my-3"
           contain
           height="200"
