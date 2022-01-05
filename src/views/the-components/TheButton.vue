@@ -3,16 +3,18 @@
     <v-col cols="8" class="mx-auto">
       <v-card class="card-shadow">
         <v-card-title class="card-heading-padding">
-          <h3 class="text-h3 text-typo">样式</h3>
+          <h3 class="text-h3 text-typo font-weight-600">Styles</h3>
         </v-card-title>
 
         <v-divider />
 
         <v-card-text class="card-padding">
-          <rule-btn color="primary" class="btn-height">按钮</rule-btn>
+          <rule-btn color="primary" class="btn-height text-capitalize"
+            >button</rule-btn
+          >
           <rule-btn color="primary" class="ml-2 btn-height">
             <v-icon left>mdi-format-paint</v-icon>
-            按钮</rule-btn
+            With icon</rule-btn
           >
           <rule-btn color="primary" class="ml-2 btn-height">
             <v-icon dense>mdi-cog-outline</v-icon>
@@ -24,7 +26,7 @@
     <v-col cols="8" class="mx-auto">
       <v-card class="card-shadow">
         <v-card-title class="card-heading-padding">
-          <h3 class="text-h3 text-typo">颜色</h3>
+          <h3 class="text-h3 text-typo">Colors</h3>
         </v-card-title>
 
         <v-divider />
@@ -44,7 +46,7 @@
     <v-col cols="8" class="mx-auto">
       <v-card class="card-shadow">
         <v-card-title class="card-heading-padding">
-          <h3 class="text-h3 text-typo">外边框</h3>
+          <h3 class="text-h3 text-typo">Outline</h3>
         </v-card-title>
 
         <v-divider />
@@ -65,7 +67,7 @@
     <v-col cols="8" class="mx-auto">
       <v-card class="card-shadow">
         <v-card-title class="card-heading-padding">
-          <h3 class="text-h3 text-typo">大小</h3>
+          <h3 class="text-h3 text-typo">Sizes</h3>
         </v-card-title>
 
         <v-divider />
@@ -79,7 +81,7 @@
             large
             style="height: 51px"
             color="secondary"
-            >大按钮</rule-btn
+            >Large Button</rule-btn
           >
 
           <v-divider class="my-8" />
@@ -88,15 +90,15 @@
             >small Button</rule-btn
           >
           <rule-btn class="text-capitalize ml-2" small color="secondary"
-            >小按钮</rule-btn
+            >small Button</rule-btn
           >
 
           <v-divider class="my-8" />
 
-          <rule-btn class="text-capitalize" large block>block 按钮</rule-btn>
+          <rule-btn class="text-capitalize" large block>block button</rule-btn>
 
           <rule-btn class="text-capitalize mt-2" color="secondary" large block
-            >block 按钮</rule-btn
+            >block button</rule-btn
           >
         </v-card-text>
       </v-card>
@@ -105,7 +107,7 @@
     <v-col cols="8" class="mx-auto">
       <v-card class="card-shadow">
         <v-card-title class="card-heading-padding">
-          <h3 class="text-h3 text-typo">组</h3>
+          <h3 class="text-h3 text-typo">Group</h3>
         </v-card-title>
 
         <v-divider />
@@ -151,7 +153,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/src/decorators/Meta";
 
 @Meta({
-  title: "按钮",
+  title: "Buttons",
   order: 101,
 })
 @Component({

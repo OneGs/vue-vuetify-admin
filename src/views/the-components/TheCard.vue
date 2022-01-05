@@ -15,7 +15,7 @@
 
     <v-container fluid>
       <v-row>
-        <v-col lg="4" class="px-0 py-0">
+        <v-col lg="4" class="pl-0 py-0">
           <card-describe-more class="mb-6" :message="message" />
 
           <card-describe class="pa-0 mb-6" :message="message" />
@@ -83,7 +83,7 @@
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col lg="4" class="py-0">
+        <v-col lg="4" class="py-0 pr-0">
           <card-price />
 
           <card-describe class="mt-6" :message="message" />
@@ -105,7 +105,7 @@ import CardDescribeMore from "@/components/app-card/CardDescribeMore.vue";
 import CardUser from "@/components/app-card/CardUser.vue";
 import CardPrice from "@/components/app-card/CardPrice.vue";
 
-@Meta({ title: "面板", order: 100 })
+@Meta({ title: "Cards", order: 100 })
 @Component({
   name: "TheCard",
   components: {

@@ -7,7 +7,7 @@ import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 
 @Meta({
-  title: "组件",
+  title: "Components",
   order: 40,
   icon: "mdi-google-podcast",
   color: "cyan",
