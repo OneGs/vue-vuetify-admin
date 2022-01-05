@@ -10,6 +10,7 @@ import ruleTable from "@/components/rule-table/install";
 import ruleBtn from "@/components/rule-btn/install";
 import toolSvgIcon from "@/components/tool-icon-svg/install";
 import "@/styles/custome-var.scss";
+import "animate.css";
 
 const requireAll = (requireContext: __WebpackModuleApi.RequireContext) =>
   requireContext.keys().map(requireContext);

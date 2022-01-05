@@ -1,4 +1,5 @@
 import NotificationFun from "./index";
+import Notification from "./src/Notification.vue";
 import { VueConstructor } from "vue";
 
 let vue: VueConstructor;
@@ -15,8 +16,10 @@ export default class Notify {
   }
 }
 
-Notify.install = function (_vue: VueConstructor): void {
-  vue = _vue;
+Notify.install = function (Vue: VueConstructor): void {
+  vue = Vue;
+
+  Vue.component("rule-notification", Notification);
 
   vue.mixin({
     beforeCreate() {

@@ -1,14 +1,27 @@
 <template>
-  <transition name="el-notification-fade">
+  <transition>
     <v-alert
       v-show="visible"
-      :type="type"
+      :color="type"
       :style="positionStyle"
-      class="tool-alert"
+      icon="mdi-bell"
+      class="ma-0 tool-alert"
+      close-icon="mdi-close"
+      dismissible
+      width="600px"
       @mouseenter="clearTimer()"
       @mouseleave="startTimer()"
       @click="click"
-      >{{ message }}
+      dark
+    >
+      <div>
+        <div
+          class="font-size-root font-weight-semibold text-h3 text-capitalize"
+        >
+          {{ title }}
+        </div>
+        <div class="mt-1">{{ message }}</div>
+      </div>
     </v-alert>
   </transition>
 </template>
@@ -23,7 +36,7 @@ import { LoopString } from "@/types/common";
 export default class toolAlert extends Vue {
   visible = false;
 
-  title = "";
+  title = "Vuetify Snackbar";
 
   message = "";
 
@@ -102,28 +115,8 @@ export default class toolAlert extends Vue {
 .tool-alert {
   position: fixed;
   top: 1rem;
-  right: 1rem;
+  right: 50%;
+  transform: translateX(50%);
   z-index: 1000;
-  transition: opacity 0.3s, transform 0.3s, left 0.3s, right 0.3s, top 0.4s,
-    bottom 0.3s;
-}
-
-.fade-right-enter {
-  right: 0;
-  opacity: 0;
-  transform: translateX(100%);
-}
-
-.fade-right-enter-active {
-  transition: all 1s ease;
-}
-
-.el-notification-fade-enter {
-  right: 0;
-  transform: translateX(100%);
-}
-
-.el-notification-fade-leave-active {
-  opacity: 0;
 }
 </style>

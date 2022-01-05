@@ -1,6 +1,6 @@
 import Vue from "vue";
 import vuetify from "@/plugins/vuetify";
-import Main from "./src/main.vue";
+import Main from "./src/Main.vue";
 import { notificationOptions, notificationVue } from "./types/notification";
 
 const NotificationConstructor = Vue.extend(Main);
