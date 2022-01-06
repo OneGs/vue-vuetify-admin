@@ -7,7 +7,7 @@ import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 
 @Meta({
-  title: "表单",
+  title: "Forms",
   order: 30,
   icon: "mdi-form-select",
   color: "orange",

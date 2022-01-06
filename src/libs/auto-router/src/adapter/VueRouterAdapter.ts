@@ -105,6 +105,10 @@ export class VueRouterAdapter extends Adapter {
         : route.alias;
     }
 
+    if (route.meta && !route.meta.title) {
+      route.meta.title = route.name;
+    }
+
     return route;
   }
 

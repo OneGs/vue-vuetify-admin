@@ -33,7 +33,7 @@ import AppMenu from "@/components/app-menu/Vertial.vue";
 import { RouteConfig } from "vue-router";
 import Horizontal from "@/components/app-menu/Horizontal.vue";
 
-@Meta({ title: "Menus", order: 0 })
+@Meta({ title: "Menus", order: 0, hidden: true })
 @Component({
   name: "TheMenus",
   components: { Horizontal, AppMenu },

@@ -9,6 +9,7 @@ import formItem from "@/components/tool-form-item/install";
 import ruleTable from "@/components/rule-table/install";
 import ruleBtn from "@/components/rule-btn/install";
 import toolSvgIcon from "@/components/tool-icon-svg/install";
+import toolGrid from "@/components/tool-grid/install";
 import "@/styles/custome-var.scss";
 import "animate.css";
 
@@ -20,6 +21,8 @@ const req = require.context("./assets/svgs", false, /\.svg$/);
 requireAll(req);
 
 Vue.use(Notify);
+
+Vue.use(toolGrid);
 
 Vue.use(ruleTitle);
 
