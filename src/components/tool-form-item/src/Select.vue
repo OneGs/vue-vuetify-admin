@@ -7,7 +7,7 @@
     :items="options"
     item-text="label"
     item-value="value"
-    :label="_label"
+    :placeholder="_label"
     v-bind="$attrs"
   />
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <v-textarea solo dense outlined flat :label="_label" />
+  <v-textarea solo dense outlined flat :placeholder="_label" height="76px" />
 </template>
 
 <script lang="ts">

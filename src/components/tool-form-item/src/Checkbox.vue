@@ -2,7 +2,7 @@
   <div>
     <template v-for="option in options">
       <v-checkbox
-        :label="option.label"
+        :placeholder="option.label"
         :value="option.value"
         :key="option.label + option.value"
         :class="{ 'check-inline': inline }"

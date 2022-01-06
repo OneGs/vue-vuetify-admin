@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid class="pa-0">
     <v-row v-for="(theRow, index) in layouts" :key="index + 'row'">
       <v-col
         v-for="(theCol, colIndex) in theRow"

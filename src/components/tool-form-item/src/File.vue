@@ -5,7 +5,7 @@
     dense
     outlined
     append-icon="mdi-eye-refresh"
-    :label="_label"
+    :placeholder="_label"
     @click:append="views"
     v-bind="$attrs"
   />

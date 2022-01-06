@@ -3,8 +3,7 @@
     solo
     outlined
     flat
-    dense
-    :label="_label"
+    :placeholder="_label"
     class="text-filed"
     v-bind="$attrs"
     v-on="$listeners"
