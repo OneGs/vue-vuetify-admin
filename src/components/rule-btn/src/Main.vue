@@ -31,6 +31,8 @@ export default class RuleBtn extends Vue {
 
   @Prop({ type: String, default: "primary" }) color?: string;
 
+  @Prop({ type: Boolean, default: true }) dynamic?: boolean;
+
   get hasIconString(): boolean {
     return this.icon !== "" && typeof this.icon === "string";
   }
@@ -43,6 +45,8 @@ export default class RuleBtn extends Vue {
   }
 
   moveUpFun(): void {
+    if (!this.dynamic) return;
+
     this.moveUp = true;
   }
 

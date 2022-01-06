@@ -4,6 +4,17 @@
 
 $--v-application: v-application;
 
+//* ——— Origin Html Style Overrides ——————————————————
+//
+
+// #region Origin Html Style Overrides
+
+p {
+  line-height: 1.7;
+}
+
+// #endregion
+
 //* ——— Change The font-* of content ——————————————————
 //
 
@@ -45,8 +56,12 @@ $--v-application: v-application;
 
 // #region Color Or Font Overrides
 
-.text--white {
+.text--white, .text-white {
   @include text-color(white);
+}
+
+.text--black, .text-black {
+  @include text-color(black);
 }
 
 .bg-white {
@@ -67,8 +82,9 @@ $--v-application: v-application;
   border-color: rgb(23, 43, 77) !important;
 }
 
+// v-btn--outlined
 @each $colorName, $colorValue in $theme-colors {
-  .v-application .v-btn.#{$colorName}--text:hover {
+  .v-application .v-btn.v-btn--outlined.#{$colorName}--text:hover {
     color: #ffffff !important;
     @include background-color($colorValue);
   }
