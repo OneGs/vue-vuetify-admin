@@ -6,7 +6,6 @@
       :style="positionStyle"
       icon="mdi-bell"
       class="ma-0 tool-alert"
-      close-icon="mdi-close"
       dismissible
       width="600px"
       @mouseenter="clearTimer()"
@@ -14,6 +13,14 @@
       @click="click"
       dark
     >
+      <template #close="{ toggle }">
+        <v-icon
+          class="font-size-root"
+          style="cursor: pointer"
+          @click="close(toggle)"
+          >mdi-close</v-icon
+        >
+      </template>
       <div>
         <div
           class="font-size-root font-weight-semibold text-h3 text-capitalize"
@@ -77,8 +84,10 @@ export default class toolAlert extends Vue {
     }
   }
 
-  close(): void {
+  close(toggle?: () => void): void {
     this.closed = true;
+
+    toggle && toggle();
 
     if (typeof this.onClose === "function") {
       this.onClose();
