@@ -53,9 +53,9 @@ import { Component, Vue, Prop } from "vue-property-decorator";
   name: "CardTable",
 })
 export default class CardTable extends Vue {
-  @Prop({ type: String, default: "" }) title?: string;
+  @Prop({ type: String, default: "" }) title!: string;
 
-  @Prop({ type: String, default: "placeholder" }) placeholder?: string;
+  @Prop({ type: String, default: "placeholder" }) placeholder!: string;
 
   desserts2 = [
     {

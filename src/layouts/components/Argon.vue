@@ -36,7 +36,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import AppFooter from "@cps/app-footer/index.vue";
 import AppNavigator from "@cps/app-navigator/index.vue";
 import AppBar from "@cps/app-bar/index.vue";
-import AppBreadcrumbs from "@/components/app-breadcrumbs/index.vue";
+import AppBreadcrumbs from "@cps/app-breadcrumbs/index.vue";
 
 @Component({
   name: "Argon",

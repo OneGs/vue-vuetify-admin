@@ -92,14 +92,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { Meta } from "@/libs/auto-router/src/decorators/Meta";
+import { Component, Mixins } from "vue-property-decorator";
+import { Meta } from "@/libs/auto-router";
+import { RegisterGrid } from "@cps/the-mixins";
 
 @Meta({ title: "Grid", order: 60 })
 @Component({
   name: "TheGrid",
 })
-export default class TheGrid extends Vue {
+export default class TheGrid extends Mixins(RegisterGrid) {
   systemSlots = [];
 }
 </script>

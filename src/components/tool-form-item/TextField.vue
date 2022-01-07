@@ -11,33 +11,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins, Prop } from "vue-property-decorator";
+import { Component, Mixins, Prop, Inject } from "vue-property-decorator";
 import Input from "./mixins/input";
+import ToolForm from "@/cps/tool-form/index.vue";
 
 @Component({
   name: "RuleTextField",
+
   inheritAttrs: false,
 })
 export default class RuleTextField extends Mixins(Input) {
-  @Prop({ type: Boolean, default: false }) noMessage?: boolean;
+  @Prop({ type: Boolean, default: false }) noMessage!: boolean;
 
-  removeTextMessage(): void {
-    if (!this.noMessage) return;
-
-    const textMessage = this.$el.querySelector(".v-text-field__details");
-
-    if (!textMessage) return;
-
-    textMessage.parentElement?.removeChild(textMessage);
-  }
-
-  updated(): void {
-    this.removeTextMessage();
-  }
-
-  mounted(): void {
-    this.removeTextMessage();
-  }
+  @Inject({ default: "" }) form!: ToolForm;
 }
 </script>
 

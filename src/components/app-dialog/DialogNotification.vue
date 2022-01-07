@@ -60,12 +60,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
+import { RegisterBtn } from "@cps/the-mixins";
 
 @Component({
   name: "DialogNotification",
 })
-export default class DialogNotification extends Vue {
+export default class DialogNotification extends Mixins(RegisterBtn) {
   visible = false;
 
   close(): void {

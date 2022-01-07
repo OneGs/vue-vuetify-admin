@@ -3,7 +3,7 @@
     <v-col cols="8" class="mx-auto">
       <v-card>
         <v-card-title>
-          <h3 class="text-h3 text-typo">内容溢出</h3>
+          <rule-title-h3>Overflow</rule-title-h3>
         </v-card-title>
 
         <v-divider />
@@ -19,14 +19,15 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
+import { RegisterHeading } from "@cps/the-mixins";
 
-@Meta({ title: "溢出 & 滚动条", icon: "mdi-clover", color: "orange", order: 9 })
+@Meta({ title: "Overflow", icon: "mdi-clover", color: "orange", order: 9 })
 @Component({
   name: "TheOverflow",
 })
-export default class TheOverflow extends Vue {}
+export default class TheOverflow extends Mixins(RegisterHeading) {}
 </script>
 
 <style scoped></style>

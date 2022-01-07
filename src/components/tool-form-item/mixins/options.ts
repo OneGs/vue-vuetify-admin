@@ -5,5 +5,5 @@ import { OptionsProp } from "../types/common";
   name: "Options",
 })
 export default class MOptions extends Vue {
-  @Prop({ type: Array, default: () => [] }) options?: OptionsProp[];
+  @Prop({ type: Array, default: () => [] }) options!: OptionsProp[];
 }

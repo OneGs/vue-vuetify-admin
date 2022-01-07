@@ -11,7 +11,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
   name: "CardTemplate",
 })
 export default class CardTemplate extends Vue {
-  @Prop({ type: String, default: "none" }) text?: string;
+  @Prop({ type: String, default: "none" }) text!: string;
 }
 </script>
 

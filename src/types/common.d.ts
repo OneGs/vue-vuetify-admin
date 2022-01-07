@@ -3,5 +3,6 @@ export interface LoopString {
 }
 
 export interface LoopAny {
+  // eslint-disable-next-line
   [key: string]: any;
 }

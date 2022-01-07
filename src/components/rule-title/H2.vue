@@ -1,5 +1,5 @@
 <template>
-  <h2 class="text-h2">
+  <h2 class="text-h2 text-typo text-capitalize font-weight-semibold">
     <slot />
   </h2>
 </template>
@@ -12,9 +12,3 @@ import { Vue, Component } from "vue-property-decorator";
 })
 export default class RuleTitleH2 extends Vue {}
 </script>
-
-<style scoped lang="scss">
-.text-h2 {
-  color: #4b4b74 !important;
-}
-</style>

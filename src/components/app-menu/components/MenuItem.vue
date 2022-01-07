@@ -57,11 +57,11 @@ import AppMenu from "../Vertial.vue";
   name: "MenuItem",
 })
 export default class MenuItem extends Mixins(MenuTools) {
-  @Prop({ type: Object, default: () => ({}) }) item?: RouteConfig;
+  @Prop({ type: Object, default: () => ({}) }) item!: RouteConfig;
 
-  @Prop({ type: Boolean, default: false }) isSub?: boolean;
+  @Prop({ type: Boolean, default: false }) isSub!: boolean;
 
-  @Inject("menu") menu?: AppMenu;
+  @Inject("menu") menu!: AppMenu;
 
   get menuToggle(): boolean {
     return !!this.menu?.toggle;

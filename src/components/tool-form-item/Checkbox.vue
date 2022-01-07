@@ -20,7 +20,7 @@ import MOptions from "./mixins/options";
   name: "RuleCheckbox",
 })
 export default class RuleCheckbox extends Mixins(Input, MOptions) {
-  @Prop({ type: Boolean, default: false }) inline?: boolean;
+  @Prop({ type: Boolean, default: false }) inline!: boolean;
 }
 </script>
 

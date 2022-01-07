@@ -20,6 +20,33 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "@cps/*": [
+        "src/components/*"
+      ],
+      "@ast/*": [
+        "src/assets/*"
+      ],
+      "@lay/*": [
+        "src/layout/*"
+      ],
+      "@str/*": [
+        "src/store/*"
+      ],
+      "@vws/*": [
+        "src/views/*"
+      ],
+      "@uts/*": [
+        "src/utils/*"
+      ],
+      "@sty/*": [
+        "src/styles/*"
+      ],
+      "@req/*": [
+        "src/requests/*"
+      ],
+      "@aps/*": [
+        "src/apis/*"
       ]
     },
     "lib": [

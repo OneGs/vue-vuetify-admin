@@ -64,6 +64,7 @@ export class VueRouterAdapter extends Adapter {
   convertView(view: View, ignorePath?: boolean, dir?: string): RouteConfig {
     const instance = view.Component;
 
+    // eslint-disable-next-line
     let route: any = {
       path: "",
       name: instance && instance.name,
@@ -85,6 +86,7 @@ export class VueRouterAdapter extends Adapter {
     return route;
   }
 
+  // eslint-disable-next-line
   convertConfig(instance: any, route: RouteConfig): RouteConfig {
     if (!instance[AutoRouteConfigProperty]) {
       return route;
@@ -152,6 +154,7 @@ export class VueRouterAdapter extends Adapter {
     return routes;
   }
 
+  // eslint-disable-next-line
   combinePathWithContext(path: string, context: any): string {
     let result = path;
     context = context

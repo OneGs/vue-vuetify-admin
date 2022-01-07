@@ -26,9 +26,9 @@ import MenuTools from "./menuTools";
   },
 })
 export default class AppMenu extends Mixins(MenuTools) {
-  @Prop({ type: Array, default: () => [] }) readonly menu?: RouteConfig[];
+  @Prop({ type: Array, default: () => [] }) readonly menu!: RouteConfig[];
 
-  @Prop({ type: Boolean, default: () => false }) readonly toggle?: boolean;
+  @Prop({ type: Boolean, default: () => false }) readonly toggle!: boolean;
 
   get menus(): RouteConfig[] {
     return this.filter(this.menu || []);

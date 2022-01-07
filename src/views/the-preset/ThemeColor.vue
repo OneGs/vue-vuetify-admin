@@ -3,56 +3,54 @@
     <v-col cols="8" class="mx-auto pt-0">
       <v-card>
         <v-card-title>
-          <rule-h1>颜色主题</rule-h1>
+          <rule-title-h3>Theme color</rule-title-h3>
         </v-card-title>
 
         <v-divider />
 
         <v-card-title>
-          <rule-h2> 亮色 </rule-h2>
+          <rule-title-h3>light</rule-title-h3>
         </v-card-title>
 
-        <div class="d-flex mt-6 flex-wrap" style="margin: 1rem 0">
-          <v-btn
+        <v-card-text class="card-padding">
+          <rule-btn
             v-for="item in preset"
             :key="item"
-            style="margin-left: 1rem"
             :color="item"
-            class="mb-4"
+            class="mr-2 my-2"
           >
             {{ item }}
-          </v-btn>
-        </div>
+          </rule-btn>
+        </v-card-text>
 
         <v-divider />
 
         <v-card-title>
-          <rule-h2>暗色</rule-h2>
+          <rule-title-h3>dark</rule-title-h3>
         </v-card-title>
 
-        <div class="d-flex mt-6 pb-4 flex-wrap" style="margin: 1rem 0">
-          <v-btn
+        <v-card-text class="card-padding">
+          <rule-btn
             v-for="item in preset"
             :key="item"
-            style="margin-left: 1rem"
             :color="item"
-            small
-            class="mb-4"
+            class="my-2 me-2"
           >
             {{ item }}
-          </v-btn>
-        </div>
+          </rule-btn>
+        </v-card-text>
       </v-card>
     </v-col>
   </v-row>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
+import { RegisterBtn, RegisterHeading } from "@cps/the-mixins";
 
 @Meta({
-  title: "配色",
+  title: "ThemeColor",
   order: 10,
   icon: "mdi-eyedropper-variant",
   color: "blue lighten-2",
@@ -60,7 +58,7 @@ import { Meta } from "@/libs/auto-router/index";
 @Component({
   name: "ThemeColor",
 })
-export default class ThemeColor extends Vue {
+export default class ThemeColor extends Mixins(RegisterBtn, RegisterHeading) {
   preset = [
     "primary",
     "secondary",

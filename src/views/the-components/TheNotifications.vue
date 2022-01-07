@@ -99,18 +99,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { Meta } from "@/libs/auto-router/src/decorators/Meta";
-import DialogTips from "@/components/app-dialog/DialogTips.vue";
-import DialogNotification from "@/components/app-dialog/DialogNotification.vue";
-import DialogSweet from "@/components/app-dialog/DialogSweet.vue";
+import { Component, Mixins } from "vue-property-decorator";
+import { Meta } from "@/libs/auto-router";
+import DialogTips from "@cps/app-dialog/DialogTips.vue";
+import DialogNotification from "@cps/app-dialog/DialogNotification.vue";
+import DialogSweet from "@cps/app-dialog/DialogSweet.vue";
+import { RegisterBtn, RegisterNotification } from "@cps/the-mixins";
 
 @Meta({ title: "Notifications", order: 30 })
 @Component({
   name: "TheNotifications",
   components: { DialogSweet, DialogNotification, DialogTips },
 })
-export default class TheNotifications extends Vue {
+export default class TheNotifications extends Mixins(
+  RegisterBtn,
+  RegisterNotification
+) {
   preset = [
     "default",
     "primary",

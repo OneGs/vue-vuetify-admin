@@ -11,9 +11,9 @@ import { Component, Vue, Prop } from "vue-property-decorator";
   name: "ToolForm",
 })
 export default class ToolForm extends Vue {
-  @Prop({ type: Boolean, default: false }) inline?: boolean;
+  @Prop({ type: Boolean, default: false }) inline!: boolean;
 
-  @Prop({ type: Boolean, default: false }) hiddenDetails?: boolean;
+  @Prop({ type: Boolean, default: false }) hiddenDetails!: boolean;
 }
 </script>
 

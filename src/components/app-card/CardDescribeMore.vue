@@ -40,15 +40,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
+import { RegisterBtn } from "@cps/the-mixins";
 
 @Component({
   name: "CardDescribeMore",
 })
-export default class CardDescribeMore extends Vue {
-  @Prop({ type: String, default: "Card Title" }) title?: string;
+export default class CardDescribeMore extends Mixins(RegisterBtn) {
+  @Prop({ type: String, default: "Card Title" }) title!: string;
 
-  @Prop({ type: String, default: "nothing" }) message?: string;
+  @Prop({ type: String, default: "nothing" }) message!: string;
 }
 </script>
 

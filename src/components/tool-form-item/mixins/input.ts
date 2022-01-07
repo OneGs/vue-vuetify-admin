@@ -7,9 +7,9 @@ import TheForm from "../index.vue";
   inheritAttrs: false,
 })
 export default class Input extends Vue {
-  @Prop({ type: Boolean, default: false }) hiddenLabel?: boolean;
+  @Prop({ type: Boolean, default: false }) hiddenLabel!: boolean;
 
-  @Prop({ type: String, default: "" }) label?: string;
+  @Prop({ type: String, default: "" }) label!: string;
 
   get _label(): string | undefined {
     if (this.hiddenLabel) return "";

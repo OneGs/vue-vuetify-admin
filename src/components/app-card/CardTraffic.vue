@@ -26,24 +26,25 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
+import { RegisterBtn } from "@cps/the-mixins";
 
 @Component({
   name: "CardTraffic",
 })
-export default class CardTraffic extends Vue {
-  @Prop({ type: String, default: "info" }) color?: string;
+export default class CardTraffic extends Mixins(RegisterBtn) {
+  @Prop({ type: String, default: "info" }) color!: string;
 
-  @Prop({ type: String, default: "Total Traffic" }) title?: string;
+  @Prop({ type: String, default: "Total Traffic" }) title!: string;
 
-  @Prop({ type: String, default: "350,897" }) count?: string;
+  @Prop({ type: String, default: "350,897" }) count!: string;
 
-  @Prop({ type: String, default: "tips" }) tip?: string;
+  @Prop({ type: String, default: "tips" }) tip!: string;
 
   @Prop({ type: String, default: "this is a describe for tips" })
-  describe?: string;
+  describe!: string;
 
-  @Prop({ type: String, default: "mdi-cookie-settings" }) icon?: string;
+  @Prop({ type: String, default: "mdi-cookie-settings" }) icon!: string;
 
   get bgGradientClass(): string {
     return `bg-gradient-${this.color}`;

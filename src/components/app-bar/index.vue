@@ -17,7 +17,7 @@
 
     <div class="btn-search" :class="{ 'btn-width': extend }">
       <rule-text-field
-        no-message
+        hide-details
         rounded
         label="搜索"
         prepend-inner-icon="mdi-magnify"
@@ -61,16 +61,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Horizontal from "@/components/app-menu/Horizontal.vue";
+import { Component, Mixins } from "vue-property-decorator";
+import Horizontal from "@cps/app-menu/Horizontal.vue";
 import { routes } from "@/router";
+import { RegisterBtn, RegisterForm } from "@cps/the-mixins";
 
 @Component({
   name: "appBar",
+
   components: { Horizontal },
+
   inheritAttrs: false,
 })
-export default class appBar extends Vue {
+export default class appBar extends Mixins(RegisterBtn, RegisterForm) {
   userAvatar = "";
 
   routes = routes[0].children;

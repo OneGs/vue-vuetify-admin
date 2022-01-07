@@ -73,15 +73,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
+import { RegisterBtn } from "@cps/the-mixins";
 
 @Component({
   name: "CardPrice",
 })
-export default class CardPrice extends Vue {
-  @Prop({ type: String, default: "primary" }) color?: string;
+export default class CardPrice extends Mixins(RegisterBtn) {
+  @Prop({ type: String, default: "primary" }) color!: string;
 
-  @Prop({ type: String, default: "white" }) bgColor?: string;
+  @Prop({ type: String, default: "white" }) bgColor!: string;
 
   listMessage = [
     { text: "Complete documentation", icon: "mdi-home" },

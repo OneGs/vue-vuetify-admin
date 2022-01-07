@@ -28,14 +28,14 @@ import { chunk } from "lodash";
   name: "ToolGrid",
 })
 export default class ToolGrid extends Vue {
-  @Prop({ type: [Number], default: 1 }) row?: number;
+  @Prop({ type: [Number], default: 1 }) row!: number;
 
   // TODO 可以重构分开成 spans
-  @Prop({ type: [Number, Array], default: 3 }) col?:
+  @Prop({ type: [Number, Array], default: 3 }) col!:
     | number
     | Array<Array<number | string>>;
 
-  @VModel({ type: Array, default: () => [] }) slots?: Array<string | number>;
+  @VModel({ type: Array, default: () => [] }) slots!: Array<string | number>;
 
   layouts: Array<Array<number | string>> = [];
 
@@ -94,8 +94,6 @@ export default class ToolGrid extends Vue {
         this.slots?.push(`${index}-${colIndex}`);
       });
     });
-
-    // console.log(this.layouts);
   }
 }
 </script>

@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Meta } from "@/libs/auto-router/src/decorators/Meta";
+import { Meta } from "@/libs/auto-router";
 
 @Meta({ title: "面板" })
 @Component({

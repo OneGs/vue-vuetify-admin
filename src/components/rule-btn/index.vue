@@ -2,7 +2,7 @@
   <v-btn
     v-bind="$attrs"
     v-on="$listeners"
-    class="rule-btn elevation-0 text-capitalize"
+    class="rule-btn elevation-0 text-capitalize font-weight-semibold"
     :class="{ 'move-up': moveUp, 'px-6': !isSmall, 'py-3': !isSmall }"
     :icon="!!icon"
     :color="color"
@@ -27,11 +27,11 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 export default class RuleBtn extends Vue {
   moveUp = false;
 
-  @Prop({ type: [Boolean, String], default: false }) icon?: string | boolean;
+  @Prop({ type: [Boolean, String], default: false }) icon!: string | boolean;
 
-  @Prop({ type: String, default: "primary" }) color?: string;
+  @Prop({ type: String, default: "primary" }) color!: string;
 
-  @Prop({ type: Boolean, default: true }) dynamic?: boolean;
+  @Prop({ type: Boolean, default: true }) dynamic!: boolean;
 
   get hasIconString(): boolean {
     return this.icon !== "" && typeof this.icon === "string";

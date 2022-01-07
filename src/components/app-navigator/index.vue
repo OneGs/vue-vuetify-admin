@@ -20,16 +20,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import AppMenu from "../app-menu/Vertial.vue";
 import { routes } from "@/router";
+import { RegisterBtn } from "@cps/the-mixins";
 
 @Component({
   name: "appNavigator",
   components: { AppMenu },
   inheritAttrs: false,
 })
-export default class appNavigator extends Vue {
+export default class appNavigator extends Mixins(RegisterBtn) {
   routes = routes[0].children;
 
   miniVariant = false;

@@ -96,14 +96,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Inject } from "vue-property-decorator";
-import { Meta } from "@/libs/auto-router/src/decorators/Meta";
-import CardTraffic from "@/components/app-card/CardTraffic.vue";
+import { Component, Inject, Mixins } from "vue-property-decorator";
+import { Meta } from "@/libs/auto-router";
+import CardTraffic from "@cps/app-card/CardTraffic.vue";
 import Argon from "@/layouts/components/Argon.vue";
-import CardDescribe from "@/components/app-card/CardDescribe.vue";
-import CardDescribeMore from "@/components/app-card/CardDescribeMore.vue";
-import CardUser from "@/components/app-card/CardUser.vue";
-import CardPrice from "@/components/app-card/CardPrice.vue";
+import CardDescribe from "@cps/app-card/CardDescribe.vue";
+import CardDescribeMore from "@cps/app-card/CardDescribeMore.vue";
+import CardUser from "@cps/app-card/CardUser.vue";
+import CardPrice from "@cps/app-card/CardPrice.vue";
+import { RegisterBtn } from "@cps/the-mixins";
 
 @Meta({ title: "Cards", order: 100 })
 @Component({
@@ -116,8 +117,8 @@ import CardPrice from "@/components/app-card/CardPrice.vue";
     CardTraffic,
   },
 })
-export default class TheCard extends Vue {
-  @Inject("argon") argon?: Argon;
+export default class TheCard extends Mixins(RegisterBtn) {
+  @Inject("argon") argon!: Argon;
 
   created(): void {
     if (!this.argon) return;

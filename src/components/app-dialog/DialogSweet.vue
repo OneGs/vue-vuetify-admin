@@ -21,18 +21,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Prop, Mixins } from "vue-property-decorator";
+import { RegisterBtn } from "@cps/the-mixins";
 
 @Component({
   name: "DialogSweet",
 })
-export default class DialogSweet extends Vue {
+export default class DialogSweet extends Mixins(RegisterBtn) {
   visible = false;
 
   title = "title";
 
   @Prop({ type: String, default: "A few words about this sweet alert ..." })
-  text?: string;
+  text!: string;
 
   close(): void {
     this.visible = false;

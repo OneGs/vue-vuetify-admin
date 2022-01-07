@@ -7,7 +7,7 @@ import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 
 @Meta({
-  title: "预设",
+  title: "Preset",
   order: 10,
   icon: "mdi-presentation",
   color: "red lighten-2",

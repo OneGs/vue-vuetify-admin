@@ -1,16 +1,23 @@
+import { Component } from "vue";
+import { RouteConfig } from "vue-router";
+
 declare module "ea-router" {
   export default class RouteGenerate {
-    constructor(dir: any);
+    constructor(dir: __WebpackModuleApi.RequireContext);
 
-    setDefaultLayout(layout: any): void;
+    setDefaultLayout(layout: Component): RouteProvider;
 
-    setNotFoundPage(layout: any): void;
+    setNotFoundPage(layout: Component): RouteProvider;
 
-    generate(): Array<any>;
+    generate(): RouteConfig[];
   }
+  // eslint-disable-next-line
   export function RouteName(name: string): any;
+  // eslint-disable-next-line
   export function Context(...params: string[]): any;
-  export function EnableProp(): any;
+  // export function EnableProp(): any;
+  // eslint-disable-next-line
   export function Alias(alias: string): any;
+  // eslint-disable-next-line
   export function Meta(data: any): any;
 }

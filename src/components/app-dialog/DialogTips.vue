@@ -41,12 +41,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
+import { RegisterBtn } from "@cps/the-mixins";
 
 @Component({
   name: "DialogTips",
 })
-export default class DialogTips extends Vue {
+export default class DialogTips extends Mixins(RegisterBtn) {
   visible = false;
 
   close(): void {

@@ -15,7 +15,7 @@
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
 import Input from "./mixins/input";
-import MOptions from "@/components/tool-form-item/mixins/options";
+import MOptions from "@cps/tool-form-item/mixins/options";
 
 @Component({
   name: "RuleSelect",

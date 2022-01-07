@@ -11,13 +11,13 @@ import { Component, Vue, Prop } from "vue-property-decorator";
   name: "ToolIconSvg",
 })
 export default class ToolIconSvg extends Vue {
-  @Prop({ type: String, default: null, required: true }) iconClass?: string;
+  @Prop({ type: String, default: null, required: true }) iconClass!: string;
 
-  @Prop({ type: Boolean, default: false }) small?: boolean;
+  @Prop({ type: Boolean, default: false }) small!: boolean;
 
-  @Prop({ type: Boolean, default: false }) xSmall?: boolean;
+  @Prop({ type: Boolean, default: false }) xSmall!: boolean;
 
-  @Prop({ type: Boolean }) large?: boolean;
+  @Prop({ type: Boolean }) large!: boolean;
 
   get iconName(): string {
     return `#icon-${this.iconClass}`;

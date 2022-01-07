@@ -33,12 +33,17 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Meta } from "@/libs/auto-router/src/decorators/Meta";
+import { Meta } from "@/libs/auto-router";
+import ToolIconSvg from "@cps/tool-icon-svg/index.vue";
 import { chunk } from "lodash";
 
 @Meta({ title: "Icons", order: 50 })
 @Component({
   name: "TheIcons",
+
+  components: {
+    ToolIconSvg,
+  },
 })
 export default class TheIcons extends Vue {
   svgIcons: string[][] = [];

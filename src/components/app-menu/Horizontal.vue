@@ -39,9 +39,9 @@ import MenuItem from "./components/MenuItem.vue";
   components: { MenuItem },
 })
 export default class Horizontal extends Mixins(MenuTools) {
-  @Prop({ type: String, default: "black" }) color?: string;
+  @Prop({ type: String, default: "black" }) color!: string;
 
-  @Prop({ type: Array, default: () => [] }) readonly menu?: RouteConfig[];
+  @Prop({ type: Array, default: () => [] }) readonly menu!: RouteConfig[];
 
   closeOnClick = false;
 

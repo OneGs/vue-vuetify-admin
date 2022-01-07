@@ -3,11 +3,11 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
-import Notify from "@/components/tool-notification/install";
+import Notify from "@cps/tool-notification/install";
 import "@/styles/custome-var.scss";
 import "@/plugins";
 
-const name = "notify";
+Vue.use(Notify);
 
 Vue.config.productionTip = false;
 
@@ -15,6 +15,6 @@ new Vue({
   router,
   store,
   vuetify,
-  [name]: new Notify(),
+  notify: new Notify(),
   render: (h) => h(App),
 }).$mount("#app");

@@ -16,9 +16,9 @@ import { Vue, Component, Prop } from "vue-property-decorator";
   name: "ToolFormItem",
 })
 export default class ToolFormItem extends Vue {
-  @Prop({ type: String, default: "" }) label?: string;
+  @Prop({ type: String, default: "" }) label!: string;
 
-  @Prop({ type: String, default: "64px" }) positionWidth?: string;
+  @Prop({ type: String, default: "64px" }) positionWidth!: string;
 
   get isInline(): boolean {
     return !!Object.prototype.hasOwnProperty.call(

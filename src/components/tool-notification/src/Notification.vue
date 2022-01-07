@@ -16,7 +16,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
   name: "Notification",
 })
 export default class Notification extends Vue {
-  @Prop({ type: String, default: "default" }) color?: string;
+  @Prop({ type: String, default: "default" }) color!: string;
 }
 </script>
 

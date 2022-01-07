@@ -3,10 +3,8 @@ import { RouteConfig } from "vue-router";
 import { LoopAny } from "@/types/common";
 
 export class Adapter {
-  convertDirectories(
-    directories: Directory[],
-    options: LoopAny
-  ): RouteConfig[] {
+  // eslint-disable-next-line
+  convertDirectories(directories: Directory[], options: LoopAny): RouteConfig[] {
     return [];
   }
 }

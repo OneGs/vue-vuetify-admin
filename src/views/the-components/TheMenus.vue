@@ -28,10 +28,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Meta } from "@/libs/auto-router/src/decorators/Meta";
-import AppMenu from "@/components/app-menu/Vertial.vue";
+import { Meta } from "@/libs/auto-router";
+import AppMenu from "@cps/app-menu/Vertial.vue";
 import { RouteConfig } from "vue-router";
-import Horizontal from "@/components/app-menu/Horizontal.vue";
+import Horizontal from "@cps/app-menu/Horizontal.vue";
 
 @Meta({ title: "Menus", order: 0, hidden: true })
 @Component({

@@ -192,7 +192,7 @@ import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
 
 @Meta({
-  title: "标题 & 文本",
+  title: "Typography",
   order: 10,
   icon: "mdi-format-text",
   color: "indigo",

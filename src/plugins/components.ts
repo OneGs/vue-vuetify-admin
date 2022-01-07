@@ -1,7 +1,7 @@
 import Vue from "vue";
-import { compact, head, kebabCase } from "lodash";
+import { compact, head } from "lodash";
 
-const components = require.context("@/components", true, /\.vue$/i);
+const components = require.context("@cps", true, /\.vue$/i);
 
 const comKeys = components.keys().filter((key) => {
   const split = head(compact(key.replace(/^./, "").split("/")));
@@ -14,5 +14,5 @@ const comKeys = components.keys().filter((key) => {
 comKeys.map((key) => {
   const component = components(key).default;
 
-  Vue.component(kebabCase(component.name), component);
+  Vue.component(component.name, component);
 });
