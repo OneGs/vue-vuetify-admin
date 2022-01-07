@@ -15,12 +15,12 @@
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
 import Input from "./mixins/input";
-import MOptions from "@/components/tool-form-item/src/mixins/options";
+import MOptions from "@/components/tool-form-item/mixins/options";
 
 @Component({
   name: "RuleSelect",
 })
-export default class RuleFormSelect extends Mixins(Input, MOptions) {}
+export default class RuleSelect extends Mixins(Input, MOptions) {}
 </script>
 
 <style scoped></style>

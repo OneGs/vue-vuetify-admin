@@ -15,10 +15,10 @@ import { Component, Mixins, Prop } from "vue-property-decorator";
 import Input from "./mixins/input";
 
 @Component({
-  name: "ToolTextField",
+  name: "RuleTextField",
   inheritAttrs: false,
 })
-export default class ToolTextField extends Mixins(Input) {
+export default class RuleTextField extends Mixins(Input) {
   @Prop({ type: Boolean, default: false }) noMessage?: boolean;
 
   removeTextMessage(): void {

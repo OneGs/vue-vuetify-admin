@@ -7,9 +7,9 @@ import { Component, Mixins } from "vue-property-decorator";
 import Input from "./mixins/input";
 
 @Component({
-  name: "ToolTextarea",
+  name: "RuleTextarea",
 })
-export default class ToolTextarea extends Mixins(Input) {}
+export default class RuleTextarea extends Mixins(Input) {}
 </script>
 
 <style scoped></style>

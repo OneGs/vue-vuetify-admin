@@ -1,5 +1,5 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { OptionsProp } from "../../types/common";
+import { OptionsProp } from "../types/common";
 
 @Component({
   name: "Options",

@@ -4,7 +4,6 @@
       <v-col
         v-for="(theCol, colIndex) in theRow"
         :key="colIndex + 'col'"
-        class="py-0"
         :cols="theCol"
       >
         <slot
@@ -26,9 +25,9 @@ import { Component, Vue, Prop, VModel } from "vue-property-decorator";
 import { chunk } from "lodash";
 
 @Component({
-  name: "GridLayout",
+  name: "ToolGrid",
 })
-export default class GridLayout extends Vue {
+export default class ToolGrid extends Vue {
   @Prop({ type: [Number], default: 1 }) row?: number;
 
   // TODO 可以重构分开成 spans

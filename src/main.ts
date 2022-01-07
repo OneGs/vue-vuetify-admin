@@ -4,35 +4,8 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import Notify from "@/components/tool-notification/install";
-import ruleTitle from "@/components/rule-title/install";
-import formItem from "@/components/tool-form-item/install";
-import ruleTable from "@/components/rule-table/install";
-import ruleBtn from "@/components/rule-btn/install";
-import toolSvgIcon from "@/components/tool-icon-svg/install";
-import toolGrid from "@/components/tool-grid/install";
 import "@/styles/custome-var.scss";
-import "animate.css";
-
-const requireAll = (requireContext: __WebpackModuleApi.RequireContext) =>
-  requireContext.keys().map(requireContext);
-
-const req = require.context("./assets/svgs", false, /\.svg$/);
-
-requireAll(req);
-
-Vue.use(Notify);
-
-Vue.use(toolGrid);
-
-Vue.use(ruleTitle);
-
-Vue.use(formItem);
-
-Vue.use(ruleTable);
-
-Vue.use(ruleBtn);
-
-Vue.use(toolSvgIcon);
+import "@/plugins";
 
 const name = "notify";
 

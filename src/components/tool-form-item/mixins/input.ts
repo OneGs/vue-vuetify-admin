@@ -1,5 +1,5 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
-import TheForm from "../Main.vue";
+import TheForm from "../index.vue";
 
 @Component({
   name: "Input",

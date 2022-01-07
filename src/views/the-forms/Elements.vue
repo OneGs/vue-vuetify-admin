@@ -14,7 +14,7 @@
           <tool-grid v-model="groupSlots" :row="3" :col="[[3], [4], [2]]">
             <template v-for="slot in groupSlots" #[slot]>
               <tool-form-item label="One of three cols" :key="slot">
-                <rule-text-field />
+                <rule-text-field hide-details />
               </tool-form-item>
             </template>
           </tool-grid>
@@ -34,6 +34,7 @@
           <v-divider />
 
           <v-card-text>
+            <tool-form inline />
             <v-form>
               <tool-form-item label="Email address">
                 <rule-text-field label="name@exmaple.com" />

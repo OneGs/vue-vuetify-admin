@@ -8,11 +8,11 @@ import Input from "./mixins/input";
 import MOptions from "./mixins/options";
 
 @Component({
-  name: "ToolSwitch",
+  name: "RuleSwitch",
 
   inheritAttrs: false,
 })
-export default class ToolSwitch extends Mixins(Input, MOptions) {}
+export default class RuleSwitch extends Mixins(Input, MOptions) {}
 </script>
 
 <style scoped></style>
