@@ -1,9 +1,11 @@
 <template>
   <div :class="[{ inline: isInline }]">
-    <label class="label label-color mr-2" :style="[{ width: positionWidth }]">{{
-      label
-    }}</label>
-    <div class="mt-3 flex-grow-1">
+    <label
+      class="label label-color mr-2 my-0"
+      :style="[{ width: positionWidth }]"
+      >{{ label }}</label
+    >
+    <div class="flex-grow-1" :class="[{ 'mt-3': !isInline }]">
       <slot />
     </div>
   </div>

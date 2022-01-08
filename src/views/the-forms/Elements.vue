@@ -82,7 +82,16 @@
                 <rule-text-field label="1234" />
               </tool-form-item>
               <tool-form-item label="Date">
-                <rule-text-field label="1234" />
+                <rule-date-picker />
+              </tool-form-item>
+              <tool-form-item label="Month">
+                <rule-date-picker type="month" />
+              </tool-form-item>
+              <tool-form-item label="Year">
+                <rule-date-picker
+                  :active-picker.sync="activePicker"
+                  @opened="opened"
+                />
               </tool-form-item>
             </v-form>
           </v-card-text>
@@ -107,6 +116,7 @@
           </v-card-text>
         </v-card>
       </v-col>
+
       <v-col>aa</v-col>
     </v-row>
   </div>
@@ -124,11 +134,17 @@ import { RegisterForm, RegisterGrid } from "@cps/the-mixins";
 export default class Elements extends Mixins(RegisterForm, RegisterGrid) {
   groupSlots = [];
 
+  activePicker = "";
+
   exampleOptions = [
     { label: "1", value: 1 },
     { label: "2", value: 2 },
     { label: "3", value: 3 },
   ];
+
+  opened(status: boolean): void {
+    status && (this.activePicker = "YEAR");
+  }
 }
 </script>
 

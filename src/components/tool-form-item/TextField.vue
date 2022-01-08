@@ -3,6 +3,7 @@
     solo
     outlined
     flat
+    hide-details
     :placeholder="_label"
     class="text-filed"
     v-bind="$attrs"
