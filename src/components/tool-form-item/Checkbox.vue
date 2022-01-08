@@ -1,13 +1,17 @@
 <template>
   <div>
-    <template v-for="option in options">
-      <v-checkbox
-        :placeholder="option.label"
-        :value="option.value"
-        :key="option.label + option.value"
-        :class="{ 'check-inline': inline }"
-      />
-    </template>
+    <v-checkbox
+      v-for="option in options"
+      :placeholder="option.label"
+      :value="option.value"
+      :label="option.label"
+      :key="option.label + option.value"
+      :class="{ 'check-inline': inline }"
+      hide-details
+      v-on="$listeners"
+      v-bind="$attrs"
+      :ripple="false"
+    />
   </div>
 </template>
 

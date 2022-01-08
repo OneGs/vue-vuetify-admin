@@ -1,5 +1,5 @@
 <template>
-  <v-switch dense inset v-bind="$attrs" :placeholder="_label" />
+  <v-switch inset v-bind="$attrs" :placeholder="_label" hide-details />
 </template>
 
 <script lang="ts">

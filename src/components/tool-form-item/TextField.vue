@@ -5,6 +5,7 @@
     flat
     hide-details
     :placeholder="_label"
+    :height="height"
     class="text-filed"
     v-bind="$attrs"
     v-on="$listeners"
@@ -12,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins, Prop, Inject } from "vue-property-decorator";
+import { Component, Mixins, Inject } from "vue-property-decorator";
 import Input from "./mixins/input";
 import ToolForm from "@/cps/tool-form/index.vue";
 
@@ -22,8 +23,6 @@ import ToolForm from "@/cps/tool-form/index.vue";
   inheritAttrs: false,
 })
 export default class RuleTextField extends Mixins(Input) {
-  @Prop({ type: Boolean, default: false }) noMessage!: boolean;
-
   @Inject({ default: "" }) form!: ToolForm;
 }
 </script>

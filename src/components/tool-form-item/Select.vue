@@ -3,11 +3,12 @@
     outlined
     solo
     flat
-    dense
     :items="options"
     item-text="label"
     item-value="value"
+    hide-details
     :placeholder="_label"
+    :height="height"
     v-bind="$attrs"
   />
 </template>

@@ -1,14 +1,14 @@
 <template>
-  <div :class="[{ inline: isInline }]">
-    <label
-      class="label label-color mr-2 my-0"
-      :style="[{ width: positionWidth }]"
-      >{{ label }}</label
+  <v-row :class="[{ inline: isInline }]" class="pa-3">
+    <v-col
+      :cols="isInline ? positionWidth : 12"
+      class="label label-color pa-0 mb-2"
+      >{{ label }}</v-col
     >
-    <div class="flex-grow-1" :class="[{ 'mt-3': !isInline }]">
+    <v-col class="pa-0">
       <slot />
-    </div>
-  </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">
@@ -20,7 +20,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 export default class ToolFormItem extends Vue {
   @Prop({ type: String, default: "" }) label!: string;
 
-  @Prop({ type: String, default: "64px" }) positionWidth!: string;
+  @Prop({ type: Number, default: 2 }) positionWidth!: number;
 
   get isInline(): boolean {
     return !!Object.prototype.hasOwnProperty.call(
@@ -37,14 +37,3 @@ export default class ToolFormItem extends Vue {
   }
 }
 </script>
-
-<style scoped lang="scss">
-.label {
-  font-weight: 600;
-  margin-bottom: 12px;
-
-  &-color {
-    color: #525f7f;
-  }
-}
-</style>

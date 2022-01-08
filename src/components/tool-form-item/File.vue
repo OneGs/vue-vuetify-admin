@@ -2,8 +2,9 @@
   <v-file-input
     solo
     flat
-    dense
     outlined
+    hide-details
+    :height="height"
     append-icon="mdi-eye-refresh"
     :placeholder="_label"
     @click:append="views"

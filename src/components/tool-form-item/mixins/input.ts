@@ -1,4 +1,4 @@
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, VModel } from "vue-property-decorator";
 import TheForm from "../index.vue";
 
 @Component({
@@ -7,12 +7,24 @@ import TheForm from "../index.vue";
   inheritAttrs: false,
 })
 export default class Input extends Vue {
-  @Prop({ type: Boolean, default: false }) hiddenLabel!: boolean;
+  @VModel({ type: [String, Array] }) modeValue!: string | Array<string>;
 
   @Prop({ type: String, default: "" }) label!: string;
 
-  get _label(): string | undefined {
-    if (this.hiddenLabel) return "";
+  @Prop({ type: Boolean, default: false }) small!: boolean;
+
+  @Prop({ type: Boolean, default: false }) large!: boolean;
+
+  @Prop({ type: Boolean, default: false }) hideLabel!: boolean;
+
+  @Prop({ type: Boolean, default: true }) hideDetails!: boolean;
+
+  get height(): number {
+    return this.large ? 61 : this.small ? 34 : 46;
+  }
+
+  get _label(): string {
+    if (this.hideLabel) return "";
 
     return this.label || (this.$parent.$options.propsData as TheForm).label;
   }

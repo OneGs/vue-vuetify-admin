@@ -22,6 +22,7 @@
         class="cursor-pointer"
         v-on="on"
         v-bind="attrs"
+        :height="height"
       />
     </template>
 
@@ -37,10 +38,11 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Ref } from "vue-property-decorator";
+import { Component, Ref, Mixins } from "vue-property-decorator";
 import RuleTextField from "./TextField.vue";
 import RuleBtn from "@cps/rule-btn/index.vue";
 import { LoopAny } from "@/types/common";
+import Input from "@cps/tool-form-item/mixins/input";
 
 @Component({
   inheritAttrs: false,
@@ -49,7 +51,7 @@ import { LoopAny } from "@/types/common";
 
   components: { RuleTextField, RuleBtn },
 })
-export default class TimePicker extends Vue {
+export default class TimePicker extends Mixins(Input) {
   visible = false;
 
   time = "";

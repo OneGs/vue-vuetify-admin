@@ -20,6 +20,7 @@
         append-icon="mdi-calendar"
         readonly
         class="cursor-pointer"
+        :height="height"
         v-on="on"
         v-bind="attrs"
       />
@@ -40,10 +41,11 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Emit, Watch } from "vue-property-decorator";
+import { Component, Emit, Watch, Mixins } from "vue-property-decorator";
 import RuleTextField from "@cps/tool-form-item/TextField.vue";
 import RuleBtn from "@cps/rule-btn/index.vue";
 import moment from "moment";
+import Input from "@cps/tool-form-item/mixins/input";
 
 @Component({
   inheritAttrs: false,
@@ -52,7 +54,7 @@ import moment from "moment";
 
   components: { RuleTextField, RuleBtn },
 })
-export default class RuleDatePicker extends Vue {
+export default class RuleDatePicker extends Mixins(Input) {
   visible = false;
 
   date = "";

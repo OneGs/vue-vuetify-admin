@@ -45,6 +45,7 @@ import RuleTextField from "@cps/tool-form-item/TextField.vue";
 import RuleDatePicker from "@cps/tool-form-item/DatePicker.vue";
 import RuleTimePicker from "@cps/tool-form-item/TimePicker.vue";
 import RuleLoading from "@cps/tool-form-item/Loading.vue";
+import RuleRadio from "@cps/tool-form-item/Radio.vue";
 
 @Component({
   components: {
@@ -59,6 +60,7 @@ import RuleLoading from "@cps/tool-form-item/Loading.vue";
     RuleDatePicker,
     RuleTimePicker,
     RuleLoading,
+    RuleRadio,
   },
 })
 class RegisterForm extends Vue {}

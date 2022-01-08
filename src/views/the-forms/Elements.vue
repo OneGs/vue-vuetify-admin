@@ -33,7 +33,7 @@
 
           <v-divider />
 
-          <v-card-text>
+          <v-card-text class="card-padding">
             <tool-form inline />
             <v-form>
               <tool-form-item label="Email address">
@@ -114,16 +114,81 @@
 
           <v-card-text class="card-padding">
             <v-row>
-              <v-col cols="6">
-                <rule-checkbox :options="exampleOptions"
+              <v-col cols="6" class="py-0">
+                <rule-checkbox :options="exampleOptions" dense
               /></v-col>
-              <v-col cols="6">ss</v-col>
+              <v-col cols="6" class="py-0">
+                <rule-radio :options="exampleOptions" dense />
+              </v-col>
             </v-row>
           </v-card-text>
         </v-card>
       </v-col>
 
-      <v-col>aa</v-col>
+      <v-col>
+        <v-card>
+          <v-card-title class="card-heading-padding">
+            <rule-title-h3>Sizes</rule-title-h3>
+          </v-card-title>
+
+          <v-divider />
+
+          <v-card-text class="card-padding">
+            <tool-form>
+              <tool-form-item label="Large input">
+                <rule-text-field large />
+              </tool-form-item>
+              <tool-form-item label="Default input">
+                <rule-text-field />
+              </tool-form-item>
+              <tool-form-item label="Small input">
+                <rule-text-field small />
+              </tool-form-item>
+            </tool-form>
+          </v-card-text>
+        </v-card>
+
+        <v-card class="mt-6">
+          <v-card-title class="card-heading-padding">
+            <rule-title-h3>Selects</rule-title-h3>
+          </v-card-title>
+
+          <v-divider />
+
+          <v-card-text class="card-padding">
+            <tool-form>
+              <tool-form-item label="Basic select">
+                <rule-select :options="exampleOptions" />
+              </tool-form-item>
+              <tool-form-item label="Basic select disabled">
+                <rule-select :options="exampleOptions" disabled />
+              </tool-form-item>
+              <tool-form-item label="Multiple">
+                <rule-select :options="exampleOptions" multiple />
+              </tool-form-item>
+              <tool-form-item label="Multiple disabled">
+                <rule-select :options="exampleOptions" multiple disabled />
+              </tool-form-item>
+            </tool-form>
+          </v-card-text>
+        </v-card>
+
+        <v-card class="mt-6">
+          <v-card-title class="card-heading-padding">
+            <rule-title-h3>Selects</rule-title-h3>
+          </v-card-title>
+
+          <v-divider />
+
+          <v-card-text class="card-padding">
+            <tool-form>
+              <tool-form-item label="File Input">
+                <rule-file />
+              </tool-form-item>
+            </tool-form>
+          </v-card-text>
+        </v-card>
+      </v-col>
     </v-row>
   </div>
 </template>
@@ -131,13 +196,17 @@
 <script lang="ts">
 import { Meta } from "@/libs/auto-router";
 import { Component, Mixins } from "vue-property-decorator";
-import { RegisterForm, RegisterGrid } from "@cps/the-mixins";
+import { RegisterForm, RegisterGrid, RegisterHeading } from "@cps/the-mixins";
 
 @Meta({ title: "Elements", order: 100 })
 @Component({
   name: "TheElements",
 })
-export default class Elements extends Mixins(RegisterForm, RegisterGrid) {
+export default class Elements extends Mixins(
+  RegisterForm,
+  RegisterGrid,
+  RegisterHeading
+) {
   groupSlots = [];
 
   activePicker = "";
