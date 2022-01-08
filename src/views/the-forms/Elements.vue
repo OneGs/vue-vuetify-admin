@@ -93,6 +93,12 @@
                   @opened="opened"
                 />
               </tool-form-item>
+              <tool-form-item label="Time">
+                <rule-time-picker />
+              </tool-form-item>
+              <tool-form-item label="Loading">
+                <rule-loading />
+              </tool-form-item>
             </v-form>
           </v-card-text>
         </v-card>
