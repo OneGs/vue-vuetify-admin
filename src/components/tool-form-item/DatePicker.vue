@@ -17,13 +17,16 @@
         flat
         hide-details
         label="Picker in dialog"
-        append-icon="mdi-calendar"
         readonly
         class="cursor-pointer"
         :height="height"
         v-on="on"
         v-bind="attrs"
-      />
+      >
+        <template #append>
+          <v-icon small>mdi-calendar-blank</v-icon>
+        </template>
+      </v-text-field>
     </template>
 
     <v-date-picker

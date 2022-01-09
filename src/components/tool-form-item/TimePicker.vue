@@ -17,13 +17,16 @@
         flat
         hide-details
         label="Picker in dialog"
-        append-icon="mdi-calendar"
         readonly
         class="cursor-pointer"
         v-on="on"
         v-bind="attrs"
         :height="height"
-      />
+      >
+        <template #append>
+          <v-icon small> mdi-clock-time-three-outline </v-icon>
+        </template>
+      </v-text-field>
     </template>
 
     <v-time-picker
@@ -43,6 +46,7 @@ import RuleTextField from "./TextField.vue";
 import RuleBtn from "@cps/rule-btn/index.vue";
 import { LoopAny } from "@/types/common";
 import Input from "@cps/tool-form-item/mixins/input";
+import moment from "moment";
 
 @Component({
   inheritAttrs: false,
@@ -62,6 +66,16 @@ export default class TimePicker extends Mixins(Input) {
     this.visible = false;
 
     this.menu.save(this.time);
+  }
+
+  defaultDate(): void {
+    this.time = moment().format("HH:mm");
+  }
+
+  created(): void {
+    this.defaultDate();
+
+    console.log(this.time);
   }
 }
 </script>

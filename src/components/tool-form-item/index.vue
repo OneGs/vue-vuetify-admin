@@ -2,7 +2,7 @@
   <v-row :class="[{ inline: isInline }]" class="pa-3">
     <v-col
       :cols="isInline ? positionWidth : 12"
-      class="label label-color pa-0 mb-2"
+      class="label label-color pa-0 mb-2 font-weight-600"
       >{{ label }}</v-col
     >
     <v-col class="pa-0">

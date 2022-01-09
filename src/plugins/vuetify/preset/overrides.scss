@@ -220,3 +220,31 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
 }
 
 // #endregion
+
+//* ——— Form Overrides ——————————————————
+//
+
+// #region Form Overrides
+
+@include theme($--v-application) using ($type) {
+  @if $type == $material-light {
+    .v-input {
+      input, textarea {
+        color: #8898aa !important;
+      }
+    }
+
+    // 取消原本的颜色，并取消hover
+    .v-text-field--outlined:not(.v-input--is-focused) .v-input__slot {
+      fieldset {
+        color: #dee2e6 !important;
+      }
+
+      &:hover fieldset {
+        color: #dee2e6 !important;
+      }
+    }
+  }
+}
+
+// #endregion

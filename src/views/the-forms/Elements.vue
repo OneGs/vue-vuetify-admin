@@ -118,7 +118,7 @@
                 <rule-checkbox :options="exampleOptions" dense
               /></v-col>
               <v-col cols="6" class="py-0">
-                <rule-radio :options="exampleOptions" dense />
+                <rule-radio :options="exampleOptions" dense class="mt-0" />
               </v-col>
             </v-row>
           </v-card-text>
