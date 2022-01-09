@@ -7,6 +7,9 @@
 // #region Color
 
 $--background-color: #f8f9fe;
+$--body-color: #525f7f;
+$--muted-color: #8898aa;
+$--typo-color: #32325d;
 
 .label-color {
   color: #525f7f;
@@ -35,15 +38,15 @@ $--background-color: #f8f9fe;
   }
 
   .text-body {
-    color: #525f7f !important;
+    color: $--body-color !important;
   }
 
   .text-muted {
-    color: #8898aa !important;
+    color: $--muted-color !important;
   }
 
   .text-typo {
-    color: #32325d !important;
+    color: $--typo-color !important;
   }
 }
 

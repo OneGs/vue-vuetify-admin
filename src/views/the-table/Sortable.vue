@@ -1,19 +1,16 @@
 <template>
-  <router-view />
+  <div>the sortable</div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 
-@Meta({
-  title: "Tables",
-  order: 10,
-  icon: "mdi-periodic-table",
-  color: "black",
+@Meta({ title: "Sortable", order: 80 })
+@Component({
+  name: "TheSortable",
 })
-@Component
-export default class TheComponentLayout extends Vue {}
+export default class TheSortable extends Vue {}
 </script>
 
 <style scoped></style>

@@ -94,12 +94,26 @@ class RegisterNotification extends Vue {}
 //* ——— All
 // ————————————————————————————————————
 
+import ToolPaginatedTable from "@cps/tool-table/PaginatedTable.vue";
+
+@Component({
+  components: {
+    ToolPaginatedTable,
+  },
+})
+class RegisterTable extends Vue {}
+
+// ————————————————————————————————————
+//* ——— All
+// ————————————————————————————————————
+
 @Component({})
 class RegisterAll extends Mixins(
   RegisterForm,
   RegisterBtn,
   RegisterHeading,
   RegisterGrid,
+  RegisterTable,
   RegisterNotification
 ) {}
 
@@ -109,5 +123,6 @@ export {
   RegisterHeading,
   RegisterGrid,
   RegisterNotification,
+  RegisterTable,
   RegisterAll,
 };

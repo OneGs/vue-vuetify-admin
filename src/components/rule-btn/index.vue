@@ -11,7 +11,12 @@
     :ripple="false"
   >
     <slot>
-      <v-icon v-if="hasIconString" v-text="icon" />
+      <v-icon
+        v-if="hasIconString"
+        v-text="icon"
+        :small="isSmall"
+        :x-small="isXSmall"
+      />
     </slot>
   </v-btn>
 </template>
@@ -38,10 +43,11 @@ export default class RuleBtn extends Vue {
   }
 
   get isSmall(): boolean {
-    return (
-      Object.keys(this.$attrs).includes("small") ||
-      Object.keys(this.$attrs).includes("x-small")
-    );
+    return Object.keys(this.$attrs).includes("small") || this.isXSmall;
+  }
+
+  get isXSmall(): boolean {
+    return Object.keys(this.$attrs).includes("x-small");
   }
 
   moveUpFun(): void {

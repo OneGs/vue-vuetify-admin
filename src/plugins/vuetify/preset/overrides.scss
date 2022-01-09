@@ -1,5 +1,6 @@
 @import "variables";
 @import "mixins";
+@import "src/styles/custome-var";
 @import "~vuetify/src/styles/styles";
 
 $--v-application: v-application;
@@ -243,6 +244,61 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
       &:hover fieldset {
         color: #dee2e6 !important;
       }
+    }
+  }
+}
+
+// #endregion
+
+//* ——— Table Overrides ——————————————————
+//
+
+// #region Table Overrides
+@include theme(v-data-table) using ($type) {
+  table thead th {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .65rem !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+
+  }
+
+  // 修改border颜色
+  & > .v-data-table__wrapper > table > tbody > tr {
+    &:not(:last-child) > td {
+      border-bottom: 1px solid #e9ecef !important;
+    }
+
+    td {
+      background: #ffffff;
+    }
+  }
+
+  // 修改border颜色
+  & > .v-data-table__wrapper > table > thead > tr:last-child > th {
+    border-bottom: 1px solid #e9ecef !important;
+  }
+
+  .v-data-footer {
+    border: 0 !important;
+  }
+
+  @if $type == $material-light {
+    // 修改字体颜色
+    & > .v-data-table__wrapper tbody > tr {
+      @extend .text-body;
+    }
+
+    // 修改头header背景颜色
+    .v-data-table-header {
+      background: #f6f9fc !important;
+    }
+
+    // 修改header字体颜色
+    & > .v-data-table__wrapper > table > thead > tr > th {
+      @extend .text-muted;
     }
   }
 }
