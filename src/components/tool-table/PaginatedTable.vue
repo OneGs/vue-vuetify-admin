@@ -10,8 +10,8 @@
     <v-data-table
       class="table"
       :headers="headers"
-      :items="items"
-      :page.sync="_page"
+      :items="_items"
+      :page.sync="paging.index"
       hide-default-footer
     >
       <template #top>
@@ -22,15 +22,15 @@
 
       <template v-for="key in headersIndex" #[`item.${key}`]="{ item }">
         <div :key="key">
-          <slot :name="`item.${key}`" :item="item" />
+          <slot :name="`item.${key}`" :item="item"> {{ item[key] }} </slot>
         </div>
       </template>
 
       <template #footer>
         <v-pagination
           circle
-          v-model="_page"
-          :length="4"
+          v-model="paging.index"
+          :length.sync="pagingLen"
           class="py-2 elevation-0"
           total-visible="10"
         />
@@ -40,11 +40,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import RuleTitleH3 from "@cps/rule-title/H3.vue";
 import RuleTextField from "@cps/tool-form-item/TextField.vue";
 import { LoopAny } from "@/types/common";
 import { map } from "lodash";
+import { DataStruct } from "@req/tool";
+
+const ORIGIN_PROPS = Object.freeze({
+  value: "data",
+  index: "pageIndex",
+  size: "pageSize",
+  total: "pageTotal",
+});
 
 @Component({
   name: "PaginatedTable",
@@ -55,26 +63,126 @@ import { map } from "lodash";
   },
 })
 export default class PaginatedTable extends Vue {
-  @Prop({ type: String, default: "" }) title?: string;
+  paging = { index: 1, size: 10 };
 
-  @Prop({ type: Number, default: 1 }) page?: number;
+  pagingTotal = 0;
+
+  @Prop({ type: String, default: "" }) title?: string;
 
   @Prop({ type: Array, default: () => [] }) headers!: Array<LoopAny>;
 
   @Prop({ type: Array, default: () => [] }) items!: Array<LoopAny>;
 
-  get _page(): number {
-    return this.page || 1;
+  @Prop({ type: Array, default: () => [] }) params!: Array<LoopAny>;
+
+  @Prop({ type: Function, default: null, required: true }) requestFun!: (
+    config: LoopAny
+  ) => DataStruct;
+
+  @Prop({ type: Object, default: () => ({ ...ORIGIN_PROPS }) })
+  responseStruct!: DataStruct;
+
+  @Watch("paging", { deep: true })
+  async flash(): Promise<void> {
+    await this.flashTable();
   }
 
-  set _page(page: number) {
-    this.$emit("update:page", page);
+  /**
+   * 挂载数据
+   * @param _data { Object }
+   */
+  mountData(_data: DataStruct): void {
+    const { value: valueKey } = this.responseStruct;
+
+    // 没有提供value的解析key
+    if (!valueKey)
+      return console.error(
+        new Error("responseProps中没有提供data属性, 无法解析数据")
+      );
+
+    // 解析后的数据不是一个数组
+    if (!Array.isArray(_data[valueKey]))
+      console.error(new Error(`数据格式不为数组：${typeof _data[valueKey]}`));
+
+    this._items = _data[valueKey];
+  }
+
+  /**
+   * 挂在分页
+   * @param _data { Object }
+   */
+  mountPage(_data: DataStruct): void {
+    const { total } = this.responseStruct;
+
+    // 是否存在总数key
+    if (!total) {
+      return console.error(
+        new Error(`responseProps中{ total: ${total} }未提供！ 无法解析总数`)
+      );
+    }
+
+    // 检验是否和返回值一致
+    if (![total].every((key) => Object.keys(_data).includes(key))) {
+      return console.error(
+        new Error(
+          `response中{ total: ${total} }数据和提供数据[${Object.keys(
+            _data
+          )}]不匹配`
+        )
+      );
+    }
+
+    // 记录分页数据
+    this.pagingTotal = _data[total];
+  }
+
+  /**
+   * 刷新表格数据！
+   * @function
+   * @return { Object } _list axios返回的数据结构
+   */
+  async flashTable(mountPaging = false): Promise<DataStruct | void> {
+    const { index, size } = this.responseStruct;
+
+    if (!(index && size))
+      return console.error(
+        new Error(`索引index: ${index}, 大小size: ${size} 存在为空`)
+      );
+
+    const _list = await this.requestFun(
+      Object.assign({ pageTotal: this.pagingTotal }, this.params, {
+        [this.responseStruct.index]: this.paging.index,
+        [this.responseStruct.size]: this.paging.size,
+      })
+    );
+
+    this.mountData(_list);
+
+    mountPaging && this.mountPage(_list);
+
+    return _list;
+  }
+
+  get pagingLen(): number {
+    return Math.floor(this.pagingTotal / this.paging.size);
+  }
+
+  get _items(): Array<LoopAny> {
+    return this.items;
+  }
+
+  set _items(items: Array<LoopAny>) {
+    this.$emit("update:items", items);
   }
 
   get headersIndex(): Array<string> {
     return map(this.headers, (item) => {
-      return item.text.toLowerCase().replace(/\(.*\)/, "");
+      return item.value.toLowerCase().replace(/\(.*\)/, "");
     });
+  }
+
+  async created(): Promise<void> {
+    await this.flashTable(true);
   }
 }
 </script>

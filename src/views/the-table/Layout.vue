@@ -9,7 +9,7 @@ import { Meta } from "@/libs/auto-router";
 @Meta({
   title: "Tables",
   order: 10,
-  icon: "mdi-periodic-table",
+  icon: "mdi-periodic-table.ts",
   color: "black",
 })
 @Component
