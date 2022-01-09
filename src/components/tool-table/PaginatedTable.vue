@@ -1,11 +1,11 @@
 <template>
   <v-card class="text-body card-table paginated-table">
-    <v-card-title class="d-flex align-center">
+    <v-card-title class="d-flex align-center" v-if="!!title">
       <rule-title-h3>{{ title }}</rule-title-h3>
       <slot name="heading" />
     </v-card-title>
 
-    <v-divider />
+    <v-divider v-if="!!title" />
 
     <v-data-table
       class="table"
@@ -15,13 +15,13 @@
       hide-default-footer
     >
       <template #top>
-        <div class="pa-4">
+        <div class="pa-4" v-if="$slots.top">
           <slot name="top" />
         </div>
       </template>
 
       <template v-for="key in headersIndex" #[`item.${key}`]="{ item }">
-        <div :key="key">
+        <div :key="key" :class="bodyClass">
           <slot :name="`item.${key}`" :item="item"> {{ item[key] }} </slot>
         </div>
       </template>
@@ -32,7 +32,7 @@
           v-model="paging.index"
           :length.sync="pagingLen"
           class="py-2 elevation-0"
-          total-visible="10"
+          total-visible="5"
         />
       </template>
     </v-data-table>
@@ -69,7 +69,10 @@ export default class PaginatedTable extends Vue {
 
   @Prop({ type: String, default: "" }) title?: string;
 
-  @Prop({ type: Array, default: () => [] }) headers!: Array<LoopAny>;
+  @Prop({ type: String, default: "" }) bodyClass?: string;
+
+  @Prop({ type: Array, default: () => [], required: true })
+  headers!: Array<LoopAny>;
 
   @Prop({ type: Array, default: () => [] }) items!: Array<LoopAny>;
 

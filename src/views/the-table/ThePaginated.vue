@@ -1,5 +1,5 @@
 <template>
-  <paginated-table
+  <tool-paginated-table
     title="Paginated table"
     :headers="headers"
     :items.sync="desserts2"
@@ -53,20 +53,18 @@
       />
       <rule-btn small color="primary" icon="mdi-delete" :dynamic="false" />
     </template>
-  </paginated-table>
+  </tool-paginated-table>
 </template>
 
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 import { RegisterBtn, RegisterForm, RegisterTable } from "@cps/the-mixins";
-import PaginatedTable from "@cps/tool-table/PaginatedTable.vue";
 import { getUser } from "@req/apis/base/table";
 
 @Meta({ title: "Paginated Table", order: 70 })
 @Component({
   name: "ThePaginated",
-  components: { PaginatedTable },
 })
 export default class ThePaginated extends Mixins(
   RegisterTable,
