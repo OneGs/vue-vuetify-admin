@@ -1,5 +1,6 @@
-import { Component, Vue, Prop, VModel } from "vue-property-decorator";
-import TheForm from "../index.vue";
+import { Component, Vue, Prop, VModel, Inject } from "vue-property-decorator";
+import ToolFormItem from "@cps/tool-form-item/index.vue";
+import ToolForm from "@cps/tool-form/index.vue";
 
 @Component({
   name: "Input",
@@ -15,17 +16,17 @@ export default class Input extends Vue {
 
   @Prop({ type: Boolean, default: false }) large!: boolean;
 
-  @Prop({ type: Boolean, default: false }) hideLabel!: boolean;
-
   @Prop({ type: Boolean, default: true }) hideDetails!: boolean;
+
+  @Inject({ default: {} }) formItem!: ToolFormItem;
+
+  @Inject({ default: {} }) form!: ToolForm;
 
   get height(): number {
     return this.large ? 61 : this.small ? 34 : 46;
   }
 
   get _label(): string {
-    if (this.hideLabel) return "";
-
-    return this.label || (this.$parent.$options.propsData as TheForm).label;
+    return this.label || this.formItem.label;
   }
 }
