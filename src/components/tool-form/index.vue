@@ -12,7 +12,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 
   provide() {
     return {
-      form: this,
+      rootForm: this,
     };
   },
 })

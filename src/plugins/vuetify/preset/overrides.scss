@@ -233,16 +233,23 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
 
 // #region Form Overrides
 
-@include theme($--v-application) using ($type) {
+@include theme(v-text-field--outlined) using ($type) {
   @if $type == $material-light {
-    .v-input {
+    &.v-input {
       input, textarea {
+        font-size: 1rem;
         color: #8898aa !important;
+      }
+
+      input::-webkit-input-placeholder {
+        font-size: 1rem;
+        font-weight: 400;
+        @extend .text-muted;
       }
     }
 
     // 取消原本的颜色，并取消hover
-    .v-text-field--outlined:not(.v-input--is-focused) .v-input__slot {
+    &:not(.v-input--is-focused) .v-input__slot {
       fieldset {
         color: #dee2e6 !important;
       }
@@ -250,6 +257,21 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
       &:hover fieldset {
         color: #dee2e6 !important;
       }
+    }
+
+    .v-icon {
+      font-size: 1rem;
+      @extend .text-muted;
+    }
+  }
+}
+
+@include theme(v-select) using ($type) {
+  @if $type == $material-light {
+    .v-chip--select {
+      border-radius: $border-radius-root;
+      padding: 0 6px;
+      @extend .default;
     }
   }
 }
@@ -309,6 +331,17 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
       @extend .text-muted;
     }
   }
+}
+
+// #endregion
+
+//* ——— Chip Overrides ——————————————————
+//
+
+// #region Chip Overrides
+
+@include theme(v-chip) using ($type) {
+  border-radius: $border-radius-root;
 }
 
 // #endregion

@@ -32,17 +32,13 @@ export default class ToolFormItem extends Vue {
 
   @Prop({ type: Boolean, default: false }) single!: boolean;
 
-  @Inject({ default: {} }) form!: ToolForm;
+  @Inject({ default: {} }) rootForm!: ToolForm;
 
   get _single(): boolean {
-    console.log(this.form);
-
-    return this.single || this.form.single;
+    return this.single || this.rootForm.single;
   }
 
   get isInline(): boolean {
-    console.log(this.form.inline, "inline");
-
     return !!Object.prototype.hasOwnProperty.call(
       this.$parent.$attrs,
       "inline"

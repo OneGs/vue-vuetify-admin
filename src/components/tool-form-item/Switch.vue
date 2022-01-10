@@ -1,5 +1,15 @@
 <template>
-  <v-switch inset v-bind="$attrs" :placeholder="_label" hide-details />
+  <v-switch
+    inset
+    dense
+    :ripple="false"
+    v-bind="$attrs"
+    v-on="$listeners"
+    v-model="modeValue"
+    :placeholder="_label"
+    hide-details
+    class="mt-0"
+  />
 </template>
 
 <script lang="ts">

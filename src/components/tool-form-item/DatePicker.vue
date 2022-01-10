@@ -3,7 +3,7 @@
     ref="menu"
     v-model="visible"
     :close-on-content-click="false"
-    :return-value.sync="date"
+    :return-value.sync="modeValue"
     transition="scale-transition"
     origin="top center"
     offset-y
@@ -11,7 +11,7 @@
   >
     <template #activator="{ on, attrs }">
       <v-text-field
-        v-model="date"
+        v-model="modeValue"
         solo
         outlined
         flat
@@ -32,13 +32,15 @@
     <v-date-picker
       no-title
       scrollable
-      v-model="date"
+      v-model="modeValue"
       v-bind="$attrs"
       v-on="$listeners"
     >
       <v-spacer />
       <rule-btn color="error" @click="visible = false"> Cancel </rule-btn>
-      <rule-btn color="primary" @click="$refs.menu.save(date)"> OK </rule-btn>
+      <rule-btn color="primary" @click="$refs.menu.save(modeValue)">
+        OK
+      </rule-btn>
     </v-date-picker>
   </v-menu>
 </template>
@@ -47,7 +49,6 @@
 import { Component, Emit, Watch, Mixins } from "vue-property-decorator";
 import RuleTextField from "@cps/tool-form-item/TextField.vue";
 import RuleBtn from "@cps/rule-btn/index.vue";
-import moment from "moment";
 import Input from "@cps/tool-form-item/mixins/input";
 
 @Component({
@@ -60,8 +61,6 @@ import Input from "@cps/tool-form-item/mixins/input";
 export default class RuleDatePicker extends Mixins(Input) {
   visible = false;
 
-  date = "";
-
   @Watch("visible")
   @Emit()
   opened(_visible: boolean): Promise<boolean> {
@@ -70,22 +69,6 @@ export default class RuleDatePicker extends Mixins(Input) {
         _visible && resolve(_visible);
       });
     });
-  }
-
-  defaultDate(type: string): void {
-    if (!type || type === "date") {
-      this.date = moment().format("YYYY-MM-DD");
-    }
-
-    if (type === "month") {
-      this.date = moment().format("YYYY-MM");
-    }
-  }
-
-  created(): void {
-    const { type } = this.$attrs;
-
-    this.defaultDate(type);
   }
 }
 </script>

@@ -74,8 +74,6 @@ export default class TimePicker extends Mixins(Input) {
 
   created(): void {
     this.defaultDate();
-
-    console.log(this.time);
   }
 }
 </script>

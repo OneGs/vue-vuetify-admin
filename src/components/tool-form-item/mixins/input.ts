@@ -8,7 +8,10 @@ import ToolForm from "@cps/tool-form/index.vue";
   inheritAttrs: false,
 })
 export default class Input extends Vue {
-  @VModel({ type: [String, Array] }) modeValue!: string | Array<string>;
+  @VModel({ type: [String, Array, Boolean] }) modeValue!:
+    | string
+    | boolean
+    | Array<string | boolean>;
 
   @Prop({ type: String, default: "" }) label!: string;
 
@@ -20,7 +23,7 @@ export default class Input extends Vue {
 
   @Inject({ default: {} }) formItem!: ToolFormItem;
 
-  @Inject({ default: {} }) form!: ToolForm;
+  @Inject({ default: {} }) rootForm!: ToolForm;
 
   get height(): number {
     return this.large ? 61 : this.small ? 34 : 46;

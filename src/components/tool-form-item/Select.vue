@@ -1,4 +1,5 @@
 <template>
+  <!--TODO 多选情况下，选择框高度无法自适应-->
   <v-select
     outlined
     solo
@@ -7,9 +8,11 @@
     item-text="label"
     item-value="value"
     hide-details
-    :placeholder="_label"
     :height="height"
+    :placeholder="_label"
     v-bind="$attrs"
+    clearable
+    v-model="modeValue"
   />
 </template>
 
