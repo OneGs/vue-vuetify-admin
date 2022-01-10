@@ -1,5 +1,5 @@
 <template>
-  <div class="card-border my-4 pa-3 v-card v-sheet theme--light">
+  <div class="card-border pa-3 v-card v-sheet theme--light">
     {{ text }}
   </div>
 </template>
@@ -8,9 +8,9 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component({
-  name: "CardTemplate",
+  name: "CardExample",
 })
-export default class CardTemplate extends Vue {
+export default class CardExample extends Vue {
   @Prop({ type: String, default: "none" }) text!: string;
 }
 </script>

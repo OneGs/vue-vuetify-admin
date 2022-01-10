@@ -1,55 +1,76 @@
 <template>
-  <v-card>
-    <v-img
-      src="https://demos.creative-tim.com/vuetify-argon-dashboard-pro/img/img-1-1000x600.c993e3af.jpg"
-      alt="error"
-      height="258px"
-    />
+  <rule-card-template>
+    <template #text-outer>
+      <v-img :src="_image" alt="error" height="258px" contain />
+    </template>
 
     <v-list>
-      <v-list-item class="font-size-root text-body"
-        >Cras justo odio</v-list-item
+      <div
+        v-for="(item, index) in listItem.slice(0, 3)"
+        :key="item.label + index"
       >
-      <v-divider />
-      <v-list-item class="font-size-root text-body"
-        >Dapibus ac facilisis in</v-list-item
-      >
-      <v-divider />
-      <v-list-item class="font-size-root text-body"
-        >Vestibulum at eros
-      </v-list-item>
-      <v-divider />
+        <v-list-item class="font-size-root text-muted">{{
+          item.label
+        }}</v-list-item>
+        <v-divider />
+      </div>
     </v-list>
 
-    <v-card-text class="card-padding">
-      <v-card-title class="pt-0 px-0">
-        <div class="text-h3 text-typo font-weight-semibold">{{ title }}</div>
-      </v-card-title>
+    <v-card-title class="py-4 px-0">
+      <rule-title-h3>{{ title }}</rule-title-h3>
+    </v-card-title>
 
-      <p
-        class="font-size-root lead font-weight-light text-body mb-5 text-capitalize"
-      >
+    <slot name="body" v-if="!!message || $slots.body">
+      <p>
         {{ message }}
       </p>
+    </slot>
 
-      <div class="text-left">
-        <rule-btn color="primary">Go somewhere</rule-btn>
-      </div>
-    </v-card-text>
-  </v-card>
+    <div class="text-left">
+      <rule-btn color="primary" @click="$emit('click')">Go somewhere</rule-btn>
+    </div>
+  </rule-card-template>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Mixins } from "vue-property-decorator";
-import { RegisterBtn } from "@cps/the-mixins";
+import { Component, Mixins, Prop } from "vue-property-decorator";
+import { RegisterBtn, RegisterCard, RegisterHeading } from "@cps/the-mixins";
+import { LoopAny } from "@/types/common";
+
+const lists = [
+  { label: "Cras justo odio" },
+  { label: "Dapibus ac facilisis in" },
+  { label: "Vestibulum at eros" },
+];
 
 @Component({
   name: "CardDescribeMore",
 })
-export default class CardDescribeMore extends Mixins(RegisterBtn) {
+export default class CardDescribeMore extends Mixins(
+  RegisterBtn,
+  RegisterCard,
+  RegisterHeading
+) {
   @Prop({ type: String, default: "Card Title" }) title!: string;
 
-  @Prop({ type: String, default: "nothing" }) message!: string;
+  @Prop({ type: String, default: "questions" })
+  image!: string;
+
+  @Prop({ type: String, default: null }) message!: string;
+
+  @Prop({ type: Array, default: () => [...lists] }) listItem!: Array<LoopAny>;
+
+  get _image(): string {
+    if (/^http/.test(this.image)) return this.image;
+
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    return require(`@/assets/illustrations/${this.image.replace(
+      ".svg",
+      ""
+    )}.svg`);
+
+    // return ;
+  }
 }
 </script>
 

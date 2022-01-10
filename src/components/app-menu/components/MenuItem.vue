@@ -2,14 +2,14 @@
   <v-list-item
     :link="isSub"
     v-if="!hasChildren"
+    class="menu-item"
     :class="{ 'nest-item': !menuToggle && isSub }"
-    class="pb-1 mb-1"
     :to="item"
     color="rgba(0,0,0,.87)"
     :ripple="false"
     v-on="$listeners"
   >
-    <v-list-item-icon>
+    <v-list-item-icon :class="[{ 'my-0': isSub }]">
       <v-icon
         :color="isSub ? 'rgba(0,0,0,.6)' : menuColor(item)"
         class="font-icon lighten-2"
@@ -22,7 +22,7 @@
     <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>
   </v-list-item>
 
-  <v-list-group v-else :sub-group="isSub" :ripple="false" class="pb-1 mb-1">
+  <v-list-group v-else :sub-group="isSub" :ripple="false">
     <template #activator>
       <v-list-item-content>
         <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>
@@ -78,3 +78,18 @@ export default class MenuItem extends Mixins(MenuTools) {
   }
 }
 </script>
+
+<style lang="scss">
+.nest-item {
+  margin-bottom: 0 !important;
+
+  &.menu-item {
+    min-height: 36px !important;
+    height: 20px !important;
+  }
+
+  .v-list-item__title {
+    padding: 8px 0 !important;
+  }
+}
+</style>

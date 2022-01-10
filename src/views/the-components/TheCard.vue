@@ -20,69 +20,115 @@
 
           <card-describe class="pa-0 mb-6" :message="message" />
 
-          <card-user />
+          <card-user
+            avatar="https://demos.creative-tim.com/vuetify-argon-dashboard-pro/img/team-4.66618a41.jpg"
+          >
+            <div class="text-h5 text-typo font-weight-600 mt-5">
+              Solution Manager - Creative Tim Officer
+            </div>
+
+            <div class="text-body font-size-root mt-3">
+              University of Computer Science
+            </div>
+          </card-user>
         </v-col>
+
         <v-col lg="4" class="py-0">
           <card-describe class="mb-6" :message="message" />
 
-          <v-card class="card-padding">
-            <v-card-text>
-              <v-row class="d-flex align-center">
-                <v-col cols="9" class="d-flex align-center px-0">
-                  <v-avatar width="70px" height="70px">
-                    <v-img src="@/assets/user.png" />
-                  </v-avatar>
-                  <div class="ml-4">
-                    <div
-                      class="text-h3 text-typo font-weight-semibold text-capitalize"
-                    >
-                      John Snow
-                    </div>
-                    <div class="text-body text-muted my-2 text-capitalize">
-                      Working Remotely
-                    </div>
+          <rule-card-template>
+            <v-row class="d-flex align-center">
+              <v-col cols="9" class="d-flex align-center px-0">
+                <v-avatar width="70px" height="70px">
+                  <v-img src="@/assets/user.png" />
+                </v-avatar>
+                <div class="ml-4">
+                  <rule-title-h3> John Snow </rule-title-h3>
+                  <div class="text-muted my-2 text-capitalize">
+                    Working Remotely
                   </div>
-                </v-col>
-                <v-col cols="3" class="text-right px-0">
-                  <rule-btn x-small>add</rule-btn>
-                </v-col>
-              </v-row>
-            </v-card-text>
-          </v-card>
+                </div>
+              </v-col>
 
-          <v-card class="mt-6">
-            <v-card-text class="text-center">
+              <v-col cols="3" class="text-right px-0">
+                <rule-btn x-small>add</rule-btn>
+              </v-col>
+            </v-row>
+          </rule-card-template>
+
+          <rule-card-template class="mt-6">
+            <div class="text-center">
               <v-avatar width="140px" height="140px">
                 <v-img src="@/assets/user.png" />
               </v-avatar>
-              <div class="text-h3 text-typo font-weight-semibold mt-4">
-                Ryan Tompson
-              </div>
-              <div class="text-body text-muted my-2">WEb Developer</div>
-            </v-card-text>
-          </v-card>
+              <rule-title-h3 class="mt-4"> Ryan Tompson </rule-title-h3>
+              <div class="text-muted my-2">WEb Developer</div>
+            </div>
+          </rule-card-template>
 
-          <v-card class="card-padding default mt-6">
-            <v-card-title>
-              <div class="text-h3 font-weight-semibold" style="color: #fff">
+          <rule-card-template class="default mt-6">
+            <v-card-title class="pt-0 px-0">
+              <rule-title-h3 style="color: #fff !important">
                 TestiMonial
-              </div>
+              </rule-title-h3>
             </v-card-title>
 
-            <v-card-text>
-              <p
-                class="text-body font-size-root font-weight-light"
-                style="color: #fff !important"
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                posuere erat a ante.
-              </p>
-              <p class="text-danger font-size-root mb-0 text-capitalize">
-                -- Someone famous in Source Title
-              </p>
-            </v-card-text>
-          </v-card>
+            <p style="color: #fff !important">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              posuere erat a ante.
+            </p>
+            <p class="text-danger mb-0 text-right">
+              -- Someone famous in Source Title
+            </p>
+          </rule-card-template>
+
+          <rule-card-template class="bg-gradient-danger mt-6">
+            <v-card-title class="pt-0 px-0">
+              <rule-title-h3 style="color: #fff !important">
+                TestiMonial
+              </rule-title-h3>
+            </v-card-title>
+
+            <p style="color: #fff !important">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              posuere erat a ante.
+            </p>
+            <p class="text-default mb-0 text-right">
+              -- Someone famous in Source Title
+            </p>
+          </rule-card-template>
+
+          <rule-card-template class="bg-gradient-warning mt-6">
+            <v-card-title class="pt-0 px-0">
+              <rule-title-h3 style="color: #fff !important">
+                TestiMonial
+              </rule-title-h3>
+            </v-card-title>
+
+            <p style="color: #fff !important">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              posuere erat a ante.
+            </p>
+            <p class="text-default mb-0 text-right">
+              -- Someone famous in Source Title
+            </p>
+          </rule-card-template>
+
+          <rule-card-template class="bg-gradient-secondary mt-6">
+            <v-card-title class="pt-0 px-0">
+              <rule-title-h3> TestiMonial </rule-title-h3>
+            </v-card-title>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              posuere erat a ante.
+            </p>
+            <p class="text-muted mb-0 text-right">
+              -- Someone famous in Source Title
+            </p>
+          </rule-card-template>
         </v-col>
+
         <v-col lg="4" class="py-0 pr-0">
           <card-price />
 
@@ -104,7 +150,7 @@ import CardDescribe from "@cps/app-card/CardDescribe.vue";
 import CardDescribeMore from "@cps/app-card/CardDescribeMore.vue";
 import CardUser from "@cps/app-card/CardUser.vue";
 import CardPrice from "@cps/app-card/CardPrice.vue";
-import { RegisterBtn } from "@cps/the-mixins";
+import { RegisterBtn, RegisterCard, RegisterHeading } from "@cps/the-mixins";
 
 @Meta({ title: "Cards", order: 100 })
 @Component({
@@ -117,7 +163,11 @@ import { RegisterBtn } from "@cps/the-mixins";
     CardTraffic,
   },
 })
-export default class TheCard extends Mixins(RegisterBtn) {
+export default class TheCard extends Mixins(
+  RegisterBtn,
+  RegisterCard,
+  RegisterHeading
+) {
   @Inject("argon") argon!: Argon;
 
   created(): void {
@@ -128,24 +178,24 @@ export default class TheCard extends Mixins(RegisterBtn) {
 
   traffics = [
     {
-      title: "总量统计",
+      title: "total",
       count: "350,897",
       tip: "30%",
-      describe: "持续销售中...",
+      describe: "Since last month",
       color: "danger",
     },
     {
-      title: "新用户",
+      title: "new user",
       count: "560",
       tip: "10%",
-      describe: "环比上升幅度较小",
+      describe: "Since last month",
       color: "warning",
     },
     {
-      title: "销售额",
+      title: "sale count",
       count: "1,560",
       tip: "3.14%",
-      describe: "从上个月以来",
+      describe: "Since last month",
       color: "success",
     },
     {

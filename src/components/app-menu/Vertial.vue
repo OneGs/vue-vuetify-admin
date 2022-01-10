@@ -1,5 +1,5 @@
 <template>
-  <v-list class="list vertical" dense nav flat>
+  <v-list class="list vertical" nav flat>
     <menu-item
       v-for="(menu, index) in menus"
       :key="menuKey(menu) + index"
@@ -46,6 +46,10 @@ export default class AppMenu extends Mixins(MenuTools) {
     font-size: 0.9375rem !important;
     font-style: normal;
     padding: 0 4px; // 图标居中
+  }
+
+  .v-list-item__title {
+    font-size: 0.875rem;
   }
 }
 </style>

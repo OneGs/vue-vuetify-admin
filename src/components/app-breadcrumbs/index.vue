@@ -1,15 +1,18 @@
 <template>
   <div class="d-flex align-center white--text">
-    <h1
-      class="font-weight-semibold white--text text-h2 text-capitalize mr-4"
-      style="transform: translateY(-1px)"
+    <rule-title-h2
+      style="color: #fff !important; transform: translateY(-1.5px)"
+      class="py-4"
     >
       {{ nameTitle }}
-    </h1>
+    </rule-title-h2>
 
-    <v-btn color="#fff" small icon @click="$router.push({ name: 'Home' })">
-      <v-icon v-text="'mdi-home'" />
-    </v-btn>
+    <rule-btn
+      color="#fff"
+      small
+      icon="mdi-home"
+      @click="$router.push({ name: 'Home' })"
+    />
 
     <span class="white--text mx-1">-</span>
 
@@ -18,13 +21,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import { BreadItems } from "./breadcrumbs";
+import { RegisterBtn, RegisterHeading } from "@cps/the-mixins";
 
 @Component({
   name: "AppBreadcrumbs",
 })
-export default class AppBreadcrumbs extends Vue {
+export default class AppBreadcrumbs extends Mixins(
+  RegisterHeading,
+  RegisterBtn
+) {
   get nameTitle(): string {
     const { title: name } = this.$route.meta || {};
 

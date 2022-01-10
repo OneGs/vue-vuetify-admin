@@ -16,7 +16,7 @@
       </v-row>
 
       <v-row class="mt-4 mb-0 text-body font-weight-light">
-        <v-col class="pt-0">
+        <v-col class="py-0">
           <span class="success--text me-2">{{ tip }}</span>
           {{ describe }}
         </v-col>

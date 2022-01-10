@@ -1,33 +1,23 @@
 <template>
-  <v-card>
-    <v-card-title class="card-heading-padding">
-      <div class="text-h3 text-typo font-weight-semibold">{{ title }}</div>
-    </v-card-title>
+  <rule-card-template :title="title">
+    <slot name="body" v-if="!!message || $slots.body">
+      <p>{{ message }}</p>
+    </slot>
 
-    <v-divider />
-
-    <v-card-text class="card-padding">
-      <p
-        class="font-size-root lead font-weight-light text-body mb-5 text-capitalize"
-      >
-        {{ message }}
-      </p>
-
-      <div class="text-left">
-        <rule-btn color="primary">Go somewhere</rule-btn>
-      </div>
-    </v-card-text>
-  </v-card>
+    <div class="text-left">
+      <rule-btn color="primary">Go somewhere</rule-btn>
+    </div>
+  </rule-card-template>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Mixins } from "vue-property-decorator";
-import { RegisterBtn } from "@cps/the-mixins";
+import { RegisterBtn, RegisterCard } from "@cps/the-mixins";
 
 @Component({
   name: "CardDescribe",
 })
-export default class CardDescribe extends Mixins(RegisterBtn) {
+export default class CardDescribe extends Mixins(RegisterBtn, RegisterCard) {
   @Prop({ type: String, default: "Card Title" }) title!: string;
 
   @Prop({ type: String, default: "nothing" }) message!: string;

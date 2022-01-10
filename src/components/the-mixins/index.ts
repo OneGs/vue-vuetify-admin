@@ -69,12 +69,12 @@ class RegisterForm extends Vue {}
 //* ——— Grid
 // ————————————————————————————————————
 
-import CardTemplate from "@cps/tool-grid/CardTemplate.vue";
+import RuleCardExample from "@cps/tool-grid/CardExample.vue";
 import ToolGrid from "@cps/tool-grid/index.vue";
 
 @Component({
   components: {
-    RuleCardTemplate: CardTemplate,
+    RuleCardExample,
     ToolGrid,
   },
 })
@@ -91,7 +91,7 @@ import RuleNotification from "@cps/tool-notification/src/Notification.vue";
 class RegisterNotification extends Vue {}
 
 // ————————————————————————————————————
-//* ——— All
+//* ——— Table
 // ————————————————————————————————————
 
 import ToolPaginatedTable from "@cps/tool-table/PaginatedTable.vue";
@@ -104,6 +104,43 @@ import ToolPaginatedTable from "@cps/tool-table/PaginatedTable.vue";
 class RegisterTable extends Vue {}
 
 // ————————————————————————————————————
+//* ——— Card
+// ————————————————————————————————————
+
+import RuleCardTemplate from "@cps/rule-card/CardTemplate.vue";
+
+@Component({
+  components: {
+    RuleCardTemplate,
+  },
+})
+class RegisterCard extends Vue {}
+
+// ————————————————————————————————————
+//* ——— Image information
+// ————————————————————————————————————
+import BackgroundImage from "@ast/common_images/background.jpg";
+import LoadingImage from "@ast/illustrations/questions.svg";
+
+@Component({})
+class CommonImage extends Vue {
+  backgroundImage = BackgroundImage;
+
+  loadingImage = LoadingImage;
+}
+
+// ————————————————————————————————————
+//* ——— inheritAttrs
+// ————————————————————————————————————
+
+@Component({
+  components: {},
+
+  inheritAttrs: false,
+})
+class NoInheritAttrs extends Vue {}
+
+// ————————————————————————————————————
 //* ——— All
 // ————————————————————————————————————
 
@@ -114,6 +151,8 @@ class RegisterAll extends Mixins(
   RegisterHeading,
   RegisterGrid,
   RegisterTable,
+  RegisterCard,
+  CommonImage,
   RegisterNotification
 ) {}
 
@@ -122,7 +161,10 @@ export {
   RegisterForm,
   RegisterHeading,
   RegisterGrid,
+  CommonImage,
   RegisterNotification,
   RegisterTable,
+  RegisterCard,
   RegisterAll,
+  NoInheritAttrs,
 };
