@@ -6,7 +6,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 
-@Meta({ title: "面板" })
+@Meta({ title: "Dashboard" })
 @Component({
   name: "DashboardsIndex",
 })

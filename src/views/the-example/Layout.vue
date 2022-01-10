@@ -7,7 +7,7 @@ import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 
 @Meta({
-  title: "示例",
+  title: "examples",
   order: 50,
   icon: "mdi-checkbox-multiple-blank-outline",
   color: "red",

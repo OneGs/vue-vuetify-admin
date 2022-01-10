@@ -7,7 +7,7 @@ import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 
 @Meta({
-  title: "看板",
+  title: "Dashboards",
   order: 100,
   icon: "mdi-wallet-travel",
   color: "blue",
