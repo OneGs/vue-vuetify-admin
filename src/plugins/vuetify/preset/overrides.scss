@@ -5,6 +5,12 @@
 
 $--v-application: v-application;
 
+// 字体
+@font-face {
+  font-family: "Open Sans";
+  src: url(../../../assets/fonts/SourceSansPro-Regular.ttf) format('truetype');
+}
+
 //* ——— Origin Html Style Overrides ——————————————————
 //
 
