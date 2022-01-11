@@ -5,7 +5,17 @@
     <app-navigator app />
 
     <!-- 根据应用组件来调整你的内容 -->
-    <v-main>
+    <v-main
+      :style="[
+        {
+          paddingLeft: $store.state.layout.miniVariant
+            ? $config.navigatorMiniVariantWidth
+            : $store.state.layout.isHover
+            ? $config.navigatorMiniVariantWidth
+            : $config.navigatorWidth,
+        },
+      ]"
+    >
       <v-container
         fluid
         class="primary pt-0 px-6"

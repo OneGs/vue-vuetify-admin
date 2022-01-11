@@ -159,6 +159,12 @@ p {
 $--menu-item-color: rgba(0, 0, 0, 0.87);
 
 @include theme(v-list-item) using($type) {
+  min-height: 36px !important;
+
+  .v-list-item__icon {
+    margin: 14px 4px 12px 4px;
+  }
+
   @if $type == $material-light {
     &:not(.v-list-item--active):not(.v-list-item--disabled) {
       color: rgba(0, 0, 0, 0.6);

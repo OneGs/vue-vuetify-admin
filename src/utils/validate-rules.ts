@@ -19,7 +19,7 @@ extend("state", {
   },
 });
 
-extend("odd", (value) => {
+extend("odd", (value: number) => {
   if (value % 2 !== 0) {
     return true;
   }

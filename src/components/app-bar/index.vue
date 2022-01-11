@@ -5,6 +5,15 @@
     flat
     height="84px"
     class="app-bar d-flex justify-space-between border-bottom"
+    :style="[
+      {
+        left: $store.state.layout.miniVariant
+          ? $config.navigatorMiniVariantWidth
+          : $store.state.layout.isHover
+          ? $config.navigatorMiniVariantWidth
+          : $config.navigatorWidth,
+      },
+    ]"
   >
     <v-img
       v-if="false"

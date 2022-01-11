@@ -2,20 +2,26 @@
   <v-navigation-drawer
     v-bind="$attrs"
     class="app-navigator"
-    :mini-variant.sync="miniVariant"
-    permanent
-    width="250px"
+    :expand-on-hover="$store.state.layout.isHover"
+    :mini-variant.sync="$store.state.layout.miniVariant"
+    :mini-variant-width="$config.navigatorMiniVariantWidth"
+    @transitionend="$store.commit('layout/setScaleIcon')"
+    :width="$config.navigatorWidth"
   >
     <v-list-item style="height: 78px">
-      <v-list-item-content v-if="!miniVariant">
+      <v-list-item-content v-if="!$store.state.layout.scaleIcon">
         <v-list-item-title class="text-h6"> Application </v-list-item-title>
         <v-list-item-subtitle> subtext </v-list-item-subtitle>
       </v-list-item-content>
 
-      <rule-btn icon="mdi-menu" color="black" />
+      <rule-btn
+        icon="mdi-menu"
+        color="black"
+        @click="$store.commit('layout/setHover')"
+      />
     </v-list-item>
 
-    <app-menu :menu="routes" :toggle="miniVariant" />
+    <app-menu :menu="routes" :toggle="$store.state.layout.scaleIcon" />
   </v-navigation-drawer>
 </template>
 
@@ -32,7 +38,5 @@ import { RegisterBtn } from "@cps/the-mixins";
 })
 export default class appNavigator extends Mixins(RegisterBtn) {
   routes = routes[0].children;
-
-  miniVariant = false;
 }
 </script>
