@@ -2,7 +2,9 @@
   <v-card class="text-body card-table paginated-table">
     <v-card-title class="d-flex align-center" v-if="!!title">
       <rule-title-h3>{{ title }}</rule-title-h3>
-      <slot name="heading" />
+      <div class="ml-4 flex-grow-1">
+        <slot name="heading" />
+      </div>
     </v-card-title>
 
     <v-divider v-if="!!title" />

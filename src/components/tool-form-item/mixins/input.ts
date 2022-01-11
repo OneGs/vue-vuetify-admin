@@ -8,10 +8,8 @@ import ToolForm from "@cps/tool-form/index.vue";
   inheritAttrs: false,
 })
 export default class Input extends Vue {
-  @VModel({ type: [String, Array, Boolean] }) modeValue!:
-    | string
-    | boolean
-    | Array<string | boolean>;
+  @VModel({ type: [String, Array, Boolean, Number], default: null })
+  modeValue!: string | boolean | number | Array<string | boolean | number>;
 
   @Prop({ type: String, default: "" }) label!: string;
 
@@ -19,7 +17,7 @@ export default class Input extends Vue {
 
   @Prop({ type: Boolean, default: false }) large!: boolean;
 
-  @Prop({ type: Boolean, default: true }) hideDetails!: boolean;
+  @Prop({ type: String, default: "" }) rules!: string;
 
   @Inject({ default: {} }) formItem!: ToolFormItem;
 
@@ -31,5 +29,9 @@ export default class Input extends Vue {
 
   get _label(): string {
     return this.label || this.formItem.label;
+  }
+
+  get inlineHideDetails(): boolean {
+    return !!this.$attrs["hide-details"] || this.rootForm.hideDetails || false;
   }
 }

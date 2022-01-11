@@ -31,6 +31,20 @@ import RuleBtn from "@cps/rule-btn/index.vue";
 class RegisterBtn extends Vue {}
 
 // ————————————————————————————————————
+//* ——— VeeValidator
+// ————————————————————————————————————
+
+import { ValidationProvider, ValidationObserver } from "vee-validate";
+
+@Component({
+  components: {
+    ValidationProvider,
+    ValidationObserver,
+  },
+})
+class RegisterVeeValidate extends Vue {}
+
+// ————————————————————————————————————
 //* ——— Forms
 // ————————————————————————————————————
 
@@ -63,7 +77,7 @@ import RuleRadio from "@cps/tool-form-item/Radio.vue";
     RuleRadio,
   },
 })
-class RegisterForm extends Vue {}
+class RegisterForm extends Mixins(RegisterVeeValidate) {}
 
 // ————————————————————————————————————
 //* ——— Grid
@@ -166,5 +180,6 @@ export {
   RegisterTable,
   RegisterCard,
   RegisterAll,
+  RegisterVeeValidate,
   NoInheritAttrs,
 };

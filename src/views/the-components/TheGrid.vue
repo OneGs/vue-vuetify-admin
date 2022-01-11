@@ -1,5 +1,6 @@
 <template>
   <v-row>
+    <!-- TODO grid too-form too-form-item 中的默认布局还是存在问题   -->
     <v-col cols="8" class="mx-auto pt-0">
       <rule-card-template title="Grid System">
         <tool-grid v-model="systemSlots">
@@ -18,6 +19,7 @@
             <rule-card-example
               :key="slot"
               :text="`${currentCol} of ${length}`"
+              class="my-2"
             />
           </template>
         </tool-grid>
@@ -39,6 +41,7 @@
             <rule-card-example
               :key="slot"
               :text="`${currentCol} of ${length}`"
+              class="my-2"
             />
           </template>
         </tool-grid>
@@ -47,7 +50,7 @@
       <rule-card-template class="mt-6" title="Equal-width multi-row">
         <tool-grid v-model="systemSlots" :row="2" :col="4">
           <template v-for="slot in systemSlots" #[slot]>
-            <rule-card-example :key="slot" text="columns" />
+            <rule-card-example :key="slot" text="columns" class="my-2" />
           </template>
         </tool-grid>
       </rule-card-template>

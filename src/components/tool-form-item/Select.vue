@@ -7,9 +7,9 @@
     :items="options"
     item-text="label"
     item-value="value"
-    hide-details
     :height="height"
     :placeholder="_label"
+    :hide-details="inlineHideDetails"
     v-bind="$attrs"
     clearable
     v-model="modeValue"
@@ -23,6 +23,8 @@ import MOptions from "@cps/tool-form-item/mixins/options";
 
 @Component({
   name: "RuleSelect",
+
+  inheritAttrs: false,
 })
 export default class RuleSelect extends Mixins(Input, MOptions) {}
 </script>

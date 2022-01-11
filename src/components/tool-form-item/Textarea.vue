@@ -5,7 +5,7 @@
     flat
     :placeholder="_label"
     height="76px"
-    hide-details
+    :hide-details="inlineHideDetails"
   />
 </template>
 
@@ -15,6 +15,8 @@ import Input from "./mixins/input";
 
 @Component({
   name: "RuleTextarea",
+
+  inheritAttrs: false,
 })
 export default class RuleTextarea extends Mixins(Input) {}
 </script>

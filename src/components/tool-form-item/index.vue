@@ -1,11 +1,14 @@
 <template>
-  <v-row :class="[{ inline: isInline }]" class="pa-3">
+  <v-row :class="[{ inline: isInline }]" class="ma-0">
     <v-col
-      v-if="!_single"
-      :cols="isInline ? positionWidth : 12"
-      class="label label-color pa-0 mb-2 font-weight-600"
-      >{{ label }}</v-col
+      v-if="!innerSingle"
+      :cols="isInline ? innerPositionWidth : 12"
+      class="label label-color pa-0 font-weight-600"
+      :class="[{ 'mb-2': !isInline }]"
     >
+      {{ label }}
+      <div :style="{ height: isInline && !isHideDetails ? '29px' : '0' }" />
+    </v-col>
     <v-col class="pa-0">
       <slot />
     </v-col>
@@ -28,21 +31,29 @@ import ToolForm from "@cps/tool-form/index.vue";
 export default class ToolFormItem extends Vue {
   @Prop({ type: String, default: "" }) label!: string;
 
-  @Prop({ type: Number, default: 2 }) positionWidth!: number;
+  @Prop({ type: Number, default: null }) positionWidth!: number;
 
   @Prop({ type: Boolean, default: false }) single!: boolean;
 
   @Inject({ default: {} }) rootForm!: ToolForm;
 
-  get _single(): boolean {
+  get innerSingle(): boolean {
     return this.single || this.rootForm.single;
   }
 
+  get innerPositionWidth(): number {
+    return this.positionWidth || this.rootForm.positionWidth || 2;
+  }
+
   get isInline(): boolean {
-    return !!Object.prototype.hasOwnProperty.call(
-      this.$parent.$attrs,
-      "inline"
+    return (
+      !!Object.prototype.hasOwnProperty.call(this.$parent.$attrs, "inline") ||
+      this.rootForm.inline
     );
+  }
+
+  get isHideDetails(): boolean {
+    return this.rootForm.hideDetails;
   }
 
   mounted(): void {

@@ -7,7 +7,7 @@
       :label="option.label"
       :key="option.label + option.value"
       :class="{ 'check-inline': inline }"
-      hide-details
+      :hide-details="inlineHideDetails"
       v-on="$listeners"
       v-bind="$attrs"
       :ripple="false"

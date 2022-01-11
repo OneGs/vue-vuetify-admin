@@ -1,38 +1,27 @@
 <template>
   <div>
-    <v-card>
-      <v-card-title class="card-heading-padding">
-        <rule-title-h3>Light Table</rule-title-h3>
-      </v-card-title>
+    <tool-paginated-table
+      :request-fun="getTemp"
+      :headers="headers"
+      :items.sync="items"
+      :body-class="'py-5'"
+      title="Light Table"
+    >
+      <template #item.status="{ item }">
+        <span class="me-1" :class="[`text-${getColor(item.status)}`]">●</span>
+        {{ item.status }}
+      </template>
 
-      <v-divider />
-
-      <v-card-text class="pa-0">
-        <tool-paginated-table
-          :request-fun="getTemp"
-          :headers="headers"
-          :items.sync="items"
-          :body-class="'py-5'"
-        >
-          <template #item.status="{ item }">
-            <span class="me-1" :class="[`text-${getColor(item.status)}`]"
-              >●</span
-            >
-            {{ item.status }}
-          </template>
-
-          <template #item.completion="{ item }">
-            <div class="d-flex align-center">
-              <span class="mr-2">{{ item.completion }}%</span>
-              <v-progress-linear
-                :value="item.completion"
-                :color="getCompletionColor(item.completion)"
-              />
-            </div>
-          </template>
-        </tool-paginated-table>
-      </v-card-text>
-    </v-card>
+      <template #item.completion="{ item }">
+        <div class="d-flex align-center">
+          <span class="mr-2">{{ item.completion }}%</span>
+          <v-progress-linear
+            :value="item.completion"
+            :color="getCompletionColor(item.completion)"
+          />
+        </div>
+      </template>
+    </tool-paginated-table>
   </div>
 </template>
 

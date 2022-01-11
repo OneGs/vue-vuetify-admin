@@ -15,9 +15,10 @@
         solo
         outlined
         flat
-        hide-details
         label="Picker in dialog"
         readonly
+        :placeholder="_label"
+        :hide-details="inlineHideDetails"
         class="cursor-pointer"
         :height="height"
         v-on="on"

@@ -70,7 +70,7 @@
       </rule-card-template>
 
       <rule-card-template class="mt-6" title="Datepicker">
-        <tool-form>
+        <tool-form hide-details>
           <tool-grid :row="1" :col="2">
             <template #0-0>
               <tool-form-item label="Date Picker">

@@ -7,7 +7,7 @@
     readonly
     v-on="$listeners"
     v-bind="$attrs"
-    :hide-details="hideDetails"
+    :hide-details="inlineHideDetails"
     :height="height"
   />
 </template>
@@ -18,6 +18,8 @@ import Input from "@cps/tool-form-item/mixins/input";
 
 @Component({
   name: "Loading",
+
+  inheritAttrs: false,
 })
 export default class Loading extends Mixins(Input) {
   mounted(): void {

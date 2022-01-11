@@ -10,9 +10,9 @@
         <v-col lg="3" cols="4" md="5" sm="6">
           <rule-text-field
             append-icon="mdi-magnify"
-            class="text-search ml-4 text-body-1"
             placeholder="placeholder"
             width="100px"
+            :hide-details="true"
             small
           />
         </v-col>

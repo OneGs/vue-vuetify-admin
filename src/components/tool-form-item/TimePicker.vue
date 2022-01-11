@@ -15,7 +15,8 @@
         solo
         outlined
         flat
-        hide-details
+        :hide-details="inlineHideDetails"
+        :placeholder="_label"
         label="Picker in dialog"
         readonly
         class="cursor-pointer"

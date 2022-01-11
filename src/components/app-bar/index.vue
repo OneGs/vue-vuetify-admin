@@ -17,9 +17,9 @@
 
     <div class="btn-search" :class="{ 'btn-width': extend }">
       <rule-text-field
-        hide-details
+        :hide-details="true"
         rounded
-        label="搜索"
+        label="search"
         prepend-inner-icon="mdi-magnify"
         @focus="extendWidth"
         @blur="rollupWidth"
@@ -43,9 +43,9 @@
           class="ml-1"
           style="
             width: 50px;
-            display: inline-block;
             overflow: hidden;
             text-overflow: ellipsis;
+            color: #fff !important;
           "
           >welcome</span
         >

@@ -1,16 +1,18 @@
 <template>
-  <v-container fluid class="pa-0">
-    <v-row v-for="(theRow, index) in layouts" :key="index + 'row'">
+  <v-container fluid class="pa-0 ma-0">
+    <!--  利用row的margin-top将上下两行隔开 my-0 消除竖直方向上负边距的影响  -->
+    <v-row v-for="(theRow, index) in layouts" :key="index + 'row'" class="my-0">
       <v-col
         v-for="(theCol, colIndex) in theRow"
         :key="colIndex + 'col'"
         :cols="theCol"
+        class="py-0"
       >
         <slot
           :name="`${index}-${colIndex}`"
           v-bind:span="`${index}-${colIndex}`"
-          v-bind:currentRow="index + 1"
-          v-bind:currentCol="colIndex + 1"
+          v-bind:currentRow="index"
+          v-bind:currentCol="colIndex"
           v-bind:length="theRow.length"
         >
           {{ index }} - {{ colIndex }}

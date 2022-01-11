@@ -1,5 +1,10 @@
 <template>
-  <v-radio-group v-model="modeValue" v-bind="$attrs" v-on="$listeners">
+  <v-radio-group
+    v-model="modeValue"
+    v-bind="$attrs"
+    v-on="$listeners"
+    :hide-details="inlineHideDetails"
+  >
     <v-radio
       v-for="opt in options"
       :key="opt.label + opt.value"
@@ -16,6 +21,8 @@ import MOptions from "@cps/tool-form-item/mixins/options";
 
 @Component({
   name: "RuleRadio",
+
+  inheritAttrs: false,
 })
 export default class RuleRadio extends Mixins(Input, MOptions) {}
 </script>

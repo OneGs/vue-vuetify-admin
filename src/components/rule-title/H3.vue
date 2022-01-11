@@ -1,5 +1,5 @@
 <template>
-  <h3 class="text-h3 text-typo text-capitalize font-weight-semibold w-full">
+  <h3 class="text-h3 text-typo text-capitalize font-weight-semibold">
     <slot />
   </h3>
 </template>

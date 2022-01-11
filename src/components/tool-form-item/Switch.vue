@@ -7,7 +7,7 @@
     v-on="$listeners"
     v-model="modeValue"
     :placeholder="_label"
-    hide-details
+    :hide-details="inlineHideDetails"
     class="mt-0"
   />
 </template>
