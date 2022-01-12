@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins, Prop } from "vue-property-decorator";
+import { Component, Mixins, Prop, VModel } from "vue-property-decorator";
 import { RouteConfig } from "vue-router";
 import MenuItem from "./components/MenuItem.vue";
 import MenuTools from "./menuTools";
@@ -30,6 +30,8 @@ export default class AppMenu extends Mixins(MenuTools) {
 
   @Prop({ type: Boolean, default: () => false }) readonly toggle!: boolean;
 
+  @VModel({ type: String }) currentMenu!: string;
+
   get menus(): RouteConfig[] {
     return this.filter(this.menu || []);
   }
@@ -43,13 +45,12 @@ export default class AppMenu extends Mixins(MenuTools) {
 <style lang="scss">
 .vertical {
   .v-icon {
-    font-size: 0.9375rem !important;
-    font-style: normal;
+    font-size: 1rem !important;
     padding: 0 4px; // 图标居中
   }
 
   .v-list-item__title {
-    font-size: 0.875rem;
+    font-size: 0.9rem;
   }
 }
 </style>

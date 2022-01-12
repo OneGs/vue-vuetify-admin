@@ -21,12 +21,16 @@
       />
     </v-list-item>
 
-    <app-menu :menu="routes" :toggle="$store.state.layout.scaleIcon" />
+    <app-menu
+      :menu="routes"
+      :toggle="$store.state.layout.scaleIcon"
+      v-model="currentMenu"
+    />
   </v-navigation-drawer>
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from "vue-property-decorator";
+import { Component, Mixins, Watch } from "vue-property-decorator";
 import AppMenu from "../app-menu/Vertial.vue";
 import { routes } from "@/router";
 import { RegisterBtn } from "@cps/the-mixins";
@@ -38,5 +42,12 @@ import { RegisterBtn } from "@cps/the-mixins";
 })
 export default class appNavigator extends Mixins(RegisterBtn) {
   routes = routes[0].children;
+
+  currentMenu = sessionStorage.getItem("currentMenu") || "the-dashboards";
+
+  @Watch("currentMenu")
+  say(): void {
+    sessionStorage.setItem("currentMenu", this.currentMenu);
+  }
 }
 </script>

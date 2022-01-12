@@ -66,11 +66,19 @@
 
             <div class="px-6 py-3 d-flex justify-center flex-column">
               <p class="text-muted font-size-small text-center mb-8">
-                Or sign in with credentials {{ remember }}
+                Or sign in with credentials {{ agree }}
               </p>
 
               <validation-observer ref="loginObserver">
                 <tool-form single>
+                  <tool-form-item label="Name">
+                    <rule-text-field
+                      v-model="loginInfo.name"
+                      type="password"
+                      rules="required"
+                      prepend-inner-icon="mdi-school"
+                    />
+                  </tool-form-item>
                   <tool-form-item label="Email">
                     <rule-text-field
                       v-model="loginInfo.email"
@@ -83,7 +91,7 @@
                       v-model="loginInfo.password"
                       type="password"
                       rules="required"
-                      append-icon="mdi-eye-outline"
+                      prepend-inner-icon="mdi-key-outline"
                     />
                   </tool-form-item>
                 </tool-form>
@@ -91,11 +99,13 @@
 
               <rule-checkbox
                 dense
-                :options="[{ label: 'Remember me', value: true }]"
-                v-model="remember"
+                :options="[
+                  { label: 'I agree with the privacy policy', value: true },
+                ]"
+                v-model="agree"
               />
 
-              <rule-btn @click="login">login</rule-btn>
+              <rule-btn @click="register">login</rule-btn>
             </div>
           </rule-card-template>
         </v-col>
@@ -115,9 +125,9 @@ import {
 import { ValidationObserver } from "vee-validate";
 
 @Component({
-  name: "DemoLogin",
+  name: "DemoRegister",
 })
-export default class DemoLogin extends Mixins(
+export default class DemoRegister extends Mixins(
   RegisterHeading,
   RegisterBtn,
   RegisterCard,
@@ -131,38 +141,16 @@ export default class DemoLogin extends Mixins(
     { text: "Lock", to: { name: "" } },
   ];
 
-  remember: string | boolean = false;
+  agree: string | boolean = false;
 
   loginInfo = {
     email: "",
     password: "",
+    name: "",
   };
 
-  async login(): Promise<void> {
+  async register(): Promise<void> {
     if (!(await this.loginObserver.validate())) return;
-
-    if (
-      this.loginInfo.email === "admin@123.com" &&
-      this.loginInfo.password === "123456"
-    ) {
-      // 需要记录
-      this.$store.commit("login/setToken", "token");
-      this.$store.commit("login/setRemember", !!this.remember);
-
-      if (this.$store.state.login.isRemember) {
-        localStorage.setItem("email", this.loginInfo.email);
-      } else {
-        localStorage.removeItem("email");
-      }
-
-      await this.$router.push({ name: "Home" });
-    }
-  }
-
-  created(): void {
-    this.loginInfo.email = localStorage.getItem("email") || "";
-
-    this.remember = this.$store.state.login.isRemember;
   }
 }
 </script>

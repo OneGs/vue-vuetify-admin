@@ -29,7 +29,7 @@
     }}</v-list-item-title>
   </v-list-item>
 
-  <v-list-group v-else :sub-group="isSub" :ripple="false">
+  <v-list-group v-else :sub-group="isSub" :ripple="false" v-model="menuGroup">
     <template #activator>
       <v-list-item-content class="py-2 ml-2">
         <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>
@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Mixins, Inject } from "vue-property-decorator";
+import { Component, Prop, Mixins, Inject, Watch } from "vue-property-decorator";
 import { RouteConfig } from "vue-router";
 import MenuTools from "../menuTools";
 import AppMenu from "../Vertial.vue";
@@ -64,11 +64,20 @@ import AppMenu from "../Vertial.vue";
   name: "MenuItem",
 })
 export default class MenuItem extends Mixins(MenuTools) {
+  menuGroup = false;
+
   @Prop({ type: Object, default: () => ({}) }) item!: RouteConfig;
 
   @Prop({ type: Boolean, default: false }) isSub!: boolean;
 
   @Inject("menu") menu!: AppMenu;
+
+  @Watch("menuGroup")
+  setCurrentMenu(status: boolean): void {
+    if (!status) return;
+
+    this.menu.currentMenu = this.item.path;
+  }
 
   get menuToggle(): boolean {
     return !!this.menu?.toggle;
@@ -82,6 +91,12 @@ export default class MenuItem extends Mixins(MenuTools) {
     if (!this.item?.children) return [];
 
     return this.filter(this.item?.children);
+  }
+
+  created(): void {
+    if (this.item.path === this.menu.currentMenu) {
+      this.menuGroup = true;
+    }
   }
 }
 </script>
