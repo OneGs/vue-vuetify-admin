@@ -15,15 +15,15 @@ const state: LayoutStore = {
 };
 
 const mutations = {
-  setHover: (state: LayoutStore) => {
+  setHover: (state: LayoutStore): void => {
     state.isHover = !state.isHover;
   },
 
-  setMiniVariant: (state: LayoutStore) => {
+  setMiniVariant: (state: LayoutStore): void => {
     state.miniVariant = !state.miniVariant;
   },
 
-  setScaleIcon: (state: LayoutStore) => {
+  setScaleIcon: (state: LayoutStore): void => {
     state.scaleIcon = state.miniVariant;
   },
 };

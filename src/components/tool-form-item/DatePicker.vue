@@ -15,7 +15,6 @@
         solo
         outlined
         flat
-        label="Picker in dialog"
         readonly
         :placeholder="_label"
         :hide-details="inlineHideDetails"
@@ -47,10 +46,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Emit, Watch, Mixins } from "vue-property-decorator";
+import {
+  Component,
+  Emit,
+  Watch,
+  Mixins,
+  Ref,
+  VModel,
+} from "vue-property-decorator";
 import RuleTextField from "@cps/tool-form-item/TextField.vue";
 import RuleBtn from "@cps/rule-btn/index.vue";
 import Input from "@cps/tool-form-item/mixins/input";
+import { LoopAny } from "@/types/common";
 
 @Component({
   inheritAttrs: false,
@@ -61,6 +68,11 @@ import Input from "@cps/tool-form-item/mixins/input";
 })
 export default class RuleDatePicker extends Mixins(Input) {
   visible = false;
+
+  @VModel({ type: [String, Array], default: "" })
+  modeValue!: string | string[];
+
+  @Ref() menu!: LoopAny;
 
   @Watch("visible")
   @Emit()

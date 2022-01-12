@@ -181,6 +181,10 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
   background: #f6f9fc;
 }
 
+.v-list--nav .v-list-item:not(:last-child):not(:only-child) {
+  margin-bottom: 0 !important;
+}
+
 // #endregion
 
 //* ——— Divider Overrides ——————————————————

@@ -3,7 +3,7 @@
     ref="menu"
     v-model="visible"
     :close-on-content-click="false"
-    :return-value.sync="time"
+    :return-value.sync="modeValue"
     transition="scale-transition"
     origin="top center"
     offset-y
@@ -11,7 +11,7 @@
   >
     <template #activator="{ on, attrs }">
       <v-text-field
-        v-model="time"
+        v-model="modeValue"
         solo
         outlined
         flat
@@ -31,7 +31,7 @@
     </template>
 
     <v-time-picker
-      v-model="time"
+      v-model="modeValue"
       v-bind="$attrs"
       v-on="$listeners"
       format="24hr"
@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Ref, Mixins } from "vue-property-decorator";
+import { Component, Ref, Mixins, VModel } from "vue-property-decorator";
 import RuleTextField from "./TextField.vue";
 import RuleBtn from "@cps/rule-btn/index.vue";
 import { LoopAny } from "@/types/common";
@@ -59,22 +59,15 @@ import moment from "moment";
 export default class TimePicker extends Mixins(Input) {
   visible = false;
 
-  time = "";
+  @VModel({ type: [String], default: moment().format("HH:mm") })
+  modeValue!: string;
 
   @Ref() readonly menu!: LoopAny;
 
   clickMinute(): void {
     this.visible = false;
 
-    this.menu.save(this.time);
-  }
-
-  defaultDate(): void {
-    this.time = moment().format("HH:mm");
-  }
-
-  created(): void {
-    this.defaultDate();
+    this.menu.save(this.modeValue);
   }
 }
 </script>

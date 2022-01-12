@@ -24,12 +24,14 @@
       </div>
     </v-list-item-icon>
 
-    <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>
+    <v-list-item-title class="py-2 ml-2">{{
+      menuTitle(item)
+    }}</v-list-item-title>
   </v-list-item>
 
   <v-list-group v-else :sub-group="isSub" :ripple="false">
     <template #activator>
-      <v-list-item-content class="py-2">
+      <v-list-item-content class="py-2 ml-2">
         <v-list-item-title>{{ menuTitle(item) }}</v-list-item-title>
       </v-list-item-content>
     </template>
@@ -83,18 +85,3 @@ export default class MenuItem extends Mixins(MenuTools) {
   }
 }
 </script>
-
-<style lang="scss">
-.nest-item {
-  margin-bottom: 0 !important;
-
-  &.menu-item {
-    min-height: 36px !important;
-    height: 20px !important;
-  }
-
-  .v-list-item__title {
-    padding: 8px 0 !important;
-  }
-}
-</style>
