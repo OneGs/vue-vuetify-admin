@@ -1,15 +1,20 @@
 <template>
-  <div>
-    this is login
-    <button @click="login" style="background: #20a0ff">login</button>
-  </div>
+  <component :is="'DemoLogin'" />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { Meta, RouteName } from "@/libs/auto-router";
+import DemoLogin from "@cps/app-login/DemoLogin.vue";
 
+@RouteName("Login")
+@Meta({ title: "Login", order: 100, full: true })
 @Component({
   name: "Login",
+
+  components: {
+    DemoLogin,
+  },
 })
 export default class Login extends Vue {
   login(): void {

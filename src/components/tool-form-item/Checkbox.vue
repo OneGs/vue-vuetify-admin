@@ -9,6 +9,7 @@
       :class="{ 'check-inline': inline }"
       :hide-details="inlineHideDetails"
       v-on="$listeners"
+      v-model="modeValue"
       v-bind="$attrs"
       :ripple="false"
     />

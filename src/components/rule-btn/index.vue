@@ -2,7 +2,7 @@
   <v-btn
     v-bind="$attrs"
     v-on="$listeners"
-    class="rule-btn elevation-0 text-capitalize font-weight-semibold"
+    class="rule-btn elevation-0 text-capitalize font-weight-600"
     :class="{ 'move-up': moveUp, 'px-6': !isSmall, 'py-3': !isSmall }"
     :icon="!!icon"
     :color="color"

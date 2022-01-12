@@ -22,9 +22,21 @@ $--typo-color: #32325d;
 
 // #region Text
 
+.font-size-root {
+  font-size: 1rem !important;
+}
+
+.font-size-small {
+  font-size: .85rem !important;
+}
+
 @include theme(v-application) using ($type) {
   .font-size-root {
-    font-size: 1rem !important;
+    @extend .font-size-root;
+  }
+
+  .font-size-small {
+    @extend .font-size-small;
   }
 
   .heading {
@@ -165,6 +177,10 @@ $--display-each: 3.3 2.5 2.1875 1.6275;
 
 .w-full {
   width: 100%;
+}
+
+.h-full {
+  height: 100%;
 }
 
 $--positions: relative absolute fixed;

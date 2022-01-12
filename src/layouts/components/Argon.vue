@@ -1,43 +1,47 @@
 <template>
   <v-app class="app">
-    <app-bar app />
+    <div v-if="!isFullLayout">
+      <app-bar app />
 
-    <app-navigator app />
+      <app-navigator app />
 
-    <!-- 根据应用组件来调整你的内容 -->
-    <v-main
-      :style="[
-        {
-          paddingLeft: $store.state.layout.miniVariant
-            ? $config.navigatorMiniVariantWidth
-            : $store.state.layout.isHover
-            ? $config.navigatorMiniVariantWidth
-            : $config.navigatorWidth,
-        },
-      ]"
-    >
-      <v-container
-        fluid
-        class="primary pt-0 px-6"
-        :style="{ paddingBottom: breadcrumbsPadding }"
+      <!-- 根据应用组件来调整你的内容 -->
+      <v-main
+        :style="[
+          {
+            paddingLeft: $store.state.layout.miniVariant
+              ? $config.navigatorMiniVariantWidth
+              : $store.state.layout.isHover
+              ? $config.navigatorMiniVariantWidth
+              : $config.navigatorWidth,
+          },
+        ]"
       >
-        <app-breadcrumbs class="px-0" style="height: 80px" />
-      </v-container>
-      <!-- 给应用提供合适的间距 -->
-      <v-container
-        fluid
-        id="container"
-        class="rounded-sm pt-0 px-6"
-        :style="{ marginTop: `-${breadcrumbsPadding}` }"
-      >
-        <!-- 如果使用 vue-router -->
-        <v-slide-x-reverse-transition mode="out-in" style="z-index: 10">
-          <router-view />
-        </v-slide-x-reverse-transition>
-      </v-container>
-    </v-main>
+        <v-container
+          fluid
+          class="primary pt-0 px-6"
+          :style="{ paddingBottom: breadcrumbsPadding }"
+        >
+          <app-breadcrumbs class="px-0" style="height: 80px" />
+        </v-container>
+        <!-- 给应用提供合适的间距 -->
+        <v-container
+          fluid
+          id="container"
+          class="rounded-sm pt-0 px-6"
+          :style="{ marginTop: `-${breadcrumbsPadding}` }"
+        >
+          <!-- 如果使用 vue-router -->
+          <v-slide-x-reverse-transition mode="out-in" style="z-index: 10">
+            <router-view />
+          </v-slide-x-reverse-transition>
+        </v-container>
+      </v-main>
 
-    <app-footer app v-if="false" />
+      <app-footer app v-if="false" />
+    </div>
+
+    <router-view v-else />
   </v-app>
 </template>
 
@@ -65,6 +69,12 @@ export default class Argon extends Vue {
   @Watch("$route")
   setBreadcrumbsPadding(): void {
     this.breadcrumbsPadding = "64px";
+  }
+
+  get isFullLayout(): boolean {
+    const { meta } = this.$route;
+
+    return !!meta?.full;
   }
 }
 </script>

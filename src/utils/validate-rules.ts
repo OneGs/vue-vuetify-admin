@@ -1,5 +1,5 @@
 import { extend } from "vee-validate";
-import { required } from "vee-validate/dist/rules";
+import { required, email } from "vee-validate/dist/rules";
 
 extend("required", {
   ...required,
@@ -7,6 +7,13 @@ extend("required", {
     if (filedName === "{field}") return "This field is required";
 
     return `This ${filedName} field is required`;
+  },
+});
+
+extend("email", {
+  ...email,
+  message: () => {
+    return "email is not correct";
   },
 });
 
