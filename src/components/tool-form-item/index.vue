@@ -4,7 +4,7 @@
       v-if="!innerSingle"
       :cols="isInline ? innerPositionWidth : 12"
       class="label label-color pa-0 font-weight-600"
-      :class="[{ 'mb-2': !isInline }]"
+      :class="[{ 'mb-2': !isInline && label }]"
     >
       {{ label }}
       <div :style="{ height: isInline && !isHideDetails ? '29px' : '0' }" />

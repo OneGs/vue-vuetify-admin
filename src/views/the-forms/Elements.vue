@@ -16,6 +16,10 @@
       </tool-form>
     </rule-card-template>
 
+    <rule-card-template title="Form Tool in Grid" class="mt-6">
+      <tool-auto-render :mode="modes" />
+    </rule-card-template>
+
     <v-row class="d-flex justify-space-between mt-6">
       <v-col>
         <rule-card-template title="Input groups - hide details">
@@ -263,6 +267,7 @@ import {
   RegisterGrid,
   RegisterHeading,
 } from "@cps/the-mixins";
+import { AutoRenderMode } from "@cps/tool-form/autoRender";
 
 @Meta({ title: "Elements", order: 100 })
 @Component({
@@ -283,6 +288,28 @@ export default class Elements extends Mixins(
     { label: "2", value: 2 },
     { label: "3", value: 3 },
   ];
+
+  modes: AutoRenderMode = {
+    row: 1,
+    col: [[3, 6, 0]],
+    modes: [
+      {
+        label: "username",
+        position: "0-0",
+        componentName: "RuleTextField",
+      },
+      {
+        label: "Location",
+        position: "0-1",
+        componentName: "RuleSelect",
+        options: [
+          { label: "city", value: 1 },
+          { label: "country", value: 2 },
+          { label: "viliger", value: 3 },
+        ],
+      },
+    ],
+  };
 
   opened(status: boolean): void {
     status && (this.activePicker = "YEAR");

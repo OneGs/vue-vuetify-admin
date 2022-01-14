@@ -13,7 +13,9 @@ import { Meta } from "@/libs/auto-router";
   color: "orange",
 })
 @Component
-export default class TheComponentLayout extends Vue {}
+export default class TheComponentLayout extends Vue {
+  a: { name: string; sex: string }[] = [];
+}
 </script>
 
 <style scoped></style>

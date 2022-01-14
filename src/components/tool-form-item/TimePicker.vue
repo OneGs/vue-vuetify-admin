@@ -52,11 +52,11 @@ import moment from "moment";
 @Component({
   inheritAttrs: false,
 
-  name: "TimePicker",
+  name: "RuleTimePicker",
 
   components: { RuleTextField, RuleBtn },
 })
-export default class TimePicker extends Mixins(Input) {
+export default class RuleTimePicker extends Mixins(Input) {
   visible = false;
 
   @VModel({ type: [String], default: moment().format("HH:mm") })

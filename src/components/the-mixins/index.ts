@@ -60,6 +60,7 @@ import RuleDatePicker from "@cps/tool-form-item/DatePicker.vue";
 import RuleTimePicker from "@cps/tool-form-item/TimePicker.vue";
 import RuleLoading from "@cps/tool-form-item/Loading.vue";
 import RuleRadio from "@cps/tool-form-item/Radio.vue";
+import ToolAutoRender from "@cps/tool-form/AutoRender.vue";
 
 @Component({
   components: {
@@ -75,6 +76,7 @@ import RuleRadio from "@cps/tool-form-item/Radio.vue";
     RuleTimePicker,
     RuleLoading,
     RuleRadio,
+    ToolAutoRender,
   },
 })
 class RegisterForm extends Mixins(RegisterVeeValidate) {}
