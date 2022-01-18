@@ -27,7 +27,11 @@ import RuleTimePicker from "@cps/tool-form-item/TimePicker.vue";
 import ToolGrid from "@cps/tool-grid/index.vue";
 import ToolForm from "@cps/tool-form/index.vue";
 import ToolFormItem from "@cps/tool-form-item/index.vue";
-import { AutoRenderForm, AutoRenderMode } from "@cps/tool-form/autoRender";
+import {
+  AutoRenderForm,
+  AutoRenderMode,
+  PureAutoRenderForm,
+} from "@cps/tool-form/autoRender";
 import RuleCardExample from "@cps/tool-grid/CardExample.vue";
 import { omit } from "lodash";
 
@@ -90,7 +94,7 @@ export default class AutoRender extends Vue {
       : example;
   }
 
-  getFormField(slotName: string): any {
+  getFormField(slotName: string): PureAutoRenderForm {
     return omit(this.getForm(slotName), ["label", "position", "componentName"]);
   }
 }

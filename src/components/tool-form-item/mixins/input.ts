@@ -17,6 +17,8 @@ export default class Input extends Vue {
 
   @Prop({ type: Boolean, default: false }) large!: boolean;
 
+  @Prop({ type: Boolean, default: false }) hideDetails!: boolean;
+
   @Prop({ type: String, default: "" }) rules!: string;
 
   @Inject({ default: {} }) formItem!: ToolFormItem;
@@ -32,6 +34,11 @@ export default class Input extends Vue {
   }
 
   get inlineHideDetails(): boolean {
-    return !!this.$attrs["hide-details"] || this.rootForm.hideDetails || false;
+    return (
+      !!this.$attrs["hide-details"] ||
+      this.rootForm.hideDetails ||
+      this.hideDetails ||
+      false
+    );
   }
 }

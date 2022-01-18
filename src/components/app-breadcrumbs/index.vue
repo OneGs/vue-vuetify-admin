@@ -57,8 +57,6 @@ export default class AppBreadcrumbs extends Mixins(
       });
     });
 
-    console.log(matched);
-
     return result;
   }
 }

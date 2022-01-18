@@ -10,13 +10,19 @@ type ComponentNames =
   | "RuleTimePicker"
   | "RuleCardExample";
 
-export interface AutoRenderForm {
+export interface AutoRenderForm extends PureAutoRenderForm {
   label?: string;
   placeholder?: string;
   value?: string | number | boolean | Array<string | number | boolean>;
   options?: { label: string; value: string | number }[];
   position: string;
   componentName: ComponentNames;
+}
+
+export interface PureAutoRenderForm {
+  placeholder?: string;
+  value?: string | number | boolean | Array<string | number | boolean>;
+  options?: { label: string; value: string | number }[];
 }
 
 export interface AutoRenderMode {

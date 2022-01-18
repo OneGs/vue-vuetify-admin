@@ -6,8 +6,6 @@ import page404 from "@/views-template/components/page-error/404.vue";
 import beforeEachCombine from "@/router/beforeEachCombine";
 import config from "@/config";
 
-console.log(config, "congih");
-
 function generateRoutes(
   requiredContext: __WebpackModuleApi.RequireContext,
   has404: boolean
@@ -32,8 +30,6 @@ function generateRoutes(
 function findDefaultMenus(routes: RouteConfig[]): RouteConfig[] {
   return (
     routes.filter((route) => {
-      console.log(route.name, config.firstMenuName);
-
       return config.firstMenuName === route.name;
     })[0]?.children || []
   );
