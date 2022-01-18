@@ -1,5 +1,7 @@
 <template>
-  <div>home</div>
+  <div>
+    <router-link :to="{ name: 'TaskType' }">TaskType</router-link>
+  </div>
 </template>
 
 <script lang="ts">

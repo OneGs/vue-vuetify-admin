@@ -15,6 +15,14 @@
       },
     ]"
   >
+    <rule-btn
+      v-for="(menu, index) in horizontalMenu"
+      :key="menu.name + index"
+      class="ml-n3"
+      @click="changeMenu(menu.name)"
+      >{{ menu.meta && menu.meta["title"] }}</rule-btn
+    >
+
     <v-img
       v-if="false"
       src="@/assets/logo.png"
@@ -23,25 +31,6 @@
       contain
       class="flex-grow-0"
     />
-
-    <div class="btn-search" :class="{ 'btn-width': extend }">
-      <rule-text-field
-        :hide-details="true"
-        rounded
-        label="search"
-        prepend-inner-icon="mdi-magnify"
-        @focus="extendWidth"
-        @blur="rollupWidth"
-      />
-    </div>
-
-    <!--    <div class="flex-grow-1 ml-4">-->
-    <!--      <horizontal-->
-    <!--        :menu="routes"-->
-    <!--        style="background: transparent !important"-->
-    <!--        color="white"-->
-    <!--      />-->
-    <!--    </div>-->
 
     <div class="flex-grow-1 d-flex align-center flex-row-reverse">
       <div class="d-flex align-center">
@@ -71,54 +60,61 @@
 
 <script lang="ts">
 import { Component, Mixins } from "vue-property-decorator";
-import Horizontal from "@cps/app-menu/Horizontal.vue";
 import { routes } from "@/router";
 import { RegisterBtn, RegisterForm } from "@cps/the-mixins";
+import { RouteConfig } from "vue-router";
 
 @Component({
   name: "appBar",
 
-  components: { Horizontal },
-
   inheritAttrs: false,
 })
 export default class appBar extends Mixins(RegisterBtn, RegisterForm) {
+  currentName = "";
+
   userAvatar = "";
 
-  routes = routes[0].children;
+  get horizontalMenu(): RouteConfig[] {
+    return (
+      routes
+        .filter((route) => {
+          return route.name?.includes("RootLayout");
+        })
+        ?.filter((menu) => {
+          return menu.meta?.hidden !== true;
+        })
+        ?.sort((f, s) => {
+          const [{ order: fOrder = -Infinity }, { order: sOrder = -Infinity }] =
+            [f.meta || {}, s.meta || {}];
 
-  extend = false;
-
-  extendWidth(): void {
-    this.extend = true;
+          return sOrder - fOrder;
+        }) || []
+    );
   }
 
-  rollupWidth(): void {
-    this.extend = false;
+  changeMenu(name: string): void {
+    if (name !== this.currentName) {
+      this.currentName = name;
+
+      const menu = routes.filter((route) => {
+        return route.name === name;
+      });
+
+      if (!menu[0]) return;
+
+      this.$store.commit("menus/setMenus", menu[0].children || []);
+    }
   }
 }
 </script>
 
-<style scoped lang="scss">
-.app-bar {
-  color: white;
-}
-</style>
-
 <style lang="scss">
 .app-bar {
+  color: white;
+
   .v-toolbar__content {
     width: 100%;
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.08);
-  }
-
-  .btn-search {
-    transition: width 0.25s ease;
-    width: 300px;
-  }
-
-  .btn-width {
-    width: 360px;
   }
 }
 

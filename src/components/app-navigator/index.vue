@@ -32,8 +32,8 @@
 <script lang="ts">
 import { Component, Mixins, Watch } from "vue-property-decorator";
 import AppMenu from "../app-menu/Vertial.vue";
-import { routes } from "@/router";
 import { RegisterBtn } from "@cps/the-mixins";
+import { RouteConfig } from "vue-router";
 
 @Component({
   name: "appNavigator",
@@ -41,7 +41,9 @@ import { RegisterBtn } from "@cps/the-mixins";
   inheritAttrs: false,
 })
 export default class appNavigator extends Mixins(RegisterBtn) {
-  routes = routes[0].children;
+  get routes(): RouteConfig[] {
+    return this.$store.state.menus.menus;
+  }
 
   currentMenu = sessionStorage.getItem("currentMenu") || "the-dashboards";
 

@@ -4,10 +4,11 @@
 
 <script>
 import { Component, Vue } from "vue-property-decorator";
-import { RouteName } from "@/libs/auto-router";
+import { Meta, RouteName } from "@/libs/auto-router";
 import Layouts from "@/layouts/index.vue";
 
-@RouteName("RootLayout")
+@RouteName("RootLayoutSetting")
+@Meta({ title: "setting", order: 100 })
 @Component({
   name: "Layout",
   components: { Layouts },
