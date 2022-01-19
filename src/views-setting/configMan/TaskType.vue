@@ -16,16 +16,36 @@
           />
         </v-col>
 
-        <v-col class="text-right">
+        <v-col class="text-right d-flex justify-end">
           <rule-dialog
             title="Creating a Task Type"
             @save="onSubmit"
-            ref="taskTypeDialog"
+            ref="taskTypeNewDialog"
           >
             <rule-btn small>add</rule-btn>
 
             <template #text>
               <tool-auto-render :mode="taskTypeModes" />
+            </template>
+          </rule-dialog>
+
+          <rule-dialog title="Set Groups" ref="taskTypeGroupsDialog">
+            <rule-btn small color="secondary" class="ml-2"
+              >Groups Manager</rule-btn
+            >
+
+            <template #text>
+              <v-row>
+                <v-col
+                  ><rule-text-field
+                    small
+                    hide-details
+                    label="Enter the task type group name"
+                /></v-col>
+                <v-col cols="2"><rule-btn small>add</rule-btn></v-col>
+              </v-row>
+
+              <task-groups class="my-4" />
             </template>
           </rule-dialog>
         </v-col>
@@ -52,10 +72,12 @@ import {
 } from "@cps/the-mixins";
 import { AutoRenderMode } from "@cps/tool-form/autoRender";
 import RuleDialog from "@cps/rule-dailog/index.vue";
+import TaskGroups from "@/views-setting/configMan/components/TaskGroups.vue";
 
 @Meta({ title: "Task Type", order: 100 })
 @Component({
   name: "TaskType",
+  components: { TaskGroups },
 })
 export default class TaskType extends Mixins(
   RegisterForm,
@@ -101,7 +123,7 @@ export default class TaskType extends Mixins(
     ],
   };
 
-  @Ref() taskTypeDialog?: RuleDialog;
+  @Ref() taskTypeNewDialog?: RuleDialog;
 
   getTaskTypes = getUser;
 
@@ -112,7 +134,7 @@ export default class TaskType extends Mixins(
   onSubmit(validate: boolean): void {
     if (!validate) return;
 
-    this.taskTypeDialog?.close();
+    this.taskTypeNewDialog?.close();
   }
 }
 </script>
