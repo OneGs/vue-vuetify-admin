@@ -18,3 +18,19 @@ export function findParentByName(root: Vue, name: string): Vue | null {
 
   return component;
 }
+
+export function findChildrenByName(root: Vue, name: string): Vue | null {
+  const deep = (rootComponents: Vue[]) => {
+    rootComponents.forEach((child) => {
+      if (child.$options.name === name) return (component = child);
+
+      child.$children && deep(child.$children);
+    });
+  };
+
+  let component: Vue | null = null;
+
+  deep(root.$children);
+
+  return component;
+}

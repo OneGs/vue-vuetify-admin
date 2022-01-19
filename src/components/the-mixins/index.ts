@@ -148,13 +148,14 @@ class CommonImage extends Vue {
 // ————————————————————————————————————
 //* ——— inheritAttrs
 // ————————————————————————————————————
+import RuleDialog from "@cps/rule-dailog/index.vue";
 
 @Component({
-  components: {},
-
-  inheritAttrs: false,
+  components: {
+    RuleDialog,
+  },
 })
-class NoInheritAttrs extends Vue {}
+class RegisterDialog extends Vue {}
 
 // ————————————————————————————————————
 //* ——— All
@@ -169,6 +170,7 @@ class RegisterAll extends Mixins(
   RegisterTable,
   RegisterCard,
   CommonImage,
+  RegisterDialog,
   RegisterNotification
 ) {}
 
@@ -183,5 +185,5 @@ export {
   RegisterCard,
   RegisterAll,
   RegisterVeeValidate,
-  NoInheritAttrs,
+  RegisterDialog,
 };

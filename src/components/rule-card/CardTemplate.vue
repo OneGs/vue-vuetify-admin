@@ -29,7 +29,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import RuleTitleH3 from "@cps/rule-title/H3.vue";
 
 @Component({
-  name: "CardTemplate",
+  name: "RuleCardTemplate",
 
   inheritAttrs: false,
 

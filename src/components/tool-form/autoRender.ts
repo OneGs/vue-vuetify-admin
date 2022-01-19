@@ -23,6 +23,7 @@ export interface PureAutoRenderForm {
   placeholder?: string;
   value?: string | number | boolean | Array<string | number | boolean>;
   options?: { label: string; value: string | number }[];
+  rules?: string;
 }
 
 export interface AutoRenderMode {

@@ -60,7 +60,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from "vue-property-decorator";
+import { Component, Mixins, Emit } from "vue-property-decorator";
 import { RegisterBtn } from "@cps/the-mixins";
 
 @Component({
@@ -69,6 +69,7 @@ import { RegisterBtn } from "@cps/the-mixins";
 export default class DialogNotification extends Mixins(RegisterBtn) {
   visible = false;
 
+  @Emit()
   close(): void {
     this.visible = false;
   }

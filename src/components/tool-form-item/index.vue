@@ -9,6 +9,7 @@
       {{ label }}
       <div :style="{ height: isInline && !isHideDetails ? '29px' : '0' }" />
     </v-col>
+
     <v-col class="pa-0">
       <slot />
     </v-col>
