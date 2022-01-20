@@ -40,7 +40,7 @@ import RuleCardExample from "@cps/tool-grid/CardExample.vue";
 import { omit } from "lodash";
 
 @Component({
-  name: "AutoRender",
+  name: "ToolAutoRender",
 
   components: {
     ToolGrid,
@@ -59,7 +59,7 @@ import { omit } from "lodash";
     ValidationObserver,
   },
 })
-export default class AutoRender extends Vue {
+export default class ToolAutoRender extends Vue {
   @Prop({ type: Object, default: () => ({}) }) mode!: AutoRenderMode;
 
   groupSlots = [];
@@ -87,6 +87,7 @@ export default class AutoRender extends Vue {
     const { modes } = this.mode;
 
     const example: AutoRenderForm = {
+      key: "example",
       label: slotName,
       position: slotName,
       componentName: "RuleCardExample",

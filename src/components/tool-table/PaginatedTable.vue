@@ -11,8 +11,8 @@
 
     <v-data-table
       class="table"
-      :headers="headers"
-      :items="_items"
+      :headers="_headers"
+      :items.sync="_items"
       :page.sync="paging.index"
       hide-default-footer
     >
@@ -22,9 +22,29 @@
         </div>
       </template>
 
-      <template v-for="key in headersIndex" #[`item.${key}`]="{ item }">
+      <template v-for="key in headersSlotName" #[`item.${key}`]="{ item }">
         <div :key="key" :class="bodyClass">
-          <slot :name="`item.${key}`" :item="item"> {{ item[key] }} </slot>
+          <slot :name="`item.${key}`" :item="item">
+            <span v-if="!isEditable(key)">
+              {{ item[key] }}
+            </span>
+
+            <v-edit-dialog
+              v-else
+              :return-value.sync="item[key]"
+              @save="editDialogSave"
+              @close="editDialogClose"
+            >
+              {{ item[key] }}
+              <template v-slot:input>
+                <tool-sample-auto-render
+                  v-model="item[key]"
+                  :mode="modes(key)"
+                  class="mt-4 d-inline-block w-full"
+                />
+              </template>
+            </v-edit-dialog>
+          </slot>
         </div>
       </template>
 
@@ -42,12 +62,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch, Emit } from "vue-property-decorator";
 import RuleTitleH3 from "@cps/rule-title/H3.vue";
 import RuleTextField from "@cps/tool-form-item/TextField.vue";
 import { LoopAny } from "@/types/common";
-import { map } from "lodash";
+import { map, omit } from "lodash";
 import { DataStruct } from "@req/tool";
+import ToolAutoRender from "@cps/tool-form/AutoRender.vue";
+import { AutoRenderSampleForm } from "@cps/tool-form/autoRender";
+import ToolForm from "@cps/tool-form/index.vue";
+import ToolFormItem from "@cps/tool-form-item/index.vue";
+import ToolSampleAutoRender from "@cps/tool-form/SampleAutoRender.vue";
 
 const ORIGIN_PROPS = Object.freeze({
   value: "data",
@@ -60,6 +85,10 @@ const ORIGIN_PROPS = Object.freeze({
   name: "PaginatedTable",
 
   components: {
+    ToolSampleAutoRender,
+    ToolFormItem,
+    ToolForm,
+    ToolAutoRender,
     RuleTitleH3,
     RuleTextField,
   },
@@ -180,10 +209,52 @@ export default class PaginatedTable extends Vue {
     this.$emit("update:items", items);
   }
 
-  get headersIndex(): Array<string> {
+  get _headers(): Array<LoopAny> {
+    return this.headers.map((header) => {
+      if (!Object.prototype.hasOwnProperty.call(header, "sortable")) {
+        header["sortable"] = false;
+      }
+
+      return header;
+    });
+  }
+
+  modes(value: string): AutoRenderSampleForm {
+    const header = this.headers.filter((header) => {
+      return header.value === value;
+    })[0];
+
+    return Object.assign(
+      {
+        label: header?.text,
+        componentName: "RuleTextField",
+      },
+      omit(header.edit || {}, ["position"]) as AutoRenderSampleForm
+    );
+  }
+
+  get headersSlotName(): Array<string> {
     return map(this.headers, (item) => {
       return item.value.toLowerCase().replace(/\(.*\)/, "");
     });
+  }
+
+  isEditable(value: string): boolean {
+    return (
+      this.headers.filter((header) => {
+        return header.value === value;
+      })[0]?.editable === true
+    );
+  }
+
+  @Emit()
+  editDialogSave(): void {
+    console.log("save");
+  }
+
+  @Emit()
+  editDialogClose(): void {
+    console.log("cancel");
   }
 
   async created(): Promise<void> {

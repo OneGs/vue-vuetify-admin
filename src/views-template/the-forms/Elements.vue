@@ -294,11 +294,13 @@ export default class Elements extends Mixins(
     col: [[3, 6, 0]],
     modes: [
       {
+        key: "username",
         label: "username",
         position: "0-0",
         componentName: "RuleTextField",
       },
       {
+        key: "location",
         label: "Location",
         position: "0-1",
         componentName: "RuleSelect",

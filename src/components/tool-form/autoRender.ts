@@ -1,3 +1,5 @@
+import { DataTableHeader } from "vuetify";
+
 type ComponentNames =
   | "RuleCheckbox"
   | "RuleDatePicker"
@@ -11,17 +13,22 @@ type ComponentNames =
   | "RuleCardExample";
 
 export interface AutoRenderForm extends PureAutoRenderForm {
+  key: string;
   label?: string;
-  placeholder?: string;
-  value?: string | number | boolean | Array<string | number | boolean>;
-  options?: { label: string; value: string | number }[];
   position: string;
   componentName: ComponentNames;
 }
 
+export interface AutoRenderSampleForm extends PureAutoRenderForm {
+  label?: string;
+  position?: string;
+  componentName: ComponentNames;
+}
+
 export interface PureAutoRenderForm {
+  key?: string;
   placeholder?: string;
-  value?: string | number | boolean | Array<string | number | boolean>;
+  value?: string | number | boolean | null | Array<string | number | boolean>;
   options?: { label: string; value: string | number }[];
   rules?: string;
 }
@@ -31,4 +38,9 @@ export interface AutoRenderMode {
   col: number | Array<Array<number>>;
   single?: boolean;
   modes: Array<AutoRenderForm>;
+}
+
+export interface AutoDataTableHeader extends DataTableHeader {
+  editable?: boolean;
+  edit?: AutoRenderSampleForm;
 }

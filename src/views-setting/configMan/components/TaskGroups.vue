@@ -3,10 +3,11 @@
     :headers="taskGroupsHeaders"
     :request-fun="getTaskGroups"
     :items.sync="items"
+    class="elevation-0"
   >
     <template #item.actions="{}">
-      <rule-btn small color="default" icon="mdi-trash-can" class="ml-n3" />
-      <rule-btn small color="default" icon="mdi-pencil" />
+      <rule-btn small color="default" icon="mdi-pencil" class="ml-n3" />
+      <rule-btn small color="default" icon="mdi-trash-can" />
     </template>
   </tool-paginated-table>
 </template>
@@ -24,7 +25,7 @@ export default class TaskGroups extends Mixins(RegisterTable, RegisterBtn) {
 
   taskGroupsHeaders = [
     { text: "IT", value: "name", sortable: false },
-    { text: "actions", value: "actions", width: 130 },
+    { text: "actions", value: "actions", width: 100 },
   ];
 
   getTaskGroups = getUser;

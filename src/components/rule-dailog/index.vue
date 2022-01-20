@@ -19,22 +19,23 @@
 
       <slot name="text" />
 
-      <div class="d-flex align-center justify-space-between">
-        <rule-btn
-          @click.prevent="save"
-          color="secondary"
-          class="font-weight-600 text-capitalize"
-          >Save</rule-btn
-        >
-        <rule-btn
-          plain
-          :dynamic="false"
-          color=""
-          @click="close"
-          class="text-capitalize"
-          >Cancel</rule-btn
-        >
-      </div>
+      <slot name="btn">
+        <div class="d-flex align-center justify-space-between">
+          <rule-btn
+            @click.prevent="save"
+            class="font-weight-600 text-capitalize"
+            >Save</rule-btn
+          >
+          <rule-btn
+            plain
+            :dynamic="false"
+            color=""
+            @click="close"
+            class="text-capitalize"
+            >Cancel</rule-btn
+          >
+        </div>
+      </slot>
     </rule-card-template>
   </v-dialog>
 </template>
@@ -66,7 +67,7 @@ export default class RuleDialog extends Vue {
       !this.autoRender &&
         (this.autoRender = findChildrenByName(
           this,
-          "AutoRender"
+          "ToolAutoRender"
         ) as AutoRender);
 
       this.autoRender?.autoRender.reset();
