@@ -24,7 +24,11 @@
 
     <template #item.actions="{ item }">
       <div class="d-flex align-center">
-        <task-type-edit :data="item">
+        <task-type-edit
+          ref="taskTypeEdit"
+          :data="item"
+          @submit-success="editSubmitSuccess($event, item)"
+        >
           <rule-btn small color="default" icon="mdi-pencil" class="ml-n3" />
         </task-type-edit>
 
@@ -55,7 +59,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from "vue-property-decorator";
+import { Component, Mixins, Ref } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 import { getUser } from "@req/apis/base/table";
 import {
@@ -68,6 +72,7 @@ import {
 import { AutoDataTableHeader } from "@cps/tool-form/autoRender";
 import TaskGroups from "@/views-setting/configMan/components/TaskGroups.vue";
 import TaskTypeEdit from "@/views-setting/configMan/components/TaskTypeEdit.vue";
+import { LoopAny } from "@/types/common";
 
 @Meta({ title: "Task Type", order: 100 })
 @Component({
@@ -108,10 +113,18 @@ export default class TaskType extends Mixins(
     { text: "actions", value: "actions", width: 130 },
   ];
 
+  @Ref() taskTypeEdit!: TaskTypeEdit;
+
   getTaskTypes = getUser;
 
   taskTypeSearch(): void {
     console.log("enter");
+  }
+
+  editSubmitSuccess(modify: LoopAny, item: LoopAny): void {
+    Object.keys(modify).forEach((key: string) => {
+      item[key] = modify[key];
+    });
   }
 }
 </script>

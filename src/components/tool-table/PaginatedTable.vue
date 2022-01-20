@@ -32,8 +32,8 @@
             <v-edit-dialog
               v-else
               :return-value.sync="item[key]"
-              @save="editDialogSave"
-              @close="editDialogClose"
+              @save="editDialogSave(item)"
+              @close="editDialogClose(item)"
             >
               {{ item[key] }}
               <template v-slot:input>
@@ -248,13 +248,13 @@ export default class PaginatedTable extends Vue {
   }
 
   @Emit()
-  editDialogSave(): void {
-    console.log("save");
+  editDialogSave(item: LoopAny): LoopAny {
+    return item;
   }
 
   @Emit()
   editDialogClose(): void {
-    console.log("cancel");
+    //
   }
 
   async created(): Promise<void> {

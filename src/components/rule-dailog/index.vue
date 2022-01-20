@@ -63,6 +63,8 @@ export default class RuleDialog extends Vue {
   clearInformation(): void {
     if (!this.visible) return;
 
+    this.openBefore();
+
     this.$nextTick().then(() => {
       !this.autoRender &&
         (this.autoRender = findChildrenByName(
@@ -70,8 +72,20 @@ export default class RuleDialog extends Vue {
           "ToolAutoRender"
         ) as AutoRender);
 
+      this.openAfter();
+
       this.autoRender?.autoRender.reset();
     });
+  }
+
+  @Emit()
+  openBefore(): void {
+    //
+  }
+
+  @Emit()
+  openAfter(): void {
+    //
   }
 
   @Emit()

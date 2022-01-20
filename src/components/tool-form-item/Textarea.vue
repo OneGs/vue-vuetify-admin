@@ -6,6 +6,7 @@
     :placeholder="_label"
     height="76px"
     :hide-details="inlineHideDetails"
+    v-model="modeValue"
   />
 </template>
 

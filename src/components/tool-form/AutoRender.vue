@@ -17,7 +17,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Ref } from "vue-property-decorator";
+import {
+  Vue,
+  Component,
+  Prop,
+  Ref,
+  Watch,
+  VModel,
+} from "vue-property-decorator";
 import RuleCheckbox from "@cps/tool-form-item/Checkbox.vue";
 import RuleDatePicker from "@cps/tool-form-item/DatePicker.vue";
 import RuleFile from "@cps/tool-form-item/File.vue";
@@ -60,7 +67,12 @@ import { omit } from "lodash";
   },
 })
 export default class ToolAutoRender extends Vue {
-  @Prop({ type: Object, default: () => ({}) }) mode!: AutoRenderMode;
+  @VModel({ type: Object, default: () => ({}) }) mode!: AutoRenderMode;
+
+  @Watch("mode", { immediate: true, deep: true })
+  say(): void {
+    console.log(this.mode, "mode-change");
+  }
 
   groupSlots = [];
 

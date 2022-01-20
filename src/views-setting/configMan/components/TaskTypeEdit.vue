@@ -2,6 +2,7 @@
   <rule-dialog
     title="Creating a Task Type"
     @save="onSubmit"
+    @open-before="openBefore"
     ref="taskTypeNewDialog"
   >
     <slot>
@@ -9,17 +10,18 @@
     </slot>
 
     <template #text>
-      <tool-auto-render :mode="taskTypeModes" v-model="data" />
+      <tool-auto-render v-model="taskTypeModes" />
     </template>
   </rule-dialog>
 </template>
 
 <script lang="ts">
-import { Component, Mixins, Prop, Ref } from "vue-property-decorator";
+import { Component, Emit, Mixins, Prop, Ref } from "vue-property-decorator";
 import { RegisterBtn, RegisterDialog, RegisterForm } from "@cps/the-mixins";
 import RuleDialog from "@cps/rule-dailog/index.vue";
-import { AutoRenderMode } from "@cps/tool-form/autoRender";
+import { AutoRenderForm, AutoRenderMode } from "@cps/tool-form/autoRender";
 import { LoopAny } from "@/types/common";
+import { toKeyValueMap } from "@uts/tools";
 
 @Component({
   name: "TaskTypeEdit",
@@ -42,14 +44,9 @@ export default class TaskTypeEdit extends Mixins(
       },
       {
         key: "describtion",
-        label: "Type group",
+        label: "comment",
         position: "1-0",
-        componentName: "RuleSelect",
-        options: [
-          { label: "city", value: 1 },
-          { label: "country", value: 2 },
-          { label: "viliger", value: 3 },
-        ],
+        componentName: "RuleTextarea",
       },
       {
         key: "sex",
@@ -64,18 +61,39 @@ export default class TaskTypeEdit extends Mixins(
 
   @Ref() taskTypeNewDialog?: RuleDialog;
 
+  @Emit()
+  submitSuccess(modes: AutoRenderForm[]): LoopAny {
+    return toKeyValueMap(
+      modes as Array<{
+        key: string;
+        value: string | boolean | number;
+      }>
+    );
+  }
+
+  @Emit()
+  submitFail(): boolean {
+    return false;
+  }
+
   onSubmit(validate: boolean): void {
     if (!validate) return;
+
+    this.submitSuccess(this.taskTypeModes.modes);
 
     this.taskTypeNewDialog?.close();
   }
 
-  created(): void {
-    // this.taskTypeModes.modes.forEach((mode) => {
-    //   if (!mode.key) return;
-    //
-    //   this.$set(mode, "value", this.data[mode.key]);
-    // });
+  openBefore(): void {
+    this.flashData(this.data);
+  }
+
+  flashData(data: LoopAny): void {
+    this.taskTypeModes.modes.forEach((mode) => {
+      console.log(data[mode.key]);
+
+      mode.value = data[mode.key];
+    });
   }
 }
 </script>
