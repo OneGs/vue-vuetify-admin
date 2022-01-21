@@ -1,3 +1,8 @@
+// ———————————————————————————————————— //* ——— 负责显示、同时和其它操作通信 //*
+1. 内部值发生变化，通知其它操作——将data传入操作组件 //* 2.
+操作组件更新有两种途径：* 数据更新整体刷新（请求后刷新）。*
+修改响应式item中的某一个值。 // ————————————————————————————————————
+
 <template>
   <tool-paginated-table
     title="Task Type"
@@ -12,7 +17,7 @@
             small
             hide-details
             label="search"
-            @keydown.enter="taskTypeSearch"
+            @keydown.enter="search"
           />
         </v-col>
 
@@ -27,7 +32,7 @@
         <task-type-edit
           ref="taskTypeEdit"
           :data="item"
-          @submit-success="editSubmitSuccess($event, item)"
+          @submit-success="submitSuccess($event, item)"
         >
           <rule-btn small color="default" icon="mdi-pencil" class="ml-n3" />
         </task-type-edit>
@@ -117,13 +122,13 @@ export default class TaskType extends Mixins(
 
   getTaskTypes = getUser;
 
-  taskTypeSearch(): void {
+  search(): void {
     console.log("enter");
   }
 
-  editSubmitSuccess(modify: LoopAny, item: LoopAny): void {
-    Object.keys(modify).forEach((key: string) => {
-      item[key] = modify[key];
+  submitSuccess(data: LoopAny, item: LoopAny): void {
+    Object.keys(data).forEach((key) => {
+      item[key] = data[key];
     });
   }
 }

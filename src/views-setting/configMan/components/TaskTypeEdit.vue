@@ -1,3 +1,8 @@
+// ———————————————————————————————————— //* ——— 提供数据的操作，入口和出口！ //*
+入口：通过data引入数据（非响应式，避免同步修改table中的数据）——
+如果想要修改数据，通过flashData。 //* 出口： 操作成功后通过事件抛出 //
+————————————————————————————————————
+
 <template>
   <rule-dialog
     title="Creating a Task Type"
@@ -38,6 +43,7 @@ export default class TaskTypeEdit extends Mixins(
       {
         key: "name",
         label: "Type name",
+        value: "",
         position: "0-0",
         componentName: "RuleTextField",
         rules: "required",
@@ -90,9 +96,7 @@ export default class TaskTypeEdit extends Mixins(
 
   flashData(data: LoopAny): void {
     this.taskTypeModes.modes.forEach((mode) => {
-      console.log(data[mode.key]);
-
-      mode.value = data[mode.key];
+      this.$set(mode, "value", data[mode.key]);
     });
   }
 }
