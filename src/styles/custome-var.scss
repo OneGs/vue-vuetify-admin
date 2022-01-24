@@ -183,6 +183,15 @@ $--display-each: 3.3 2.5 2.1875 1.6275;
   height: 100%;
 }
 
+.is-required {
+  &:after {
+    content: "*";
+    color: red;
+    vertical-align: sub;
+    padding-left: 12px;
+  }
+}
+
 $--positions: relative absolute fixed;
 
 @each $position in $--positions {

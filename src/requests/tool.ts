@@ -1,9 +1,10 @@
-import axios, { AxiosInstance, AxiosResponse } from "axios";
+import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from "axios";
 import store from "@/store";
 import router from "@/router";
-import { omit } from "lodash";
+import { omit, omitBy } from "lodash";
 import { LoopAny } from "@/types/common";
 import NotificationFun from "@cps/tool-notification";
+import { zRiskerResponse, zRiskerResponseItem } from "@req/zRisker";
 
 // interface ResponseData {
 //   ok: boolean;
@@ -33,62 +34,49 @@ export function generatorAxios(_options: LoopAny): AxiosInstance {
   return request;
 }
 
-// export function filterValidFromObj(
-//   config: AxiosRequestConfig,
-//   ...omitString: string[]
-// ): void {
-//   const { params } = config;
-//
-//   config.params = omitBy(params, (value) => {
-//     return !value && typeof value !== "number";
-//   });
-//
-//   if (omitString.length) config.params = omit(config.params, omitString);
-// }
-//
-// /**
-//  * 处理200-300的情况，200则成功，其它则作额外处理
-//  * @param axiosContent
-//  */
-// export function filterDataFromAxiosContent(
-//   axiosContent: AxiosResponse
-// ): ResponseData | boolean {
-//   const { status } = axiosContent;
-//
-//   return status === 200 ? axiosContent["data"] : false;
-// }
-//
-// /**
-//  * 解决 服务器请求 不为ok的情况，同时返回数据
-//  * @param serveContent
-//  * @returns {{}}
-//  */
-// export function filterDataFromServeContent(
-//   serveContent: ResponseData
-// ): boolean | DataStruct {
-//   function parseArrayPaging(content: ResponseData): DataStruct {
-//     const [{ changes: total }, size] = [content, content?.data?.length || 10];
-//
-//     return {
-//       pageIndex: Math.floor(total / size),
-//       pageSize: size,
-//       pageTotal: total,
-//       ...content,
-//     };
-//   }
-//
-//   if (!serveContent) return false;
-//
-//   const { ok, data } = serveContent;
-//
-//   if (!ok) {
-//     return false;
-//   }
-//
-//   if (Array.isArray(data)) return parseArrayPaging(serveContent);
-//
-//   return data;
-// }
+export function omitInvalidParams(
+  config: AxiosRequestConfig,
+  ...omitString: string[]
+): AxiosRequestConfig {
+  const { params } = config;
+
+  config.params = omitBy(params, (value) => {
+    return !value && typeof value !== "number";
+  });
+
+  if (omitString.length) config.params = omit(config.params, omitString);
+
+  return config;
+}
+
+/**
+ * 处理200-300的情况，200则成功，其它则作额外处理
+ * @param axiosContent
+ */
+export function filterFromAxiosContent(
+  axiosContent: AxiosResponse
+): zRiskerResponse<LoopAny> {
+  const result: LoopAny = {};
+
+  Object.keys(axiosContent.data).forEach((key: string) => {
+    result[key.toLocaleLowerCase()] = axiosContent.data[key];
+  });
+
+  return {
+    _origin_: omit(axiosContent, ["data"]),
+    ...result,
+  } as zRiskerResponse<LoopAny>;
+}
+
+export function filterFromZRiskerResponse(
+  zRiskerResponse: zRiskerResponse<LoopAny>
+): boolean | zRiskerResponseItem<LoopAny> {
+  if (!zRiskerResponse.success) return false;
+
+  if (zRiskerResponse.success && zRiskerResponse.data === null) return true;
+
+  return zRiskerResponse.data as zRiskerResponseItem<LoopAny>;
+}
 
 /**
  * 统一的拦截处理
@@ -148,54 +136,3 @@ export function filterResponseData(
 
   return data.data.length === 1 ? data.data[0] || {} : data.data; // 默认返回第一个data数，以后可能会变
 }
-
-// function filterFormDataFormServeContentBase(serveContent, { config }) {
-//   function parseFormList() {
-//     const { changes: pageTotal } = serveContent;
-//
-//     const { pageSize, index: pageIndex } = config?.params || {};
-//
-//     const [objsData, data] = [
-//       serveContent.data[0]?.object?.properties ||
-//         serveContent.data[0]?.Object?.properties,
-//       [],
-//     ];
-//
-//     Object.keys(objsData).map((key) => {
-//       data.push({
-//         fieldCode: key,
-//         ...objsData[key],
-//       });
-//     });
-//
-//     return {
-//       origin: serveContent,
-//       pageTotal,
-//       pageSize,
-//       pageIndex,
-//       data,
-//     };
-//   }
-//
-//   if (!serveContent) return false;
-//
-//   const { ok, err } = serveContent;
-//
-//   if (!ok) {
-//     selfNotifyError(err.msg);
-//
-//     return false;
-//   }
-//
-//   const { mode } = config.meta || {};
-//
-//   if (mode === "list") return parseFormList();
-//
-//   if (mode === "inline") return serveContent;
-//
-//   return serveContent["data"] === null ? true : serveContent["data"];
-// }
-//
-// export const filterFormDataFormServeContent = curryRight(
-//   filterFormDataFormServeContentBase
-// );

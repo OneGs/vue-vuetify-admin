@@ -5,9 +5,10 @@
 
 <template>
   <tool-paginated-table
+    ref="taskTypeTable"
     title="Task Type"
     :headers="taskTypeHeaders"
-    :request-fun="getTaskTypes"
+    :request-fun="taskTypePages"
     :items.sync="items"
   >
     <template #heading>
@@ -31,12 +32,17 @@
       <div class="d-flex align-center">
         <task-type-edit
           :data="item"
+          is-edit
           @submit-success="submitSuccess($event, item)"
         >
           <rule-btn small color="default" icon="mdi-pencil" class="ml-n3" />
         </task-type-edit>
 
-        <rule-dialog title="notify">
+        <rule-dialog
+          title="notify"
+          @save="taskTypeDelete(item)"
+          ref="deleteDialog"
+        >
           <rule-btn small color="default" icon="mdi-trash-can" />
 
           <template #text>
@@ -46,12 +52,20 @@
             </div>
           </template>
 
-          <template #btn>
+          <template #btn="{ close, save }">
             <div class="d-flex align-center justify-space-between">
-              <rule-btn color="error" class="font-weight-600 text-capitalize"
+              <rule-btn
+                color="error"
+                class="font-weight-600 text-capitalize"
+                @click="save"
                 >delete</rule-btn
               >
-              <rule-btn plain :dynamic="false" color="" class="text-capitalize"
+              <rule-btn
+                plain
+                :dynamic="false"
+                color=""
+                class="text-capitalize"
+                @click="close"
                 >Cancel</rule-btn
               >
             </div>
@@ -63,9 +77,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from "vue-property-decorator";
+import { Component, Mixins, Ref } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
-import { getTaskType } from "@req/apis/base/man-config";
 import {
   RegisterBtn,
   RegisterCard,
@@ -74,9 +87,18 @@ import {
   RegisterTable,
 } from "@cps/the-mixins";
 import { AutoDataTableHeader } from "@cps/tool-form/autoRender";
-import TaskGroups from "@/views-setting/man-config/components/TaskGroups.vue";
-import TaskTypeEdit from "@/views-setting/man-config/components/TaskTypeEdit.vue";
+import TaskGroups from "@/views-setting/man-config/components/taskType/TaskGroups.vue";
+import TaskTypeEdit from "@/views-setting/man-config/components/taskType/TaskTypeEdit.vue";
 import { LoopAny } from "@/types/common";
+import { taskTypeDelete, taskTypePage } from "@req/apis/zRisker/taskType";
+import {
+  taskTypeResponse,
+  zRiskerRequestParams,
+  zRiskerResponseItem,
+} from "@req/zRisker";
+import RuleDialog from "@cps/rule-dailog/index.vue";
+import PaginatedTable from "@cps/tool-table/PaginatedTable.vue";
+import "@/views-setting/man-config/components/taskType/TaskTypeAdd";
 
 @Meta({ title: "Task Type", order: 100 })
 @Component({
@@ -99,11 +121,13 @@ export default class TaskType extends Mixins(
       width: "200px",
       editable: true,
     },
-    { text: "note", value: "note" },
+    { text: "note", value: "description" },
     { text: "actions", value: "actions", width: 130 },
   ];
 
-  getTaskTypes = getTaskType;
+  @Ref() deleteDialog?: RuleDialog;
+
+  @Ref() taskTypeTable?: PaginatedTable;
 
   search(): void {
     console.log("enter");
@@ -113,6 +137,20 @@ export default class TaskType extends Mixins(
     Object.keys(data).forEach((key) => {
       item[key] = data[key];
     });
+  }
+
+  async taskTypePages(
+    params: zRiskerRequestParams
+  ): Promise<zRiskerResponseItem<taskTypeResponse>> {
+    return await taskTypePage(params);
+  }
+
+  async taskTypeDelete(item: taskTypeResponse): Promise<void> {
+    if (!(await taskTypeDelete({ ids: [item.id] }))) return;
+
+    await this.taskTypeTable?.flashTable(true);
+
+    this.deleteDialog?.close();
   }
 }
 </script>

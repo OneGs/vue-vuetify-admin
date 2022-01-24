@@ -19,7 +19,7 @@
 
       <slot name="text" />
 
-      <slot name="btn">
+      <slot name="btn" v-bind:close="close" v-bind:save="save">
         <div class="d-flex align-center justify-space-between">
           <rule-btn
             @click.prevent="save"

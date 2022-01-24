@@ -59,7 +59,7 @@ import { RegisterAll } from "@cps/the-mixins";
 import { AutoDataTableHeader } from "@cps/tool-form/autoRender";
 import { getStatus } from "@req/apis/base/man-config";
 import { LoopAny } from "@/types/common";
-import TaskStatusEdit from "@/views-setting/man-config/components/TaskStatusEdit.vue";
+import TaskStatusEdit from "@/views-setting/man-config/components/taskStatus/TaskStatusEdit.vue";
 
 @Meta({
   title: "Status Manager",

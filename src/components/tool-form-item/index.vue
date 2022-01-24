@@ -6,7 +6,7 @@
       class="label label-color pa-0 font-weight-600"
       :class="[{ 'mb-2': !isInline && label }]"
     >
-      {{ label }}
+      <span :class="[{ 'is-required': isRequired }]">{{ label }}</span>
       <div :style="{ height: isInline && !isHideDetails ? '29px' : '0' }" />
     </v-col>
 
@@ -30,6 +30,8 @@ import ToolForm from "@cps/tool-form/index.vue";
   },
 })
 export default class ToolFormItem extends Vue {
+  isRequired = false;
+
   @Prop({ type: String, default: "" }) label!: string;
 
   @Prop({ type: Number, default: null }) positionWidth!: number;
@@ -58,6 +60,12 @@ export default class ToolFormItem extends Vue {
   }
 
   mounted(): void {
+    const { rules } = this.$children[0]?.$options.propsData as {
+      rules?: string;
+    };
+
+    if (rules && rules.includes("required")) this.isRequired = true;
+
     if (this.isInline) {
       this.$el.classList.add("d-flex");
       this.$el.classList.add("align-center");

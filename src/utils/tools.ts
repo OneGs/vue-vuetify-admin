@@ -36,9 +36,7 @@ export function findChildrenByName(root: Vue, name: string): Vue | null {
   return component;
 }
 
-export function toKeyValueMap(
-  modes: Array<{ key: string; value: string | boolean | number }>
-): LoopAny {
+export function toKeyValueMap(modes: Array<LoopAny>): LoopAny {
   const result: LoopAny = {};
 
   modes.map((mode) => {

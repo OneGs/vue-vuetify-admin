@@ -75,10 +75,10 @@ import ToolFormItem from "@cps/tool-form-item/index.vue";
 import ToolSampleAutoRender from "@cps/tool-form/SampleAutoRender.vue";
 
 const ORIGIN_PROPS = Object.freeze({
-  value: "data",
-  index: "pageIndex",
+  value: "items",
+  index: "pageNumber",
   size: "pageSize",
-  total: "pageTotal",
+  total: "totalCount",
 });
 
 @Component({
@@ -180,7 +180,7 @@ export default class PaginatedTable extends Vue {
 
     if (!(index && size))
       return console.error(
-        new Error(`索引index: ${index}, 大小size: ${size} 存在为空`)
+        new Error(`index: ${index}, size: ${size} 存在为空`)
       );
 
     const _list = await this.requestFun(
@@ -258,6 +258,10 @@ export default class PaginatedTable extends Vue {
   }
 
   async created(): Promise<void> {
+    const tempStruct = { ...this.responseStruct };
+
+    Object.assign(this.responseStruct, ORIGIN_PROPS, tempStruct);
+
     await this.flashTable(true);
   }
 }
