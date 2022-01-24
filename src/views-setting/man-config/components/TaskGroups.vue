@@ -15,7 +15,7 @@
 <script>
 import { Component, Mixins } from "vue-property-decorator";
 import { RegisterBtn, RegisterTable } from "@cps/the-mixins";
-import { getUser } from "@req/apis/base/table";
+import { getTaskType } from "@req/apis/base/man-config";
 
 @Component({
   name: "TaskGroups",
@@ -28,7 +28,7 @@ export default class TaskGroups extends Mixins(RegisterTable, RegisterBtn) {
     { text: "actions", value: "actions", width: 100 },
   ];
 
-  getTaskGroups = getUser;
+  getTaskGroups = getTaskType;
 }
 </script>
 

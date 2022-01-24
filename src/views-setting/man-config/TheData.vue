@@ -4,14 +4,16 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import { Meta } from "@/libs/auto-router";
+import { Meta } from "@/libs/auto-router/index";
 
 @Meta({
   title: "Data Manager",
-  order: 10,
+  order: 70,
 })
-@Component
-export default class TheComponentLayout extends Vue {}
+@Component({
+  name: "TheData",
+})
+export default class TheData extends Vue {}
 </script>
 
 <style scoped></style>

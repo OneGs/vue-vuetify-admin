@@ -60,7 +60,7 @@
 import { Component, Mixins } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 import { RegisterBtn, RegisterForm, RegisterTable } from "@cps/the-mixins";
-import { getUser } from "@req/apis/base/table";
+import { getTaskType } from "@req/apis/base/man-config";
 
 @Meta({ title: "Paginated Table", order: 70 })
 @Component({
@@ -91,7 +91,7 @@ export default class ThePaginated extends Mixins(
     return "green";
   }
 
-  getUsers = getUser;
+  getUsers = getTaskType;
 }
 </script>
 

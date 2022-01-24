@@ -4,16 +4,16 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import { Meta } from "@/libs/auto-router";
+import { Meta } from "@/libs/auto-router/index";
 
 @Meta({
   title: "Tags Manager",
-  order: 10,
-  icon: "mdi-tag-multiple",
-  color: "teal",
+  order: 60,
 })
-@Component
-export default class TheComponentLayout extends Vue {}
+@Component({
+  name: "TheTags",
+})
+export default class TheTags extends Vue {}
 </script>
 
 <style scoped></style>

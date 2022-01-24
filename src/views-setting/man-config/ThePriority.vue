@@ -8,10 +8,12 @@ import { Meta } from "@/libs/auto-router/index";
 
 @Meta({
   title: "Priority Manager",
-  order: 10,
+  order: 50,
 })
-@Component
-export default class TheComponentLayout extends Vue {}
+@Component({
+  name: "ThePriority",
+})
+export default class ThePriority extends Vue {}
 </script>
 
 <style scoped></style>

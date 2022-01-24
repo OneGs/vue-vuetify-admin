@@ -8,14 +8,14 @@
     title="Creating a Task Type"
     @save="onSubmit"
     @open-before="openBefore"
-    ref="taskTypeNewDialog"
+    ref="editDialog"
   >
     <slot>
       <rule-btn small>add</rule-btn>
     </slot>
 
     <template #text>
-      <tool-auto-render v-model="taskTypeModes" />
+      <tool-auto-render v-model="renderMode" />
     </template>
   </rule-dialog>
 </template>
@@ -36,7 +36,7 @@ export default class TaskTypeEdit extends Mixins(
   RegisterBtn,
   RegisterForm
 ) {
-  taskTypeModes: AutoRenderMode = {
+  renderMode: AutoRenderMode = {
     row: 3,
     col: 1,
     modes: [
@@ -49,15 +49,9 @@ export default class TaskTypeEdit extends Mixins(
         rules: "required",
       },
       {
-        key: "describtion",
-        label: "comment",
-        position: "1-0",
-        componentName: "RuleTextarea",
-      },
-      {
-        key: "sex",
+        key: "note",
         label: "note",
-        position: "2-0",
+        position: "1-0",
         componentName: "RuleTextarea",
       },
     ],
@@ -65,7 +59,7 @@ export default class TaskTypeEdit extends Mixins(
 
   @Prop({ type: Object, default: () => ({}) }) data!: LoopAny;
 
-  @Ref() taskTypeNewDialog?: RuleDialog;
+  @Ref() editDialog?: RuleDialog;
 
   @Emit()
   submitSuccess(modes: AutoRenderForm[]): LoopAny {
@@ -85,9 +79,9 @@ export default class TaskTypeEdit extends Mixins(
   onSubmit(validate: boolean): void {
     if (!validate) return;
 
-    this.submitSuccess(this.taskTypeModes.modes);
+    this.submitSuccess(this.renderMode.modes);
 
-    this.taskTypeNewDialog?.close();
+    this.editDialog?.close();
   }
 
   openBefore(): void {
@@ -95,7 +89,7 @@ export default class TaskTypeEdit extends Mixins(
   }
 
   flashData(data: LoopAny): void {
-    this.taskTypeModes.modes.forEach((mode) => {
+    this.renderMode.modes.forEach((mode) => {
       this.$set(mode, "value", data[mode.key]);
     });
   }

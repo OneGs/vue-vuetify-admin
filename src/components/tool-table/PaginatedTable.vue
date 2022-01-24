@@ -198,7 +198,7 @@ export default class PaginatedTable extends Vue {
   }
 
   get pagingLen(): number {
-    return Math.floor(this.pagingTotal / this.paging.size);
+    return Math.ceil(this.pagingTotal / this.paging.size);
   }
 
   get _items(): Array<LoopAny> {
@@ -253,8 +253,8 @@ export default class PaginatedTable extends Vue {
   }
 
   @Emit()
-  editDialogClose(): void {
-    //
+  editDialogClose(item: LoopAny): LoopAny {
+    return item;
   }
 
   async created(): Promise<void> {

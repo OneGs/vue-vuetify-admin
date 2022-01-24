@@ -4,7 +4,7 @@ import { filterResponseData, generatorAxios } from "@req/tool";
 
 const options = {
   options: {
-    baseURL: "http://134.175.16.232:3000/mock/18",
+    baseURL: "http://134.175.16.232:3000/mock/198/zero/",
 
     method: "get",
   },

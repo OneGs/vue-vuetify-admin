@@ -1,0 +1,24 @@
+diff a/src/views-setting/man-config/components/TaskStatusEdit.vue b/src/views-setting/man-config/components/TaskStatusEdit.vue	(rejected hunks)
+@@ -1,13 +1,9 @@
+-<template>
+-$END$
+-</template>
+-
+-<script>
+-export default {
+-name: "TaskStatusEdit"
+-}
+-</script>
+-
+-<style scoped>
+-
+-</style>
++<template>$END$</template>
++
++<script>
++export default {
++  name: "TaskStatusEdit",
++};
++</script>
++
++<style scoped></style>

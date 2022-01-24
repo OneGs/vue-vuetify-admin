@@ -30,7 +30,6 @@
     <template #item.actions="{ item }">
       <div class="d-flex align-center">
         <task-type-edit
-          ref="taskTypeEdit"
           :data="item"
           @submit-success="submitSuccess($event, item)"
         >
@@ -41,7 +40,7 @@
           <rule-btn small color="default" icon="mdi-trash-can" />
 
           <template #text>
-            <div class="mb-4">
+            <div class="mb-8 mt-4 text-center">
               are you sure delete
               <span class="text-danger">{{ item.name }}</span> ?
             </div>
@@ -64,9 +63,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins, Ref } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
-import { getUser } from "@req/apis/base/table";
+import { getTaskType } from "@req/apis/base/man-config";
 import {
   RegisterBtn,
   RegisterCard,
@@ -75,8 +74,8 @@ import {
   RegisterTable,
 } from "@cps/the-mixins";
 import { AutoDataTableHeader } from "@cps/tool-form/autoRender";
-import TaskGroups from "@/views-setting/configMan/components/TaskGroups.vue";
-import TaskTypeEdit from "@/views-setting/configMan/components/TaskTypeEdit.vue";
+import TaskGroups from "@/views-setting/man-config/components/TaskGroups.vue";
+import TaskTypeEdit from "@/views-setting/man-config/components/TaskTypeEdit.vue";
 import { LoopAny } from "@/types/common";
 
 @Meta({ title: "Task Type", order: 100 })
@@ -97,30 +96,14 @@ export default class TaskType extends Mixins(
     {
       text: "task type",
       value: "name",
-      sortable: false,
-      width: "100px",
+      width: "200px",
       editable: true,
     },
-    { text: "comment", value: "describtion" },
-    {
-      text: "groups",
-      value: "sex",
-      width: 100,
-      editable: true,
-      edit: {
-        componentName: "RuleSelect",
-        options: [
-          { label: "man", value: 1 },
-          { label: "female", value: 0 },
-        ],
-      },
-    },
+    { text: "note", value: "note" },
     { text: "actions", value: "actions", width: 130 },
   ];
 
-  @Ref() taskTypeEdit!: TaskTypeEdit;
-
-  getTaskTypes = getUser;
+  getTaskTypes = getTaskType;
 
   search(): void {
     console.log("enter");
