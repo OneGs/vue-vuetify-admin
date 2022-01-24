@@ -6,7 +6,6 @@ export interface zRiskerRequestSort {
 }
 
 export interface zRiskerRequestParams {
-  keyword?: string;
   pageNumber?: number;
   pageSize?: number;
   sorter?: zRiskerRequestSort;
@@ -37,6 +36,10 @@ export interface zRiskerResponseItem<T> {
 //* ——— TaskType
 // ————————————————————————————————————
 
+export interface taskTypeQuery extends zRiskerRequestParams {
+  keyword?: string;
+}
+
 export interface taskTypeResponse {
   id: number;
   name: string;
@@ -50,6 +53,10 @@ export interface taskTypeBodyAdd {
   icon?: string;
   description?: string;
   isDeleted?: boolean;
+}
+
+export interface taskTypeBodyUpdate extends taskTypeBodyAdd {
+  id: number;
 }
 
 export interface taskTypeBodyDelete {

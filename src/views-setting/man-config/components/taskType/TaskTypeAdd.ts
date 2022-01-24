@@ -1,20 +1,25 @@
 import Vue from "vue";
-import { Component, Emit, Mixins } from "vue-property-decorator";
-import TaskTypeEditMixin from "@/views-setting/man-config/components/taskType/mixins/taskTypeEdit";
-import { taskTypeBodyAdd } from "@req/zRisker";
+import { Component, Mixins } from "vue-property-decorator";
 import TaskTypeEdit from "@/views-setting/man-config/components/taskType/TaskTypeEdit.vue";
+import { toKeyValueMap } from "@uts/tools";
+import { taskTypeBodyAdd } from "@req/zRisker";
+import { taskTypeAdd } from "@req/apis/zRisker/taskType";
 
 @Component({
   name: "TaskTypeAdd",
 })
-class TaskTypeAdd extends Mixins(TaskTypeEditMixin) {
-  @Emit()
-  submitSuccess(modes: taskTypeBodyAdd): taskTypeBodyAdd {
-    console.log("hello");
-    return modes;
+class TaskTypeAdd extends Mixins(TaskTypeEdit) {
+  async onSubmit(validate: boolean): Promise<void> {
+    if (!validate) return this.submitFail();
+
+    const requestInfo = toKeyValueMap(this.renderMode.modes) as taskTypeBodyAdd;
+
+    if (!(await taskTypeAdd(requestInfo))) return;
+
+    this.submitSuccess(requestInfo);
+
+    this.editDialog?.close();
   }
 }
 
-console.log(TaskTypeEdit, "/n", Vue.extend(TaskTypeEdit), "edit");
-
-export default TaskTypeAdd;
+export default Vue.component("TaskTypeAdd", Vue.extend(TaskTypeAdd));

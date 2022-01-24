@@ -2,6 +2,7 @@ import zRisker from "@req//services/zRisker";
 import {
   taskTypeBodyAdd,
   taskTypeBodyDelete,
+  taskTypeBodyUpdate,
   taskTypeResponse,
   zRiskerRequestParams,
   zRiskerResponseItem,
@@ -21,4 +22,14 @@ export function taskTypeAdd(body: taskTypeBodyAdd): Promise<boolean> {
 
 export function taskTypeDelete(body: taskTypeBodyDelete): Promise<boolean> {
   return zRisker.post("TaskType/Delete", body);
+}
+
+export function taskTypeUpdate(body: taskTypeBodyUpdate): Promise<boolean> {
+  return zRisker.post("TaskType/Update", body);
+}
+
+export function taskTypeDetails(params: {
+  id: number;
+}): Promise<taskTypeResponse> {
+  return zRisker.get("TaskType/Details", { params });
 }

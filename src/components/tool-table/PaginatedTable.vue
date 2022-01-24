@@ -3,7 +3,7 @@
     <v-card-title class="d-flex align-center" v-if="!!title">
       <rule-title-h3>{{ title }}</rule-title-h3>
       <div class="ml-4 flex-grow-1">
-        <slot name="heading" />
+        <slot name="heading" v-bind:pageQuery="pageQuery" />
       </div>
     </v-card-title>
 
@@ -67,12 +67,15 @@ import RuleTitleH3 from "@cps/rule-title/H3.vue";
 import RuleTextField from "@cps/tool-form-item/TextField.vue";
 import { LoopAny } from "@/types/common";
 import { map, omit } from "lodash";
-import { DataStruct } from "@req/tool";
 import ToolAutoRender from "@cps/tool-form/AutoRender.vue";
-import { AutoRenderSampleForm } from "@cps/tool-form/autoRender";
+import {
+  AutoDataTableHeader,
+  AutoRenderSampleForm,
+} from "@cps/tool-form/autoRender";
 import ToolForm from "@cps/tool-form/index.vue";
 import ToolFormItem from "@cps/tool-form-item/index.vue";
 import ToolSampleAutoRender from "@cps/tool-form/SampleAutoRender.vue";
+import { zRiskerResponseItem } from "@req/zRisker";
 
 const ORIGIN_PROPS = Object.freeze({
   value: "items",
@@ -94,38 +97,51 @@ const ORIGIN_PROPS = Object.freeze({
   },
 })
 export default class PaginatedTable extends Vue {
+  // 默认的当前页、每页数量（只有分页组件能够改变这个值，请不要随意改变钙质，除非你知道不会形成死循环）
   paging = { index: 1, size: 10 };
 
+  // 初始总数
   pagingTotal = 0;
 
+  // 标题
   @Prop({ type: String, default: "" }) title?: string;
 
+  // table > body class
   @Prop({ type: String, default: "" }) bodyClass?: string;
 
+  // data-table`s header
   @Prop({ type: Array, default: () => [], required: true })
-  headers!: Array<LoopAny>;
+  headers!: Array<AutoDataTableHeader>;
 
+  // 表格数据
   @Prop({ type: Array, default: () => [] }) items!: Array<LoopAny>;
 
-  @Prop({ type: Array, default: () => [] }) params!: Array<LoopAny>;
-
+  // 请求函数（必须返回标准数据格式）
   @Prop({ type: Function, default: null, required: true }) requestFun!: (
     config: LoopAny
-  ) => DataStruct;
+  ) => zRiskerResponseItem<LoopAny>;
 
+  // 改变响应结构（index、size、total），对数据和分页有帮助
   @Prop({ type: Object, default: () => ({ ...ORIGIN_PROPS }) })
-  responseStruct!: DataStruct;
+  responseStruct!: {
+    value: string;
+    index: string;
+    size: string;
+    total: string;
+  };
 
+  // ————————————————————————————————————
+  //* ——— 表格数据渲染、请求
+  // ————————————————————————————————————
+
+  // 刷新数据
   @Watch("paging", { deep: true })
-  async flash(): Promise<void> {
-    await this.flashTable();
+  private async _flash(): Promise<void> {
+    await this.flash();
   }
 
-  /**
-   * 挂载数据
-   * @param _data { Object }
-   */
-  mountData(_data: DataStruct): void {
+  // 渲染表格数据
+  private mountData(_data: zRiskerResponseItem<LoopAny>): void {
     const { value: valueKey } = this.responseStruct;
 
     // 没有提供value的解析key
@@ -135,17 +151,22 @@ export default class PaginatedTable extends Vue {
       );
 
     // 解析后的数据不是一个数组
-    if (!Array.isArray(_data[valueKey]))
-      console.error(new Error(`数据格式不为数组：${typeof _data[valueKey]}`));
+    if (!Array.isArray(_data[valueKey as keyof zRiskerResponseItem<LoopAny>]))
+      console.error(
+        new Error(
+          `数据格式不为数组：${typeof _data[
+            valueKey as keyof zRiskerResponseItem<LoopAny>
+          ]}`
+        )
+      );
 
-    this._items = _data[valueKey];
+    this._items = _data[
+      valueKey as keyof zRiskerResponseItem<LoopAny>
+    ] as Array<LoopAny>;
   }
 
-  /**
-   * 挂在分页
-   * @param _data { Object }
-   */
-  mountPage(_data: DataStruct): void {
+  // 渲染分页数据, 只会挂载pagingTotal
+  private mountPage(_data: zRiskerResponseItem<LoopAny>): void {
     const { total } = this.responseStruct;
 
     // 是否存在总数key
@@ -167,15 +188,18 @@ export default class PaginatedTable extends Vue {
     }
 
     // 记录分页数据
-    this.pagingTotal = _data[total];
+    this.pagingTotal = _data[
+      total as keyof zRiskerResponseItem<LoopAny>
+    ] as number;
   }
 
-  /**
-   * 刷新表格数据！
-   * @function
-   * @return { Object } _list axios返回的数据结构
-   */
-  async flashTable(mountPaging = false): Promise<DataStruct | void> {
+  // 渲染数据
+  // mountPaging：重新渲染分页
+  // params: 允许为渲染函数添加额外的查询参数，这在查询时非常有用
+  async flash(
+    mountPaging = false,
+    params?: LoopAny
+  ): Promise<zRiskerResponseItem<LoopAny> | void> {
     const { index, size } = this.responseStruct;
 
     if (!(index && size))
@@ -184,10 +208,7 @@ export default class PaginatedTable extends Vue {
       );
 
     const _list = await this.requestFun(
-      Object.assign({ pageTotal: this.pagingTotal }, this.params, {
-        [this.responseStruct.index]: this.paging.index,
-        [this.responseStruct.size]: this.paging.size,
-      })
+      Object.assign({ pageTotal: this.pagingTotal }, params, this.pageQuery)
     );
 
     this.mountData(_list);
@@ -197,19 +218,31 @@ export default class PaginatedTable extends Vue {
     return _list;
   }
 
+  // 计算的翻页查询数据，可用于交由外部组件查询使用
+  get pageQuery(): LoopAny {
+    return {
+      [this.responseStruct.index]: this.paging.index,
+      [this.responseStruct.size]: this.paging.size,
+    };
+  }
+
+  // 计算页面分页数量
   get pagingLen(): number {
     return Math.ceil(this.pagingTotal / this.paging.size);
   }
 
-  get _items(): Array<LoopAny> {
+  // 返回数据
+  private get _items(): Array<LoopAny> {
     return this.items;
   }
 
-  set _items(items: Array<LoopAny>) {
+  // 设置数据
+  private set _items(items: Array<LoopAny>) {
     this.$emit("update:items", items);
   }
 
-  get _headers(): Array<LoopAny> {
+  // 对传入的headers进行默认修改
+  private get _headers(): Array<LoopAny> {
     return this.headers.map((header) => {
       if (!Object.prototype.hasOwnProperty.call(header, "sortable")) {
         header["sortable"] = false;
@@ -219,7 +252,12 @@ export default class PaginatedTable extends Vue {
     });
   }
 
-  modes(value: string): AutoRenderSampleForm {
+  // ————————————————————————————————————
+  //* ——— 列内容可编辑部分
+  // ————————————————————————————————————
+
+  // 保护部分属性，防止用户肆意篡改导致样式出现问题
+  private modes(value: string): AutoRenderSampleForm {
     const header = this.headers.filter((header) => {
       return header.value === value;
     })[0];
@@ -233,13 +271,15 @@ export default class PaginatedTable extends Vue {
     );
   }
 
-  get headersSlotName(): Array<string> {
+  // 所有 name=slot ，用于动态设置命名插槽
+  private get headersSlotName(): Array<string> {
     return map(this.headers, (item) => {
       return item.value.toLowerCase().replace(/\(.*\)/, "");
     });
   }
 
-  isEditable(value: string): boolean {
+  // 当前列是否可以直接编辑，结合命名插槽使用
+  private isEditable(value: string): boolean {
     return (
       this.headers.filter((header) => {
         return header.value === value;
@@ -247,22 +287,29 @@ export default class PaginatedTable extends Vue {
     );
   }
 
+  // 插入数据后执行
   @Emit()
-  editDialogSave(item: LoopAny): LoopAny {
+  private editDialogSave(item: LoopAny): LoopAny {
     return item;
   }
 
+  // 取消插入数据后执行
   @Emit()
-  editDialogClose(item: LoopAny): LoopAny {
+  private editDialogClose(item: LoopAny): LoopAny {
     return item;
   }
 
+  // ————————————————————————————————————
+  //* ——— 生命周期部分
+  // ————————————————————————————————————
+
+  // created
   async created(): Promise<void> {
     const tempStruct = { ...this.responseStruct };
 
     Object.assign(this.responseStruct, ORIGIN_PROPS, tempStruct);
 
-    await this.flashTable(true);
+    await this.flash(true);
   }
 }
 </script>
