@@ -4,7 +4,7 @@ import router from "@/router";
 import { omit, omitBy } from "lodash";
 import { LoopAny } from "@/types/common";
 import NotificationFun from "@cps/tool-notification";
-import { zRiskerResponse, zRiskerResponseItem } from "@req/zRisker";
+import { zRiskerResponse, zRiskerResponseItem } from "@/types/zRisker";
 
 // interface ResponseData {
 //   ok: boolean;

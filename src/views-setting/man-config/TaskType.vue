@@ -9,8 +9,9 @@
     :headers="taskTypeHeaders"
     :request-fun="taskTypePages"
     :items.sync="items"
+    @edit-dialog-save="taskTypeUpdate"
   >
-    <template #heading="{ pageQuery }">
+    <template #heading>
       <v-row class="d-flex align-center">
         <v-col cols="5">
           <rule-text-field
@@ -18,23 +19,19 @@
             hide-details
             label="search by keyword"
             v-model="query.keyword"
-            @keydown.enter="search(pageQuery)"
+            @keydown.enter="search"
           />
         </v-col>
 
         <v-col class="text-right d-flex justify-end">
-          <task-type-add @submit-success="submitAddSuccess" />
+          <task-type-add @submit-success="submitSuccess(true)" />
         </v-col>
       </v-row>
     </template>
 
     <template #item.actions="{ item }">
       <div class="d-flex align-center">
-        <task-type-edit
-          :data="item"
-          is-edit
-          @submit-success="submitEditSuccess($event, item)"
-        >
+        <task-type-edit :data="item" @submit-success="submitSuccess()">
           <rule-btn small color="default" icon="mdi-pencil" class="ml-n3" />
         </task-type-edit>
 
@@ -81,17 +78,21 @@ import { Component, Mixins, Ref } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 import { RegisterAll } from "@cps/the-mixins";
 import { AutoDataTableHeader } from "@cps/tool-form/autoRender";
-import { LoopAny } from "@/types/common";
-import { taskTypeDelete, taskTypePage } from "@req/apis/zRisker/taskType";
 import {
-  taskTypeQuery,
-  taskTypeResponse,
-  zRiskerResponseItem,
-} from "@req/zRisker";
+  taskTypeDelete,
+  taskTypePage,
+  taskTypeUpdate,
+} from "@req/apis/zRisker/taskType";
+import { zRiskerResponseItem } from "@/types/zRisker";
 import RuleDialog from "@cps/rule-dailog/index.vue";
 import PaginatedTable from "@cps/tool-table/PaginatedTable.vue";
 import TaskTypeAdd from "@/views-setting/man-config/components/taskType/TaskTypeAdd";
 import TaskTypeEdit from "@/views-setting/man-config/components/taskType/TaskTypeEdit.vue";
+import {
+  taskTypeBodyUpdate,
+  taskTypeQuery,
+  taskTypeResponse,
+} from "@/types/taskType";
 
 @Meta({ title: "Task Type", order: 100 })
 @Component({
@@ -99,12 +100,15 @@ import TaskTypeEdit from "@/views-setting/man-config/components/taskType/TaskTyp
   components: { TaskTypeEdit, TaskTypeAdd },
 })
 export default class TaskType extends Mixins(RegisterAll) {
+  // 接收数据
   items = [];
 
+  // 查询参数
   query: taskTypeQuery = {
     keyword: "",
   };
 
+  // 表格头部信息
   taskTypeHeaders: AutoDataTableHeader[] = [
     {
       text: "task type",
@@ -116,32 +120,37 @@ export default class TaskType extends Mixins(RegisterAll) {
     { text: "actions", value: "actions", width: 130 },
   ];
 
+  // 删除dialog ref
   @Ref() deleteDialog?: RuleDialog;
 
+  // 表格ref
   @Ref() taskTypeTable?: PaginatedTable;
 
+  // 表格搜索
   async search(): Promise<void> {
+    this.taskTypeTable?.resetPagingIndex();
+
     this.taskTypeTable?.flash(true, this.query);
   }
 
-  // 更新成功后：直接修改内部数据
-  submitEditSuccess(data: LoopAny, item: LoopAny): void {
-    Object.keys(data).forEach((key) => {
-      item[key] = data[key];
-    });
-  }
-
   // 更新成功后：通过刷新表单改变数据
-  async submitAddSuccess(): Promise<void> {
-    await this.taskTypeTable?.flash(true);
+  async submitSuccess(isMountPaging = false): Promise<void> {
+    await this.taskTypeTable?.flash(isMountPaging);
   }
 
   // 查询
   async taskTypePages(
     params: taskTypeQuery
   ): Promise<zRiskerResponseItem<taskTypeResponse>> {
-    console.log(params, "params");
     return await taskTypePage(params);
+  }
+
+  // 更新
+  async taskTypeUpdate(item: taskTypeBodyUpdate): Promise<void> {
+    await taskTypeUpdate(item);
+
+    // hack skill 无论修改成功与否，都交由最后请求过来的数据决定
+    await this.taskTypeTable?.flash();
   }
 
   // 删除

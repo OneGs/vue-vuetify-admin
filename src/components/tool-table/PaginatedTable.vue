@@ -31,6 +31,8 @@
 
             <v-edit-dialog
               v-else
+              large
+              persistent
               :return-value.sync="item[key]"
               @save="editDialogSave(item)"
               @close="editDialogClose(item)"
@@ -51,6 +53,7 @@
       <template #footer>
         <v-pagination
           circle
+          @input="_flash"
           v-model="paging.index"
           :length.sync="pagingLen"
           class="py-2 elevation-0"
@@ -62,10 +65,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch, Emit } from "vue-property-decorator";
+import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 import RuleTitleH3 from "@cps/rule-title/H3.vue";
 import RuleTextField from "@cps/tool-form-item/TextField.vue";
 import { LoopAny } from "@/types/common";
+import { Debounce } from "lodash-decorators";
 import { map, omit } from "lodash";
 import ToolAutoRender from "@cps/tool-form/AutoRender.vue";
 import {
@@ -75,7 +79,7 @@ import {
 import ToolForm from "@cps/tool-form/index.vue";
 import ToolFormItem from "@cps/tool-form-item/index.vue";
 import ToolSampleAutoRender from "@cps/tool-form/SampleAutoRender.vue";
-import { zRiskerResponseItem } from "@req/zRisker";
+import { zRiskerResponseItem } from "@/types/zRisker";
 
 const ORIGIN_PROPS = Object.freeze({
   value: "items",
@@ -134,8 +138,17 @@ export default class PaginatedTable extends Vue {
   //* ——— 表格数据渲染、请求
   // ————————————————————————————————————
 
+  // 提供外部使用来改变index
+  setPagingIndex(number = 1): void {
+    this.paging.index = number;
+  }
+
+  // 设置index到初始页
+  resetPagingIndex(): void {
+    this.setPagingIndex();
+  }
+
   // 刷新数据
-  @Watch("paging", { deep: true })
   private async _flash(): Promise<void> {
     await this.flash();
   }
@@ -196,6 +209,7 @@ export default class PaginatedTable extends Vue {
   // 渲染数据
   // mountPaging：重新渲染分页
   // params: 允许为渲染函数添加额外的查询参数，这在查询时非常有用
+  @Debounce(300)
   async flash(
     mountPaging = false,
     params?: LoopAny
@@ -293,7 +307,7 @@ export default class PaginatedTable extends Vue {
     return item;
   }
 
-  // 取消插入数据后执行
+  // 关闭插入数据后执行
   @Emit()
   private editDialogClose(item: LoopAny): LoopAny {
     return item;

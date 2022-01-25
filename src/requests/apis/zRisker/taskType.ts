@@ -1,12 +1,11 @@
 import zRisker from "@req//services/zRisker";
+import { zRiskerRequestParams, zRiskerResponseItem } from "@/types/zRisker";
 import {
   taskTypeBodyAdd,
   taskTypeBodyDelete,
   taskTypeBodyUpdate,
   taskTypeResponse,
-  zRiskerRequestParams,
-  zRiskerResponseItem,
-} from "@req/zRisker";
+} from "@/types/taskType";
 
 export function taskTypePage(
   params: zRiskerRequestParams

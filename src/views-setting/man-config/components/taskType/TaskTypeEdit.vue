@@ -23,14 +23,14 @@
 import { Component, Emit, Mixins, Prop, Ref } from "vue-property-decorator";
 import { RegisterBtn, RegisterDialog, RegisterForm } from "@cps/the-mixins";
 import { AutoRenderMode } from "@cps/tool-form/autoRender";
+import RuleDialog from "@cps/rule-dailog/index.vue";
+import { toKeyValueMap } from "@uts/tools";
+import { taskTypeUpdate } from "@req/apis/zRisker/taskType";
 import {
   taskTypeBodyAdd,
   taskTypeBodyUpdate,
   taskTypeResponse,
-} from "@req/zRisker";
-import RuleDialog from "@cps/rule-dailog/index.vue";
-import { toKeyValueMap } from "@uts/tools";
-import { taskTypeUpdate } from "@req/apis/zRisker/taskType";
+} from "@/types/taskType";
 
 @Component({
   name: "TaskTypeEdit",

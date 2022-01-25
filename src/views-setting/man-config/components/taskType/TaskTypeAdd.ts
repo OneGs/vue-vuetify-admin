@@ -2,8 +2,8 @@ import Vue from "vue";
 import { Component, Mixins } from "vue-property-decorator";
 import TaskTypeEdit from "@/views-setting/man-config/components/taskType/TaskTypeEdit.vue";
 import { toKeyValueMap } from "@uts/tools";
-import { taskTypeBodyAdd } from "@req/zRisker";
 import { taskTypeAdd } from "@req/apis/zRisker/taskType";
+import { taskTypeBodyAdd } from "@/types/taskType";
 
 @Component({
   name: "TaskTypeAdd",

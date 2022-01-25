@@ -22,6 +22,7 @@
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "lodash": "^4.17.21",
+    "lodash-decorators": "^6.0.1",
     "moment": "^2.29.1",
     "standard-version": "^9.3.2",
     "vee-validate": "^3.4.14",
