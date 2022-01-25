@@ -15,7 +15,9 @@ import RuleTitleH3 from "@cps/rule-title/H3.vue";
     RuleTitleH3,
   },
 })
-class RegisterHeading extends Vue {}
+class RegisterHeading extends Vue {
+  __inline__ = "";
+}
 
 // ————————————————————————————————————
 //* ——— Buttons
@@ -28,7 +30,9 @@ import RuleBtn from "@cps/rule-btn/index.vue";
     RuleBtn,
   },
 })
-class RegisterBtn extends Vue {}
+class RegisterBtn extends Vue {
+  __inline__ = "";
+}
 
 // ————————————————————————————————————
 //* ——— VeeValidator
@@ -42,7 +46,9 @@ import { ValidationProvider, ValidationObserver } from "vee-validate";
     ValidationObserver,
   },
 })
-class RegisterVeeValidate extends Vue {}
+class RegisterVeeValidate extends Vue {
+  __inline__ = "";
+}
 
 // ————————————————————————————————————
 //* ——— Forms
@@ -79,7 +85,9 @@ import ToolAutoRender from "@cps/tool-form/AutoRender.vue";
     ToolAutoRender,
   },
 })
-class RegisterForm extends Mixins(RegisterVeeValidate) {}
+class RegisterForm extends Mixins(RegisterVeeValidate) {
+  __scope___inline____ = "";
+}
 
 // ————————————————————————————————————
 //* ——— Grid
@@ -94,7 +102,9 @@ import ToolGrid from "@cps/tool-grid/index.vue";
     ToolGrid,
   },
 })
-class RegisterGrid extends Vue {}
+class RegisterGrid extends Vue {
+  __inline__ = "";
+}
 
 // ————————————————————————————————————
 //* ——— Notification
@@ -104,7 +114,9 @@ import RuleNotification from "@cps/tool-notification/src/Notification.vue";
 @Component({
   components: { RuleNotification },
 })
-class RegisterNotification extends Vue {}
+class RegisterNotification extends Vue {
+  __inline__ = "";
+}
 
 // ————————————————————————————————————
 //* ——— Table
@@ -117,7 +129,9 @@ import ToolPaginatedTable from "@cps/tool-table/PaginatedTable.vue";
     ToolPaginatedTable,
   },
 })
-class RegisterTable extends Vue {}
+class RegisterTable extends Vue {
+  __inline__ = "";
+}
 
 // ————————————————————————————————————
 //* ——— Card
@@ -130,7 +144,9 @@ import RuleCardTemplate from "@cps/rule-card/CardTemplate.vue";
     RuleCardTemplate,
   },
 })
-class RegisterCard extends Vue {}
+class RegisterCard extends Vue {
+  __inline__ = "";
+}
 
 // ————————————————————————————————————
 //* ——— Image information
@@ -140,6 +156,8 @@ import LoadingImage from "@ast/illustrations/questions.svg";
 
 @Component({})
 class CommonImage extends Vue {
+  __inline__ = "";
+
   backgroundImage = BackgroundImage;
 
   loadingImage = LoadingImage;
@@ -155,7 +173,9 @@ import RuleDialog from "@cps/rule-dailog/index.vue";
     RuleDialog,
   },
 })
-class RegisterDialog extends Vue {}
+class RegisterDialog extends Vue {
+  a = 10;
+}
 
 // ————————————————————————————————————
 //* ——— All
@@ -172,7 +192,9 @@ class RegisterAll extends Mixins(
   CommonImage,
   RegisterDialog,
   RegisterNotification
-) {}
+) {
+  __inline__ = "";
+}
 
 export {
   RegisterBtn,
