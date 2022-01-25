@@ -1,10 +1,29 @@
 <template>
   <tool-paginated-table
     title="Status Manager"
+    ref="taskStateTable"
     :items.sync="items"
     :headers="headers"
-    :request-fun="requestFun"
+    :request-fun="taskStatePages"
   >
+    <template #heading>
+      <v-row class="d-flex align-center">
+        <v-col cols="5">
+          <rule-text-field
+            small
+            hide-details
+            label="search by keyword"
+            v-model="query.keyword"
+            @keydown.enter="search"
+          />
+        </v-col>
+
+        <v-col class="text-right d-flex justify-end">
+          <task-state-add-dialog @submit-success="submitSuccess(true)" />
+        </v-col>
+      </v-row>
+    </template>
+
     <template #item.name="{ item }">
       <v-chip
         :color="typeStatusIconAndColor(item).color"
@@ -17,14 +36,18 @@
       </v-chip>
     </template>
 
+    <template #item.type="{ item }">
+      {{ typeZ_NString(item.type) }}
+    </template>
+
     <template #item.actions="{ item }">
       <div class="d-flex align-center">
-        <task-status-edit
+        <task-state-edit-dialog
           :data="item"
-          @submit-success="submitSuccess($event, item)"
+          @submit-success="submitSuccess(false)"
         >
           <rule-btn small color="default" icon="mdi-pencil" class="ml-n3" />
-        </task-status-edit>
+        </task-state-edit-dialog>
 
         <rule-dialog title="notify">
           <rule-btn small color="default" icon="mdi-trash-can" />
@@ -53,13 +76,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from "vue-property-decorator";
+import { Component, Mixins, Ref } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
 import { RegisterAll } from "@cps/the-mixins";
 import { AutoDataTableHeader } from "@cps/tool-form/autoRender";
-import { getStatus } from "@req/apis/base/man-config";
-import { LoopAny } from "@/types/common";
-import TaskStatusEdit from "@/views-setting/man-config/components/taskState/TaskStatusEdit.vue";
+import TaskStateEditDialog from "@/views-setting/man-config/components/taskState/TaskStateEditDialog";
+import TaskStateAddDialog from "@/views-setting/man-config/components/taskState/TaskStateAddDialog";
+import { zRiskerResponseItem } from "@/types/zRisker";
+import { taskStateQuery, taskStateResponse } from "@/types/taskState";
+import { taskStatePage } from "@req/apis/zRisker/taskState";
+import RuleDialog from "@cps/rule-dailog/index.vue";
+import PaginatedTable from "@cps/tool-table/PaginatedTable.vue";
 
 @Meta({
   title: "Status Manager",
@@ -67,10 +94,15 @@ import TaskStatusEdit from "@/views-setting/man-config/components/taskState/Task
 })
 @Component({
   name: "TheStatus",
-  components: { TaskStatusEdit },
+  components: { TaskStateEditDialog, TaskStateAddDialog },
 })
 export default class TheStatus extends Mixins(RegisterAll) {
   items = [];
+
+  // 查询参数
+  query: taskStateQuery = {
+    keyword: "",
+  };
 
   headers: AutoDataTableHeader[] = [
     {
@@ -78,35 +110,72 @@ export default class TheStatus extends Mixins(RegisterAll) {
       value: "name",
       width: "200px",
     },
-    { text: "note", value: "note" },
+    { text: "note", value: "description" },
     { text: "type", value: "type" },
     { text: "actions", value: "actions", width: 130 },
   ];
 
-  requestFun = getStatus;
+  // 删除dialog ref
+  @Ref() deleteDialog?: RuleDialog;
 
-  typeStatusIconAndColor(item: LoopAny): { icon: string; color: string } {
+  // 表格ref
+  @Ref() taskStateTable?: PaginatedTable;
+
+  // 表格搜索
+  async search(): Promise<void> {
+    this.taskStateTable?.resetPagingIndex();
+
+    this.taskStateTable?.flash(true, this.query);
+  }
+
+  // 查询
+  async taskStatePages(
+    params: taskStateQuery
+  ): Promise<zRiskerResponseItem<taskStateResponse>> {
+    return await taskStatePage(params);
+  }
+
+  typeStatusIconAndColor(item: taskStateResponse): {
+    icon: string;
+    color: string;
+  } {
     let icon = "mdi-example";
 
     switch (item.type) {
-      case "未开始":
+      case 0:
         icon = "mdi-minus-circle-outline";
         break;
-      case "进行中":
+      case 1:
         icon = "mdi-circle-slice-3";
         break;
-      case "已完成":
+      case 2:
         icon = "mdi-check-circle-outline";
         break;
     }
 
-    return { icon, color: item.color };
+    return { icon, color: item.icon };
   }
 
-  submitSuccess(data: LoopAny, item: LoopAny): void {
-    Object.keys(data).forEach((key) => {
-      item[key] = data[key];
-    });
+  typeZ_NString(type: number): string {
+    let z_nString = "";
+
+    switch (type) {
+      case 0:
+        z_nString = "未开始";
+        break;
+      case 1:
+        z_nString = "进行中";
+        break;
+      case 2:
+        z_nString = "已完成";
+        break;
+    }
+
+    return z_nString;
+  }
+
+  async submitSuccess(isMountPaging = false): Promise<void> {
+    await this.taskStateTable?.flash(isMountPaging);
   }
 }
 </script>

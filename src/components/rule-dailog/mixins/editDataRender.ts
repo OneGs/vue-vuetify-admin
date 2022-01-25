@@ -11,22 +11,7 @@ export default class EditDataRender extends Vue {
   renderMode: AutoRenderMode = {
     row: 3,
     col: 1,
-    modes: [
-      {
-        key: "name",
-        label: "Type name",
-        value: "",
-        position: "0-0",
-        componentName: "RuleTextField",
-        rules: "required",
-      },
-      {
-        key: "description",
-        label: "note",
-        position: "1-0",
-        componentName: "RuleTextarea",
-      },
-    ],
+    modes: [],
   };
 
   // 接受数据，用于渲染

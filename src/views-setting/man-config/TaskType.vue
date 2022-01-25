@@ -24,16 +24,16 @@
         </v-col>
 
         <v-col class="text-right d-flex justify-end">
-          <task-type-add @submit-success="submitSuccess(true)" />
+          <task-type-add-dialog @submit-success="submitSuccess(true)" />
         </v-col>
       </v-row>
     </template>
 
     <template #item.actions="{ item }">
       <div class="d-flex align-center">
-        <task-type-edit :data="item" @submit-success="submitSuccess()">
+        <task-type-edit-dialog :data="item" @submit-success="submitSuccess()">
           <rule-btn small color="default" icon="mdi-pencil" class="ml-n3" />
-        </task-type-edit>
+        </task-type-edit-dialog>
 
         <rule-dialog
           title="notify"
@@ -86,8 +86,8 @@ import {
 import { zRiskerResponseItem } from "@/types/zRisker";
 import RuleDialog from "@cps/rule-dailog/index.vue";
 import PaginatedTable from "@cps/tool-table/PaginatedTable.vue";
-import TaskTypeAdd from "@/views-setting/man-config/components/taskType/TaskTypeAdd";
-import TaskTypeEdit from "@/views-setting/man-config/components/taskType/TaskTypeEdit.vue";
+import TaskTypeAddDialog from "@/views-setting/man-config/components/taskType/TaskTypeAddDialog";
+import TaskTypeEditDialog from "@/views-setting/man-config/components/taskType/TaskTypeEditDialog";
 import {
   taskTypeBodyUpdate,
   taskTypeQuery,
@@ -97,7 +97,7 @@ import {
 @Meta({ title: "Task Type", order: 100 })
 @Component({
   name: "TaskType",
-  components: { TaskTypeEdit, TaskTypeAdd },
+  components: { TaskTypeEditDialog, TaskTypeAddDialog },
 })
 export default class TaskType extends Mixins(RegisterAll) {
   // 接收数据

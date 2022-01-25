@@ -31,7 +31,6 @@
 
             <v-edit-dialog
               v-else
-              large
               persistent
               :return-value.sync="item[key]"
               @save="editDialogSave(item)"

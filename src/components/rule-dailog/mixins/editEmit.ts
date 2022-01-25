@@ -1,14 +1,12 @@
 import { Vue, Component, Emit } from "vue-property-decorator";
-import { taskTypeBodyAdd, taskTypeBodyUpdate } from "@/types/taskType";
+import { LoopAny } from "@/types/common";
 
 @Component({
   name: "EditEmit",
 })
 export default class EditEmit extends Vue {
   @Emit()
-  submitSuccess(
-    modes: taskTypeBodyAdd | taskTypeBodyUpdate
-  ): taskTypeBodyAdd | taskTypeBodyUpdate {
+  submitSuccess(modes: LoopAny): LoopAny {
     return modes;
   }
 
