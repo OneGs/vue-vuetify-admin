@@ -10,7 +10,8 @@ type ComponentNames =
   | "RuleTextField"
   | "RuleTextarea"
   | "RuleTimePicker"
-  | "RuleCardExample";
+  | "RuleCardExample"
+  | "RuleRadioColorsPicker";
 
 export interface AutoRenderForm extends PureAutoRenderForm {
   key: string;
@@ -29,7 +30,9 @@ export interface PureAutoRenderForm {
   key?: string;
   placeholder?: string;
   value?: string | number | boolean | null | Array<string | number | boolean>;
-  options?: { label: string; value: string | number }[];
+  options?:
+    | { label: string; value: string | number }[]
+    | { icon: string; color: string; fill?: string }[];
   rules?: string;
 }
 

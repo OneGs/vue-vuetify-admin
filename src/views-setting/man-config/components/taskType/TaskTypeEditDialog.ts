@@ -6,19 +6,22 @@ import { taskTypeBodyUpdate } from "@/types/taskType";
 import PaginatedEditDialog from "@cps/rule-dailog/PaginatedEditDialog.vue";
 import { IEditDialog } from "@/types/IEditDialog";
 import { AutoRenderMode } from "@cps/tool-form/autoRender";
+import config from "@/config";
 
 @Component
 class TaskTypeEditDialog
   extends Mixins(PaginatedEditDialog)
   implements IEditDialog
 {
+  title = "编辑任务";
+
   renderMode: AutoRenderMode = {
     row: 3,
     col: 1,
     modes: [
       {
         key: "name",
-        label: "Type name",
+        label: "名称",
         value: "",
         position: "0-0",
         componentName: "RuleTextField",
@@ -26,9 +29,15 @@ class TaskTypeEditDialog
       },
       {
         key: "description",
-        label: "note",
+        label: "备注",
         position: "1-0",
         componentName: "RuleTextarea",
+      },
+      {
+        key: "icon",
+        position: "2-0",
+        componentName: "RuleRadioColorsPicker",
+        options: [...config.taskIcons],
       },
     ],
   };

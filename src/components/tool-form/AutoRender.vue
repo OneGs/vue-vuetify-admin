@@ -34,6 +34,7 @@ import RuleTimePicker from "@cps/tool-form-item/TimePicker.vue";
 import ToolGrid from "@cps/tool-grid/index.vue";
 import ToolForm from "@cps/tool-form/index.vue";
 import ToolFormItem from "@cps/tool-form-item/index.vue";
+import RuleRadioColorsPicker from "@cps/tool-form-item/RadioColorsPicker.vue";
 import { ValidationObserver } from "vee-validate";
 import {
   AutoRenderForm,
@@ -60,6 +61,7 @@ import { omit } from "lodash";
     RuleTextarea,
     RuleTimePicker,
     RuleCardExample,
+    RuleRadioColorsPicker,
     ValidationObserver,
   },
 })
@@ -79,6 +81,7 @@ export default class ToolAutoRender extends Vue {
     "RuleTextarea",
     "RuleTimePicker",
     "RuleCardExample",
+    "RuleRadioColorsPicker",
   ];
 
   @Ref() autoRender!: InstanceType<typeof ValidationObserver>;

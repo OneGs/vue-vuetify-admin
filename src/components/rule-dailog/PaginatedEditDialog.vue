@@ -1,8 +1,9 @@
 <template>
   <rule-dialog
-    title="Creating a Task Type"
+    :title="title"
     @save="onSubmit"
     @open-before="flash(data)"
+    persistent
     ref="editDialog"
   >
     <slot>

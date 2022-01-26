@@ -1,5 +1,10 @@
 <template>
-  <svg class="svg-icon" aria-hidden="true">
+  <svg
+    class="svg-icon"
+    aria-hidden="true"
+    :style="[{ padding }]"
+    :class="[{ 'is-small': small, 'is-xsmall': xSmall }]"
+  >
     <use :xlink:href="iconName" />
   </svg>
 </template>
@@ -22,15 +27,33 @@ export default class ToolIconSvg extends Vue {
   get iconName(): string {
     return `#icon-${this.iconClass}`;
   }
+
+  get padding(): string {
+    if (this.xSmall) return "2px";
+
+    if (this.small) return "4px";
+
+    return "4px";
+  }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .svg-icon {
   width: 1.5rem;
   height: 1.5rem;
   fill: currentColor;
   overflow: hidden;
   vertical-align: middle;
+
+  &.is-small {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &.is-xsmall {
+    width: 1rem;
+    height: 1rem;
+  }
 }
 </style>

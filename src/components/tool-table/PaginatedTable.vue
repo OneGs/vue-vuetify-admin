@@ -10,7 +10,7 @@
     <v-divider v-if="!!title" />
 
     <v-data-table
-      class="table"
+      class="table pa-6"
       :headers="_headers"
       :items.sync="_items"
       :page.sync="paging.index"
@@ -31,7 +31,6 @@
 
             <v-edit-dialog
               v-else
-              persistent
               :return-value.sync="item[key]"
               @save="editDialogSave(item)"
               @close="editDialogClose(item)"

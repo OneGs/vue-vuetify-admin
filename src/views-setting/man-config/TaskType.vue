@@ -5,7 +5,7 @@
 <template>
   <tool-paginated-table
     ref="taskTypeTable"
-    title="Task Type"
+    title="任务类型"
     :headers="taskTypeHeaders"
     :request-fun="taskTypePages"
     :items.sync="items"
@@ -17,7 +17,8 @@
           <rule-text-field
             small
             hide-details
-            label="search by keyword"
+            label="搜索任务类型"
+            prepend-inner-icon="mdi-magnify"
             v-model="query.keyword"
             @keydown.enter="search"
           />
@@ -29,6 +30,19 @@
       </v-row>
     </template>
 
+    <template #item.name="{ item }">
+      <div class="d-flex align-center">
+        <tool-icon-svg
+          :icon-class="item.icon || ''"
+          small
+          class="rounded mr-3"
+          style="fill: white"
+          :style="{ background: taskTypeIconColor(item.icon) }"
+        />
+        <span>{{ item.name }}</span>
+      </div>
+    </template>
+
     <template #item.actions="{ item }">
       <div class="d-flex align-center">
         <task-type-edit-dialog :data="item" @submit-success="submitSuccess()">
@@ -37,6 +51,7 @@
 
         <rule-dialog
           title="notify"
+          persistent
           @save="taskTypeDelete(item)"
           ref="deleteDialog"
         >
@@ -93,11 +108,13 @@ import {
   taskTypeQuery,
   taskTypeResponse,
 } from "@/types/taskType";
+import ToolIconSvg from "@cps/tool-icon-svg/index.vue";
+import config from "@/config";
 
 @Meta({ title: "任务类型", order: 100 })
 @Component({
   name: "TaskType",
-  components: { TaskTypeEditDialog, TaskTypeAddDialog },
+  components: { ToolIconSvg, TaskTypeEditDialog, TaskTypeAddDialog },
 })
 export default class TaskType extends Mixins(RegisterAll) {
   // 接收数据
@@ -111,13 +128,13 @@ export default class TaskType extends Mixins(RegisterAll) {
   // 表格头部信息
   taskTypeHeaders: AutoDataTableHeader[] = [
     {
-      text: "task type",
+      text: "任务类型",
       value: "name",
       width: "200px",
       editable: true,
     },
-    { text: "note", value: "description" },
-    { text: "actions", value: "actions", width: 130 },
+    { text: "备注", value: "description" },
+    { text: "操作", value: "actions", width: 130 },
   ];
 
   // 删除dialog ref
@@ -125,6 +142,12 @@ export default class TaskType extends Mixins(RegisterAll) {
 
   // 表格ref
   @Ref() taskTypeTable?: PaginatedTable;
+
+  taskTypeIconColor(name: string): string {
+    return config.taskIcons?.filter((icon) => {
+      return icon.icon === name;
+    })[0]?.color;
+  }
 
   // 表格搜索
   async search(): Promise<void> {

@@ -67,6 +67,7 @@ import RuleTimePicker from "@cps/tool-form-item/TimePicker.vue";
 import RuleLoading from "@cps/tool-form-item/Loading.vue";
 import RuleRadio from "@cps/tool-form-item/Radio.vue";
 import ToolAutoRender from "@cps/tool-form/AutoRender.vue";
+import RuleRadioColorsPicker from "@cps/tool-form-item/RadioColorsPicker.vue";
 
 @Component({
   components: {
@@ -82,6 +83,7 @@ import ToolAutoRender from "@cps/tool-form/AutoRender.vue";
     RuleTimePicker,
     RuleLoading,
     RuleRadio,
+    RuleRadioColorsPicker,
     ToolAutoRender,
   },
 })

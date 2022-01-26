@@ -1,5 +1,10 @@
 <template>
-  <v-dialog v-model="visible" width="500px" ref="dialog">
+  <v-dialog
+    v-model="visible"
+    width="500px"
+    ref="dialog"
+    :persistent="persistent"
+  >
     <template #activator="{ on, attrs }">
       <div v-bind="attrs" v-on="on">
         <slot />
@@ -59,6 +64,8 @@ export default class RuleDialog extends Vue {
 
   @Prop({ type: String, default: "Title" }) title!: string;
 
+  @Prop({ type: Boolean, default: false }) persistent!: boolean;
+
   @Watch("visible")
   clearInformation(): void {
     if (!this.visible) return;
@@ -101,5 +108,3 @@ export default class RuleDialog extends Vue {
   }
 }
 </script>
-
-<style scoped lang="scss"></style>
