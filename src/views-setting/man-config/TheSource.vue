@@ -1,5 +1,5 @@
 <template>
-  <div>tags manager</div>
+  <div>data manager</div>
 </template>
 
 <script lang="ts">
@@ -7,13 +7,13 @@ import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
 
 @Meta({
-  title: "Tags Manager",
-  order: 60,
+  title: "数据管理",
+  order: 70,
 })
 @Component({
-  name: "TheTags",
+  name: "TheData",
 })
-export default class TheTags extends Vue {}
+export default class TheData extends Vue {}
 </script>
 
 <style scoped></style>

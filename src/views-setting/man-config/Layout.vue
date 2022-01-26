@@ -7,7 +7,7 @@ import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 
 @Meta({
-  title: "Config Manager",
+  title: "配置中心",
   order: 10,
   icon: "mdi-cogs",
   color: "orange",

@@ -1,5 +1,5 @@
 <template>
-  <div>priority manager</div>
+  <div>attr manager</div>
 </template>
 
 <script lang="ts">
@@ -7,13 +7,13 @@ import { Vue, Component } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
 
 @Meta({
-  title: "Priority Manager",
-  order: 50,
+  title: "属性管理",
+  order: 80,
 })
 @Component({
-  name: "ThePriority",
+  name: "TheAttrs",
 })
-export default class ThePriority extends Vue {}
+export default class TheAttrs extends Vue {}
 </script>
 
 <style scoped></style>

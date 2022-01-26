@@ -94,7 +94,7 @@ import {
   taskTypeResponse,
 } from "@/types/taskType";
 
-@Meta({ title: "Task Type", order: 100 })
+@Meta({ title: "任务类型", order: 100 })
 @Component({
   name: "TaskType",
   components: { TaskTypeEditDialog, TaskTypeAddDialog },
