@@ -16,8 +16,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from "vue-property-decorator";
 import Input from "./mixins/input";
+import { Component, Mixins } from "vue-property-decorator";
 import { ValidationProvider } from "vee-validate";
 
 @Component({

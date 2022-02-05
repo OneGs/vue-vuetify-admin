@@ -57,7 +57,7 @@
 
                 <rule-btn color="#fff">
                   <v-icon left>mdi-google</v-icon>
-                  <span class="text-primary">github</span>
+                  <span class="text-primary">Google</span>
                 </rule-btn>
               </div>
 

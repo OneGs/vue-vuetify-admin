@@ -3,7 +3,7 @@
     <p>
       For custom form validation, we used the Vuelidate framework which is a
       simple, lightweight model-based
-      <span class="text-danger">VeeValidation</span>for Vuejs. For each value
+      <span class="text-danger"> VeeValidation </span>for Vuejs. For each value
       you want to validate, you have to create a key inside validations options.
       You can specify when input becomes dirty by using appropriate event on
       your input box. More details on the Documentation.
