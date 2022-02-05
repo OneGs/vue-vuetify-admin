@@ -246,15 +246,19 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
 @include theme(v-text-field--outlined) using ($type) {
   @if $type == $material-light {
     &.v-input {
-      input, textarea {
-        font-size: 0.875rem;
-        color: #8898aa !important;
-        font-weight: 500;
-      }
 
-      input::-webkit-input-placeholder {
+      %input-style {
         font-size: 0.875rem;
         font-weight: 400;
+      }
+
+      input, textarea, .v-select__selections, .v-file-input, .v-text-field__slot, .v-file-input__text {
+        @extend %input-style;
+        color: #8898aa !important;
+      }
+
+      input::-webkit-input-placeholder, .v-file-input::-webkit-input-placeholder {
+        @extend %input-style;
         @extend .text-muted;
       }
     }
