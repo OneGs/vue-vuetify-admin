@@ -10,6 +10,9 @@ export default class EditDataRender extends Vue {
   // 标题
   title = "Title";
 
+  // 加载
+  loading = false;
+
   // 渲染结构
   renderMode: AutoRenderMode = {
     row: 3,

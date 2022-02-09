@@ -3,6 +3,7 @@
     :title="title"
     @save="onSubmit"
     @open-before="flash(data)"
+    :loading.sync="loading"
     persistent
     ref="editDialog"
   >

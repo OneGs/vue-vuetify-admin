@@ -29,6 +29,7 @@
           <rule-btn
             @click.prevent="save"
             small
+            :loading="syncedLoading"
             class="font-weight-600 text-capitalize"
             >保存</rule-btn
           >
@@ -48,7 +49,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Emit, Prop, Watch } from "vue-property-decorator";
+import {
+  Vue,
+  Component,
+  Emit,
+  Prop,
+  PropSync,
+  Watch,
+} from "vue-property-decorator";
 import RuleBtn from "@cps/rule-btn/index.vue";
 import RuleCardTemplate from "@cps/rule-card/CardTemplate.vue";
 import RuleTitleH3 from "@cps/rule-title/H3.vue";
@@ -67,6 +75,9 @@ export default class RuleDialog extends Vue {
   @Prop({ type: String, default: "Title" }) title!: string;
 
   @Prop({ type: Boolean, default: false }) persistent!: boolean;
+
+  @PropSync("loading", { type: Boolean, default: false })
+  syncedLoading!: boolean;
 
   @Watch("visible")
   clearInformation(): void {

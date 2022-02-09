@@ -46,13 +46,17 @@ class TaskTypeAddDialog
   async onSubmit(validate: boolean): Promise<void> {
     if (!validate) return this.submitFail();
 
+    this.loading = true;
+
     const requestInfo = toKeyValueMap(this.renderMode.modes) as taskTypeBodyAdd;
 
-    if (!(await taskTypeAdd(requestInfo))) return;
+    if (!(await taskTypeAdd(requestInfo))) return void (this.loading = false);
 
     this.submitSuccess(requestInfo);
 
     this.editDialog?.close();
+
+    this.loading = false;
   }
 }
 
