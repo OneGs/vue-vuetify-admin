@@ -11,6 +11,11 @@ $--v-application: v-application;
   src: url(../../../assets/fonts/SourceSansPro-Regular.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: "Open Sans Zh";
+  src: url(../../../assets/fonts/OpenSans-VariableFont_wdth.ttf) format('truetype');
+}
+
 //* ——— Origin Html Style Overrides ——————————————————
 //
 

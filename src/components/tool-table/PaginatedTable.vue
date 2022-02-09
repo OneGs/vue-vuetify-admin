@@ -49,14 +49,21 @@
       </template>
 
       <template #footer>
-        <v-pagination
-          circle
-          @input="_flash"
-          v-model="paging.index"
-          :length.sync="pagingLen"
-          class="pt-2 elevation-0"
-          total-visible="5"
-        />
+        <div class="pt-2 d-flex align-center justify-end">
+          <v-pagination
+            circle
+            @input="_flash"
+            v-model="paging.index"
+            :length.sync="pagingLen"
+            class="elevation-0"
+            total-visible="5"
+          />
+          <div>
+            共
+            <span style="vertical-align: text-bottom">{{ pagingTotal }}</span>
+            条
+          </div>
+        </div>
       </template>
     </v-data-table>
   </v-card>

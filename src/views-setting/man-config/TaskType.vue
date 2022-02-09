@@ -10,6 +10,7 @@
     :request-fun="taskTypePages"
     :items.sync="items"
     @edit-dialog-save="taskTypeUpdate"
+    class="paginated-table"
   >
     <template #heading>
       <v-row class="d-flex align-center">
@@ -19,13 +20,16 @@
             hide-details
             label="搜索任务类型"
             prepend-inner-icon="mdi-magnify"
+            append-icon="mdi-keyboard-return"
             v-model="query.keyword"
             @keydown.enter="search"
           />
         </v-col>
 
         <v-col class="text-right d-flex justify-end">
-          <task-type-add-dialog @submit-success="submitSuccess(true)" />
+          <task-type-add-dialog @submit-success="submitSuccess(true)">
+            <rule-btn small>新增</rule-btn>
+          </task-type-add-dialog>
         </v-col>
       </v-row>
     </template>
@@ -50,7 +54,7 @@
         </task-type-edit-dialog>
 
         <rule-dialog
-          title="notify"
+          title="提示"
           persistent
           @save="taskTypeDelete(item)"
           ref="deleteDialog"
@@ -59,7 +63,7 @@
 
           <template #text>
             <div class="mb-8 mt-4 text-center">
-              are you sure delete
+              确定要删除
               <span class="text-danger">{{ item.name }}</span> ?
             </div>
           </template>
@@ -67,18 +71,20 @@
           <template #btn="{ close, save }">
             <div class="d-flex align-center justify-space-between">
               <rule-btn
+                small
                 color="error"
                 class="font-weight-600 text-capitalize"
                 @click="save"
-                >delete</rule-btn
+                >删除</rule-btn
               >
               <rule-btn
                 plain
+                small
                 :dynamic="false"
                 color=""
                 class="text-capitalize"
                 @click="close"
-                >Cancel</rule-btn
+                >取消</rule-btn
               >
             </div>
           </template>
@@ -185,5 +191,3 @@ export default class TaskType extends Mixins(RegisterAll) {
   }
 }
 </script>
-
-<style scoped />

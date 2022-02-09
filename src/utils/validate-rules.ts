@@ -4,16 +4,16 @@ import { required, email } from "vee-validate/dist/rules";
 extend("required", {
   ...required,
   message: (filedName) => {
-    if (filedName === "{field}") return "This field is required";
+    if (filedName === "{field}") return "该字段为必填项";
 
-    return `This ${filedName} field is required`;
+    return `${filedName} 字段为必填项`;
   },
 });
 
 extend("email", {
   ...email,
   message: () => {
-    return "email is not correct";
+    return "邮箱格式为 xxx@xxx.xx";
   },
 });
 

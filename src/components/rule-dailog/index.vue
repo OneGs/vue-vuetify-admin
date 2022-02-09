@@ -28,16 +28,18 @@
         <div class="d-flex align-center justify-space-between">
           <rule-btn
             @click.prevent="save"
+            small
             class="font-weight-600 text-capitalize"
-            >Save</rule-btn
+            >保存</rule-btn
           >
           <rule-btn
             plain
+            small
             :dynamic="false"
             color=""
             @click="close"
             class="text-capitalize"
-            >Cancel</rule-btn
+            >取消</rule-btn
           >
         </div>
       </slot>

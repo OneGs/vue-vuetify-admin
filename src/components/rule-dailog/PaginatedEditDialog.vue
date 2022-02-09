@@ -7,7 +7,7 @@
     ref="editDialog"
   >
     <slot>
-      <rule-btn small>add</rule-btn>
+      <rule-btn small>编辑</rule-btn>
     </slot>
 
     <template #text>

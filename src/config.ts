@@ -15,7 +15,8 @@ export default <Config>{
   //* ——— Options
   // ————————————————————————————————————
   taskIcons: [
-    { icon: "ios", color: "#20a0ff" },
+    // { icon: "ios", color: "#20a0ff" },
+    // { icon: "anzhuo", color: "#99d75a" },
     { icon: "task", color: "#9473fd" },
     { icon: "correct", color: "#22d7bb" },
     { icon: "time-fill", color: "#2cccda" },
@@ -25,7 +26,6 @@ export default <Config>{
     { icon: "money", color: "#39ba5d" },
     { icon: "light", color: "#7076fa" },
     { icon: "bug-fill", color: "#fa5a55" },
-    { icon: "anzhuo", color: "#99d75a" },
     { icon: "web", color: "#e488fb" },
   ],
 };
