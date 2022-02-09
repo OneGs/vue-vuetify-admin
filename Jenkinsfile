@@ -22,7 +22,6 @@ pipeline {
           steps {
               sh "docker build -t ${DOCKER_REPOSITORY_NAME}:${IMAGE_NAME} ."
               sh "docker tag ${DOCKER_REPOSITORY_NAME}:${IMAGE_NAME} ${DOCKER_REPOSITORY_NAME}:latest"
-              archiveArtifacts(artifacts: 'dist/*', fingerprint: true)
           }
       }
       stage('推送镜像') {
