@@ -62,7 +62,4 @@ class TaskTypeEditDialog
   }
 }
 
-export default Vue.component(
-  "TaskTypeEditDialog",
-  Vue.extend(TaskTypeEditDialog)
-);
+export default Vue.extend(TaskTypeEditDialog);

@@ -4,6 +4,7 @@ export interface Config {
   firstMenuName: string;
   taskIcons: { icon: string; color: string }[];
   loadingText: string;
+  propertyEnum: Array<string>;
 }
 
 export default <Config>{
@@ -37,4 +38,26 @@ export default <Config>{
   //* ——— Loading
   // ————————————————————————————————————
   loadingText: "数据加载中，请稍后",
+
+  // ————————————————————————————————————
+  //* ——— TaskProperty
+  // ————————————————————————————————————
+  propertyEnum: [
+    "日期",
+    "时间区间",
+    "成员",
+    "成员组",
+    "数字",
+    "下拉单选",
+    "文本",
+    "文本域",
+    "类型",
+    "下拉多选",
+    "状态",
+    "优先级",
+    "标记",
+    "文件",
+    "工时",
+    "迭代",
+  ],
 };
