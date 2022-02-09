@@ -54,7 +54,7 @@
           @input="_flash"
           v-model="paging.index"
           :length.sync="pagingLen"
-          class="py-2 elevation-0"
+          class="pt-2 elevation-0"
           total-visible="5"
         />
       </template>

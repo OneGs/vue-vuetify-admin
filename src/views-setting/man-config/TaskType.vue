@@ -44,9 +44,9 @@
     </template>
 
     <template #item.actions="{ item }">
-      <div class="d-flex align-center">
+      <div class="d-flex align-center justify-center">
         <task-type-edit-dialog :data="item" @submit-success="submitSuccess()">
-          <rule-btn small color="default" icon="mdi-pencil" class="ml-n3" />
+          <rule-btn small color="default" icon="mdi-pencil" />
         </task-type-edit-dialog>
 
         <rule-dialog
@@ -131,10 +131,9 @@ export default class TaskType extends Mixins(RegisterAll) {
       text: "任务类型",
       value: "name",
       width: "200px",
-      editable: true,
     },
     { text: "备注", value: "description" },
-    { text: "操作", value: "actions", width: 130 },
+    { text: "操作", value: "actions", width: 130, align: "center" },
   ];
 
   // 删除dialog ref
