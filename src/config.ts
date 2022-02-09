@@ -3,12 +3,16 @@ export interface Config {
   navigatorWidth: string;
   firstMenuName: string;
   taskIcons: { icon: string; color: string }[];
+  loadingText: string;
 }
 
 export default <Config>{
   navigatorMiniVariantWidth: "56px",
   navigatorWidth: "250px",
 
+  // ————————————————————————————————————
+  //* ——— Menu
+  // ————————————————————————————————————
   firstMenuName: "RootLayoutSetting",
 
   // ————————————————————————————————————
@@ -28,4 +32,9 @@ export default <Config>{
     { icon: "bug-fill", color: "#fa5a55" },
     { icon: "web", color: "#e488fb" },
   ],
+
+  // ————————————————————————————————————
+  //* ——— Loading
+  // ————————————————————————————————————
+  loadingText: "数据加载中，请稍后",
 };

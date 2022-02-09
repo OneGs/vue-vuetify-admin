@@ -15,6 +15,7 @@
       :items.sync="_items"
       :page.sync="paging.index"
       hide-default-footer
+      :loading-text="$config.loadingText"
     >
       <template #top>
         <div class="pa-4" v-if="$slots.top">
@@ -106,6 +107,9 @@ const ORIGIN_PROPS = Object.freeze({
   },
 })
 export default class PaginatedTable extends Vue {
+  // loading
+  loading = true;
+
   // 默认的当前页、每页数量（只有分页组件能够改变这个值，请不要随意改变钙质，除非你知道不会形成死循环）
   paging = { index: 1, size: 10 };
 
@@ -128,7 +132,7 @@ export default class PaginatedTable extends Vue {
   // 请求函数（必须返回标准数据格式）
   @Prop({ type: Function, default: null, required: true }) requestFun!: (
     config: LoopAny
-  ) => zRiskerResponseItem<LoopAny>;
+  ) => Promise<zRiskerResponseItem<LoopAny>>;
 
   // 改变响应结构（index、size、total），对数据和分页有帮助
   @Prop({ type: Object, default: () => ({ ...ORIGIN_PROPS }) })
@@ -226,15 +230,31 @@ export default class PaginatedTable extends Vue {
         new Error(`index: ${index}, size: ${size} 存在为空`)
       );
 
-    const _list = await this.requestFun(
-      Object.assign({ pageTotal: this.pagingTotal }, params, this.pageQuery)
-    );
+    const sleep = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+      }, 50);
+    });
 
-    this.mountData(_list);
+    const request = new Promise((resolve) => {
+      const res = this.requestFun(
+        Object.assign({ pageTotal: this.pagingTotal }, params, this.pageQuery)
+      );
 
-    mountPaging && this.mountPage(_list);
+      res.then((data) => resolve(data));
+    });
 
-    return _list;
+    this.loading = true;
+
+    const [, _list] = await Promise.all([sleep, request]);
+
+    this.loading = false;
+
+    this.mountData(_list as zRiskerResponseItem<LoopAny>);
+
+    mountPaging && this.mountPage(_list as zRiskerResponseItem<LoopAny>);
+
+    return _list as zRiskerResponseItem<LoopAny>;
   }
 
   // 计算的翻页查询数据，可用于交由外部组件查询使用
@@ -343,6 +363,49 @@ export default class PaginatedTable extends Vue {
   .v-pagination__navigation {
     box-shadow: none;
     border: 1px solid #dee2e6;
+  }
+}
+
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #8898aa !important;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: initial;
+}
+
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%,
+  100% {
+    top: 24px;
+    height: 32px;
   }
 }
 </style>
