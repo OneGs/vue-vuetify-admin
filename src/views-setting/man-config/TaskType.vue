@@ -9,7 +9,6 @@
     :headers="taskTypeHeaders"
     :request-fun="taskTypePages"
     :items.sync="items"
-    @edit-dialog-save="taskTypeUpdate"
     class="paginated-table"
   >
     <template #heading>
@@ -53,42 +52,10 @@
           <rule-btn small color="default" icon="mdi-pencil" />
         </task-type-edit-dialog>
 
-        <rule-dialog
-          title="提示"
-          persistent
-          @save="taskTypeDelete(item)"
-          ref="deleteDialog"
-        >
-          <rule-btn small color="default" icon="mdi-trash-can" />
-
-          <template #text>
-            <div class="mb-8 mt-4 text-center">
-              确定要删除
-              <span class="text-danger">{{ item.name }}</span> ?
-            </div>
-          </template>
-
-          <template #btn="{ close, save }">
-            <div class="d-flex align-center justify-space-between">
-              <rule-btn
-                small
-                color="error"
-                class="font-weight-600 text-capitalize"
-                @click="save"
-                >删除</rule-btn
-              >
-              <rule-btn
-                plain
-                small
-                :dynamic="false"
-                color=""
-                class="text-capitalize"
-                @click="close"
-                >取消</rule-btn
-              >
-            </div>
-          </template>
-        </rule-dialog>
+        <task-type-delete-dialog
+          :item="item"
+          @submit-success="submitSuccess(true)"
+        />
       </div>
     </template>
   </tool-paginated-table>
@@ -99,28 +66,25 @@ import { Component, Mixins, Ref } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
 import { RegisterAll } from "@cps/the-mixins";
 import { AutoDataTableHeader } from "@cps/tool-form/autoRender";
-import {
-  taskTypeDelete,
-  taskTypePage,
-  taskTypeUpdate,
-} from "@req/apis/zRisker/taskType";
+import { taskTypePage } from "@req/apis/zRisker/taskType";
 import { zRiskerResponseItem } from "@/types/zRisker";
-import RuleDialog from "@cps/rule-dailog/index.vue";
 import PaginatedTable from "@cps/tool-table/PaginatedTable.vue";
 import TaskTypeAddDialog from "@/views-setting/man-config/components/taskType/TaskTypeAddDialog";
 import TaskTypeEditDialog from "@/views-setting/man-config/components/taskType/TaskTypeEditDialog";
-import {
-  taskTypeBodyUpdate,
-  taskTypeQuery,
-  taskTypeResponse,
-} from "@/types/taskType";
+import { taskTypeQuery, taskTypeResponse } from "@/types/taskType";
 import ToolIconSvg from "@cps/tool-icon-svg/index.vue";
 import config from "@/config";
+import TaskTypeDeleteDialog from "@/views-setting/man-config/components/taskType/TaskTypeDeleteDialog.vue";
 
 @Meta({ title: "任务类型", order: 100 })
 @Component({
   name: "TaskType",
-  components: { ToolIconSvg, TaskTypeEditDialog, TaskTypeAddDialog },
+  components: {
+    TaskTypeDeleteDialog,
+    ToolIconSvg,
+    TaskTypeEditDialog,
+    TaskTypeAddDialog,
+  },
 })
 export default class TaskType extends Mixins(RegisterAll) {
   // 接收数据
@@ -141,9 +105,6 @@ export default class TaskType extends Mixins(RegisterAll) {
     { text: "备注", value: "description" },
     { text: "操作", value: "actions", width: 130, align: "center" },
   ];
-
-  // 删除dialog ref
-  @Ref() deleteDialog?: RuleDialog;
 
   // 表格ref
   @Ref() taskTypeTable?: PaginatedTable;
@@ -171,23 +132,6 @@ export default class TaskType extends Mixins(RegisterAll) {
     params: taskTypeQuery
   ): Promise<zRiskerResponseItem<taskTypeResponse>> {
     return await taskTypePage(params);
-  }
-
-  // 更新
-  async taskTypeUpdate(item: taskTypeBodyUpdate): Promise<void> {
-    await taskTypeUpdate(item);
-
-    // hack skill 无论修改成功与否，都交由最后请求过来的数据决定
-    await this.taskTypeTable?.flash();
-  }
-
-  // 删除
-  async taskTypeDelete(item: taskTypeResponse): Promise<void> {
-    if (!(await taskTypeDelete({ ids: [item.id] }))) return;
-
-    await this.taskTypeTable?.flash(true);
-
-    this.deleteDialog?.close();
   }
 }
 </script>
