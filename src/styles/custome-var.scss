@@ -10,7 +10,7 @@ $--background-color: #f8f9fe;
 $--body-color: #525f7f;
 $--muted-color: #8898aa;
 $--typo-color: #32325d;
-$--form-color: #8898aa;
+$--form-color: $--body-color;
 
 .label-color {
   color: #525f7f;

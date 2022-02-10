@@ -262,9 +262,9 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
         color: $--form-color !important;
       }
 
-      input::-webkit-input-placeholder, .v-file-input::-webkit-input-placeholder {
+      input::-webkit-input-placeholder, .v-file-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
         @extend %input-style;
-        @extend .text-muted;
+        color: lighten($--muted-color, 10);
       }
     }
 

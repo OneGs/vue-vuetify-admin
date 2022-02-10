@@ -22,6 +22,7 @@ class TaskPropertyAddDialog
       {
         key: "name",
         label: "名称",
+        placeholder: "输入任务属性名称",
         position: "0-0",
         componentName: "RuleTextField",
         rules: "required",
@@ -38,7 +39,7 @@ class TaskPropertyAddDialog
         key: "type",
         label: "属性类型",
         position: "2-0",
-        placeholder: "输入任务属性唯一标识，由小写英文、下划线和数字组成",
+        placeholder: "请选择属性类型",
         componentName: "RuleSelect",
         rules: "required",
         options: (() => {
@@ -54,6 +55,7 @@ class TaskPropertyAddDialog
       {
         key: "description",
         label: "备注",
+        placeholder: "输入任务属性备注",
         position: "3-0",
         componentName: "RuleTextarea",
       },
