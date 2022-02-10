@@ -2,7 +2,7 @@
   <div class="source-item common-table">
     <rule-card-template>
       <div
-        class="d-flex align-center justify-center bg-white text-typo position-relative"
+        class="d-flex align-center justify-center text-typo position-relative elevation-0"
       >
         <rule-btn
           plain
@@ -18,7 +18,7 @@
       </div>
     </rule-card-template>
 
-    <rule-card-template class="mt-6">
+    <rule-card-template class="mt-4">
       <template #title>
         <div class="d-flex align-center justify-space-between w-full">
           <div class="font-size-small text-muted font-weight-400">
