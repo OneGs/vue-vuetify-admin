@@ -4,7 +4,7 @@
     v-if="!hasChildren"
     class="menu-item ma-0"
     :class="{ 'nest-item': !menuToggle && isSub }"
-    :to="isSub ? item : ''"
+    :to="isSub ? (children.length ? children[0] : item) : ''"
     color="rgba(0,0,0,.87)"
     :ripple="false"
     v-on="$listeners"
@@ -79,12 +79,20 @@ export default class MenuItem extends Mixins(MenuTools) {
     this.menu.currentMenu = this.item.path;
   }
 
+  menuTitle(menu: RouteConfig): string {
+    const _menu = this.children?.length === 1 ? this.children[0] : menu;
+
+    return _menu.meta ? _menu.meta.title : _menu.path || "set a title";
+  }
+
   get menuToggle(): boolean {
     return !!this.menu?.toggle;
   }
 
   get hasChildren(): boolean {
-    return !!this.item?.children?.length;
+    if (!this.children.length) return false;
+
+    return this.children.length > 1;
   }
 
   get children(): RouteConfig[] {

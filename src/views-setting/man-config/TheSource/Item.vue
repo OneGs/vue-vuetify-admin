@@ -1,0 +1,16 @@
+<template>
+  <div>数据项</div>
+</template>
+
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import { Meta } from "@/libs/auto-router/src/decorators/Meta";
+
+@Meta({ title: "数据项", hidden: true })
+@Component({
+  name: "SourceItem",
+})
+export default class SourceItem extends Vue {}
+</script>
+
+<style scoped></style>

@@ -48,7 +48,7 @@ export default class AppBreadcrumbs extends Mixins(
     const result: BreadItems[] = [];
 
     matched.forEach((match, index) => {
-      if (match.name?.includes("RootLayout")) return;
+      if (match.name?.includes("RootLayout") || match.meta.hiddenTag) return;
 
       result.push({
         text: match.meta?.title || "no",

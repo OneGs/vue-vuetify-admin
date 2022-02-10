@@ -31,6 +31,13 @@
 
     <template #item.actions="{ item }">
       <div class="d-flex align-center justify-center">
+        <rule-btn
+          small
+          icon="mdi-cog-outline"
+          color="default"
+          @click="$router.push({ name: 'SourceItem' })"
+        />
+
         <task-source-edit-dialog :data="item" @submit-success="submitSuccess()">
           <rule-btn small color="default" icon="mdi-pencil" />
         </task-source-edit-dialog>
@@ -46,7 +53,7 @@
 
 <script lang="ts">
 import { Component, Mixins, Ref } from "vue-property-decorator";
-import { Meta } from "@/libs/auto-router";
+import { Meta } from "@/libs/auto-router/index";
 import { RegisterAll } from "@cps/the-mixins";
 import { AutoDataTableHeader } from "@cps/tool-form/autoRender";
 import { taskSourcePage } from "@req/apis/zRisker/taskSource";
@@ -57,16 +64,16 @@ import TaskSourceEditDialog from "@/views-setting/man-config/components/taskSour
 import TaskSourceAddDialog from "@/views-setting/man-config/components/taskSource/TaskSourceAddDialog";
 import TaskSourceDeleteDialog from "@/views-setting/man-config/components/taskSource/TaskSourceDeleteDialog.vue";
 
-@Meta({ title: "数据管理", order: 70 })
+@Meta({ title: "数据管理", order: 70, keepAlive: true, hiddenTag: true })
 @Component({
-  name: "TheSource",
+  name: "Source",
   components: {
     TaskSourceEditDialog,
     TaskSourceAddDialog,
     TaskSourceDeleteDialog,
   },
 })
-export default class TheSource extends Mixins(RegisterAll) {
+export default class Source extends Mixins(RegisterAll) {
   // 接收数据
   items = [];
 
