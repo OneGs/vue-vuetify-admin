@@ -172,7 +172,7 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
 
   @if $type == $material-light {
     &:not(.v-list-item--active):not(.v-list-item--disabled) {
-      color: rgba(0, 0, 0, 0.6);
+      color: $--form-color !important;
     }
   }
 }
@@ -259,7 +259,7 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
 
       input, textarea, .v-select__selections, .v-file-input, .v-text-field__slot, .v-file-input__text {
         @extend %input-style;
-        color: #8898aa !important;
+        color: $--form-color !important;
       }
 
       input::-webkit-input-placeholder, .v-file-input::-webkit-input-placeholder {

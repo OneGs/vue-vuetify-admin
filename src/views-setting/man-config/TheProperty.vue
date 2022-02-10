@@ -34,7 +34,9 @@
     </template>
 
     <template #item.actions="{ item }">
-      <div class="d-flex align-center justify-center">
+      <div v-if="!item['modifiable']">---</div>
+
+      <div class="d-flex align-center justify-center" v-else>
         <task-property-edit-dialog
           :data="item"
           @submit-success="submitSuccess()"

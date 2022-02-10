@@ -7,6 +7,7 @@ export interface taskPropertyQuery extends zRiskerRequestParams {
 export interface taskPropertyResponse {
   id: number;
   name: string;
+  modifiable: boolean;
   identifier: string;
   type: number;
   description: string;
