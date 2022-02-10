@@ -16,6 +16,7 @@ type ComponentNames =
 export interface AutoRenderForm extends PureAutoRenderForm {
   key: string;
   label?: string;
+  type?: string;
   position: string;
   componentName: ComponentNames;
 }

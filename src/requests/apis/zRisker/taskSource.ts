@@ -4,10 +4,10 @@ import {
   taskSourceBodyAdd,
   taskSourceBodyDelete,
   taskSourceBodyUpdate,
-  taskSourceItemAdd,
-  taskSourceItemDelete,
+  taskSourceItemBodyAdd,
+  taskSourceItemBodyDelete,
   taskSourceItemResponse,
-  taskSourceItemUpdate,
+  taskSourceItemBodyUpdate,
   taskSourceResponse,
 } from "@/types/taskSource";
 
@@ -48,18 +48,20 @@ export function taskSourceItemList(
   });
 }
 
-export function taskSourceItemAdd(body: taskSourceItemAdd): Promise<boolean> {
+export function taskSourceItemAdd(
+  body: taskSourceItemBodyAdd
+): Promise<boolean> {
   return zRisker.post("PropertyData/AddItem", body);
 }
 
 export function taskSourceItemUpdate(
-  body: taskSourceItemUpdate
+  body: taskSourceItemBodyUpdate
 ): Promise<boolean> {
   return zRisker.post("PropertyData/UpdateItem", body);
 }
 
 export function taskSourceItemDelete(
-  body: taskSourceItemDelete
+  body: taskSourceItemBodyDelete
 ): Promise<boolean> {
   return zRisker.post("PropertyData/DeleteItem", body);
 }

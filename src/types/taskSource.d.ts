@@ -49,18 +49,18 @@ export interface taskSourceItemResponse {
   icon: string;
 }
 
-export interface taskSourceItemAdd {
+export interface taskSourceItemBodyAdd {
   propertyId: number;
   text: string;
   value: string;
   icon?: string;
 }
 
-export interface taskSourceItemUpdate extends taskSourceItemAdd {
+export interface taskSourceItemBodyUpdate extends taskSourceItemBodyAdd {
   propertyId: number;
 }
 
-export interface taskSourceItemDelete {
+export interface taskSourceItemBodyDelete {
   propertyId: number;
   ids: number[];
 }

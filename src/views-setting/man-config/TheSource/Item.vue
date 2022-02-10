@@ -21,11 +21,13 @@
     <rule-card-template class="mt-6">
       <template #title>
         <div class="d-flex align-center justify-space-between w-full">
-          <div class="font-size-small text-muted font-weight-light">
+          <div class="font-size-small text-muted font-weight-400">
             为数据源【工时类别】配置数据项
           </div>
 
-          <rule-btn small>新建数据项</rule-btn>
+          <task-source-item-add-dialog :id="propertyId" @submit-success="flash">
+            <rule-btn small>新建数据项</rule-btn>
+          </task-source-item-add-dialog>
         </div>
       </template>
 
@@ -33,10 +35,24 @@
         hide-default-footer
         :headers="headers"
         :items.sync="items"
-        class="text-body font-weight-semibold"
+        class="text-body font-weight-400"
       >
-        <template #actions="{ item }">
-          {{ item }}
+        <template #item.actions="{ item }">
+          <div class="d-flex align-center justify-center">
+            <task-source-item-edit-dialog
+              :data="item"
+              :id="propertyId"
+              @submit-success="flash"
+            >
+              <rule-btn small color="default" icon="mdi-pencil" />
+            </task-source-item-edit-dialog>
+
+            <task-source-item-delete-dialog
+              :item="item"
+              :id="propertyId"
+              @submit-success="flash"
+            />
+          </div>
         </template>
       </v-data-table>
     </rule-card-template>
@@ -50,11 +66,19 @@ import { RegisterAll } from "@cps/the-mixins";
 import { AutoDataTableHeader } from "@cps/tool-form/autoRender";
 import { taskSourceItemList } from "@req/apis/zRisker/taskSource";
 import { taskSourceItemResponse } from "@/types/taskSource";
+import TaskSourceItemDeleteDialog from "@/views-setting/man-config/components/taskSource/TaskSourceItemDeleteDialog.vue";
+import TaskSourceItemAddDialog from "@/views-setting/man-config/components/taskSource/TaskSourceItemAddDialog";
+import TaskSourceItemEditDialog from "@/views-setting/man-config/components/taskSource/TaskSourceItemEditDialog";
 
 @Context("propertyId")
 @Meta({ title: "数据项", hidden: true })
 @Component({
   name: "SourceItem",
+  components: {
+    TaskSourceItemDeleteDialog,
+    TaskSourceItemAddDialog,
+    TaskSourceItemEditDialog,
+  },
 })
 export default class SourceItem extends Mixins(RegisterAll) {
   items: taskSourceItemResponse[] = [];
