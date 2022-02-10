@@ -32,9 +32,9 @@
           :style="{ marginTop: `-${breadcrumbsPadding}` }"
         >
           <!-- 如果使用 vue-router -->
-          <v-slide-x-reverse-transition mode="out-in" style="z-index: 10">
-            <router-view />
-          </v-slide-x-reverse-transition>
+          <!--          <v-slide-x-reverse-transition mode="out-in" style="z-index: 10">-->
+          <router-view />
+          <!--          </v-slide-x-reverse-transition>-->
         </v-container>
       </v-main>
 

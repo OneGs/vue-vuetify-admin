@@ -84,9 +84,15 @@ export default class SourceItem extends Mixins(RegisterAll) {
   items: taskSourceItemResponse[] = [];
 
   headers: AutoDataTableHeader[] = [
-    { text: "文本", value: "text" },
+    { text: "文本", value: "text", sortable: false },
     { text: "值", value: "value", width: 200 },
-    { text: "操作", value: "actions", width: 150, align: "center" },
+    {
+      text: "操作",
+      value: "actions",
+      width: 150,
+      align: "center",
+      sortable: false,
+    },
   ];
 
   get propertyId(): number {
