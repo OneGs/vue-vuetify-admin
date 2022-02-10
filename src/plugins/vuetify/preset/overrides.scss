@@ -248,6 +248,12 @@ $--menu-item-color: rgba(0, 0, 0, 0.87);
 
 // #region Form Overrides
 
+@include theme(v-input) using ($type) {
+  .v-messages__message {
+    line-height: 1.5;
+  }
+}
+
 @include theme(v-text-field--outlined) using ($type) {
   @if $type == $material-light {
     &.v-input {

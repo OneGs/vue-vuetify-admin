@@ -5,7 +5,7 @@
       outlined
       flat
       :hide-details="inlineHideDetails"
-      :placeholder="_label"
+      :placeholder="_placeholder"
       :height="height"
       :error-messages="errors[0]"
       v-bind="$attrs"
@@ -18,16 +18,9 @@
 <script lang="ts">
 import Input from "./mixins/input";
 import { Component, Mixins } from "vue-property-decorator";
-import { ValidationProvider } from "vee-validate";
 
 @Component({
   name: "RuleTextField",
-
-  inheritAttrs: false,
-
-  components: {
-    ValidationProvider,
-  },
 })
 export default class RuleTextField extends Mixins(Input) {}
 </script>

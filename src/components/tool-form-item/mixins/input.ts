@@ -1,11 +1,16 @@
 import { Component, Vue, Prop, VModel, Inject } from "vue-property-decorator";
 import ToolFormItem from "@cps/tool-form-item/index.vue";
 import ToolForm from "@cps/tool-form/index.vue";
+import { ValidationProvider } from "vee-validate";
 
 @Component({
   name: "Input",
 
   inheritAttrs: false,
+
+  components: {
+    ValidationProvider,
+  },
 })
 export default class Input extends Vue {
   @VModel({ type: [String, Array, Boolean, Number], default: null })
@@ -32,7 +37,11 @@ export default class Input extends Vue {
   }
 
   get _label(): string {
-    return this.placeholder || this.label || this.formItem.label;
+    return this.label || this.formItem.label;
+  }
+
+  get _placeholder(): string {
+    return this.placeholder || this._label;
   }
 
   get inlineHideDetails(): boolean {

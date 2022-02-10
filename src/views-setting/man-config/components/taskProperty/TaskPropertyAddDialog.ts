@@ -33,7 +33,7 @@ class TaskPropertyAddDialog
         position: "1-0",
         placeholder: "输入任务属性唯一标识，由小写英文、下划线和数字组成",
         componentName: "RuleTextField",
-        rules: "required",
+        rules: "required|identifier",
       },
       {
         key: "type",
