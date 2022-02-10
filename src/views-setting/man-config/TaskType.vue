@@ -36,7 +36,8 @@
     <template #item.name="{ item }">
       <div class="d-flex align-center">
         <tool-icon-svg
-          :icon-class="item.icon || ''"
+          v-if="item.icon"
+          :icon-class="item.icon"
           small
           class="rounded mr-3"
           style="fill: white"
