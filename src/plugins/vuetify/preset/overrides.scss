@@ -112,7 +112,7 @@ p {
       @include text-color(#4385b1);
 
       &:hover {
-        @include text-color(#000);
+        @include text-color(darken(#4385b1, 10));
       }
     }
   }
