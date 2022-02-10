@@ -1,7 +1,5 @@
 <template>
-  <keep-alive :include="cachedViews">
-    <router-view :key="key" />
-  </keep-alive>
+  <router-view />
 </template>
 
 <script lang="ts">

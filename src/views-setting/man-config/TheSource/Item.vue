@@ -1,5 +1,7 @@
 <template>
-  <div>数据项</div>
+  <div>
+    <v-btn @click="$router.back()">click</v-btn>
+  </div>
 </template>
 
 <script lang="ts">
