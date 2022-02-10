@@ -1,10 +1,13 @@
 <template>
-  <router-view />
+  <keep-alive :include="cachedViews">
+    <router-view :key="key" />
+  </keep-alive>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router";
+import KeepAlive from "@/mixins/keepAlive";
 
 @Meta({
   title: "配置中心",
@@ -13,7 +16,5 @@ import { Meta } from "@/libs/auto-router";
   color: "orange",
 })
 @Component
-export default class TheComponentLayout extends Vue {}
+export default class TheComponentLayout extends Mixins(KeepAlive) {}
 </script>
-
-<style scoped></style>

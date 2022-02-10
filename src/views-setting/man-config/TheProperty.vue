@@ -68,7 +68,7 @@ import { taskPropertyQuery, taskPropertyResponse } from "@/types/taskProperty";
 
 @Meta({ title: "属性管理", order: 80 })
 @Component({
-  name: "taskProperty",
+  name: "TaskProperty",
   components: {
     TaskPropertyEditDialog,
     TaskPropertyAddDialog,
