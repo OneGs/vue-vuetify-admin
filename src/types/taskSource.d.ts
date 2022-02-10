@@ -34,3 +34,33 @@ export interface taskSourceBodyUpdate extends taskSourceBodyAdd {
 export interface taskSourceBodyDelete {
   ids: number[];
 }
+
+// ————————————————————————————————————
+//* ——— PropertyData - ItemList
+// ————————————————————————————————————
+export interface taskSourceItemQuery {
+  propertyId: number;
+}
+
+export interface taskSourceItemResponse {
+  id: number;
+  text: string;
+  value: string;
+  icon: string;
+}
+
+export interface taskSourceItemAdd {
+  propertyId: number;
+  text: string;
+  value: string;
+  icon?: string;
+}
+
+export interface taskSourceItemUpdate extends taskSourceItemAdd {
+  propertyId: number;
+}
+
+export interface taskSourceItemDelete {
+  propertyId: number;
+  ids: number[];
+}

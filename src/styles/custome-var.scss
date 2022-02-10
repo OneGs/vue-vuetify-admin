@@ -204,3 +204,15 @@ $--positions: relative absolute fixed;
 .vertical-middle {
   vertical-align: middle;
 }
+
+.common-table {
+  .v-pagination {
+    justify-content: flex-end !important;
+  }
+
+  .v-pagination__item,
+  .v-pagination__navigation {
+    box-shadow: none;
+    border: 1px solid #dee2e6;
+  }
+}

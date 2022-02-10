@@ -35,7 +35,12 @@
           small
           icon="mdi-cog-outline"
           color="default"
-          @click="$router.push({ name: 'SourceItem' })"
+          @click="
+            $router.push({
+              name: 'SourceItem',
+              params: { propertyId: item.id.toString() },
+            })
+          "
         />
 
         <task-source-edit-dialog :data="item" @submit-success="submitSuccess()">
