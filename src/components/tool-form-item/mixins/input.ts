@@ -13,6 +13,8 @@ export default class Input extends Vue {
 
   @Prop({ type: String, default: "" }) label!: string;
 
+  @Prop({ type: String, default: "" }) placeholder!: string;
+
   @Prop({ type: Boolean, default: false }) small!: boolean;
 
   @Prop({ type: Boolean, default: false }) large!: boolean;
@@ -30,7 +32,7 @@ export default class Input extends Vue {
   }
 
   get _label(): string {
-    return this.label || this.formItem.label;
+    return this.placeholder || this.label || this.formItem.label;
   }
 
   get inlineHideDetails(): boolean {
