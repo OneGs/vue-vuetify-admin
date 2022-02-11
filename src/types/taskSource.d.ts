@@ -6,25 +6,13 @@ export interface taskSourceQuery extends zRiskerRequestParams {
 
 export interface taskSourceResponse {
   id: number;
-  createdTime: string;
-  createdUserId: number;
-  createdUserName: string;
-  updatedTime: string;
-  updatedUserId: number;
-  updatedUserName: string;
-  text: string;
-  value: string;
+  name: string;
+  description: string;
 }
 
 export interface taskSourceBodyAdd {
-  createdTime: string;
-  createdUserId: number;
-  createdUserName: string;
-  updatedTime: string;
-  updatedUserId: number;
-  updatedUserName: string;
-  text: string;
-  value: string;
+  name: string;
+  description?: string;
 }
 
 export interface taskSourceBodyUpdate extends taskSourceBodyAdd {

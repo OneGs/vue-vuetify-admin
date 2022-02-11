@@ -34,7 +34,7 @@ export function taskSourceUpdate(body: taskSourceBodyUpdate): Promise<boolean> {
 export function taskSourceDetails(params: {
   id: number;
 }): Promise<taskSourceResponse> {
-  return zRisker.get("PropertyData/Details", { params });
+  return zRisker.get("PropertyData/Detail", { params });
 }
 
 // ————————————————————————————————————

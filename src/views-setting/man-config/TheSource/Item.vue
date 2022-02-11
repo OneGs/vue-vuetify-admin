@@ -22,7 +22,8 @@
       <template #title>
         <div class="d-flex align-center justify-space-between w-full">
           <div class="font-size-small text-muted font-weight-400">
-            为数据源【工时类别】配置数据项
+            为数据源【<span>{{ details.name }}</span
+            >】配置数据项
           </div>
 
           <task-source-item-add-dialog :id="propertyId" @submit-success="flash">
@@ -64,8 +65,11 @@ import { Component, Mixins } from "vue-property-decorator";
 import { Meta, Context } from "@/libs/auto-router";
 import { RegisterAll } from "@cps/the-mixins";
 import { AutoDataTableHeader } from "@cps/tool-form/autoRender";
-import { taskSourceItemList } from "@req/apis/zRisker/taskSource";
-import { taskSourceItemResponse } from "@/types/taskSource";
+import {
+  taskSourceItemList,
+  taskSourceDetails,
+} from "@req/apis/zRisker/taskSource";
+import { taskSourceItemResponse, taskSourceResponse } from "@/types/taskSource";
 import TaskSourceItemDeleteDialog from "@/views-setting/man-config/components/taskSource/TaskSourceItemDeleteDialog.vue";
 import TaskSourceItemAddDialog from "@/views-setting/man-config/components/taskSource/TaskSourceItemAddDialog";
 import TaskSourceItemEditDialog from "@/views-setting/man-config/components/taskSource/TaskSourceItemEditDialog";
@@ -81,6 +85,8 @@ import TaskSourceItemEditDialog from "@/views-setting/man-config/components/task
   },
 })
 export default class SourceItem extends Mixins(RegisterAll) {
+  details: taskSourceResponse = { id: 0, name: "未知", description: "" };
+
   items: taskSourceItemResponse[] = [];
 
   headers: AutoDataTableHeader[] = [
@@ -103,8 +109,14 @@ export default class SourceItem extends Mixins(RegisterAll) {
     this.items = await taskSourceItemList(this.propertyId);
   }
 
+  async getDetails(): Promise<void> {
+    this.details = await taskSourceDetails({ id: this.propertyId });
+  }
+
   async created(): Promise<void> {
     await this.flash();
+
+    await this.getDetails();
   }
 }
 </script>
