@@ -68,6 +68,7 @@ import RuleLoading from "@cps/tool-form-item/Loading.vue";
 import RuleRadio from "@cps/tool-form-item/Radio.vue";
 import ToolAutoRender from "@cps/tool-form/AutoRender.vue";
 import RuleRadioColorsPicker from "@cps/tool-form-item/RadioColorsPicker.vue";
+import RuleTinymce from "@cps/tool-tinymce/index.vue";
 
 @Component({
   components: {
@@ -85,6 +86,7 @@ import RuleRadioColorsPicker from "@cps/tool-form-item/RadioColorsPicker.vue";
     RuleRadio,
     RuleRadioColorsPicker,
     ToolAutoRender,
+    RuleTinymce,
   },
 })
 class RegisterForm extends Mixins(RegisterVeeValidate) {

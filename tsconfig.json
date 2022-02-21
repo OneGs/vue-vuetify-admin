@@ -15,7 +15,8 @@
     "types": [
       "webpack-env",
       "node",
-      "lodash"
+      "lodash",
+      "tinymce"
     ],
     "paths": {
       "@/*": [

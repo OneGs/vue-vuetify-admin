@@ -11,7 +11,8 @@ type ComponentNames =
   | "RuleTextarea"
   | "RuleTimePicker"
   | "RuleCardExample"
-  | "RuleRadioColorsPicker";
+  | "RuleRadioColorsPicker"
+  | "RuleTinymce";
 
 export interface AutoRenderForm extends PureAutoRenderForm {
   key: string;

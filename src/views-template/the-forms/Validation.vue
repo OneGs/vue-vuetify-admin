@@ -76,6 +76,10 @@
         >
       </div>
     </rule-card-template>
+
+    <rule-card-template class="mt-6" title="text">
+      <rule-tinymce />
+    </rule-card-template>
   </div>
 </template>
 
