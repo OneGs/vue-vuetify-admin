@@ -10,24 +10,27 @@
     min-width="auto"
   >
     <template #activator="{ on, attrs }">
-      <v-text-field
-        v-model="modeValue"
-        solo
-        outlined
-        flat
-        :hide-details="inlineHideDetails"
-        :placeholder="_label"
-        label="Picker in dialog"
-        readonly
-        class="cursor-pointer"
-        v-on="on"
-        v-bind="attrs"
-        :height="height"
-      >
-        <template #append>
-          <v-icon small> mdi-clock-time-three-outline </v-icon>
-        </template>
-      </v-text-field>
+      <validation-provider :name="_label" :rules="rules" #default="{ errors }">
+        <v-text-field
+          v-model="modeValue"
+          solo
+          outlined
+          flat
+          :error-messages="errors[0]"
+          :hide-details="inlineHideDetails"
+          :placeholder="_label"
+          label="Picker in dialog"
+          readonly
+          class="cursor-pointer"
+          v-on="on"
+          v-bind="attrs"
+          :height="height"
+        >
+          <template #append>
+            <v-icon small> mdi-clock-time-three-outline </v-icon>
+          </template>
+        </v-text-field>
+      </validation-provider>
     </template>
 
     <v-time-picker

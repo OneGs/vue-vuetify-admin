@@ -216,3 +216,13 @@ $--positions: relative absolute fixed;
     border: 1px solid #dee2e6;
   }
 }
+
+.inline {
+  display: inline-block;
+  margin-left: 12px;
+  margin-top: 4px !important;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}

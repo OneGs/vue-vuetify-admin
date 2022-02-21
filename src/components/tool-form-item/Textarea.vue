@@ -1,13 +1,16 @@
 <template>
-  <v-textarea
-    solo
-    outlined
-    flat
-    :placeholder="_label"
-    height="76px"
-    :hide-details="inlineHideDetails"
-    v-model="modeValue"
-  />
+  <validation-provider :name="_label" :rules="rules" #default="{ errors }">
+    <v-textarea
+      solo
+      outlined
+      flat
+      :placeholder="_label"
+      height="76px"
+      :error-messages="errors[0]"
+      :hide-details="inlineHideDetails"
+      v-model="modeValue"
+    />
+  </validation-provider>
 </template>
 
 <script lang="ts">

@@ -1,18 +1,22 @@
 <template>
-  <v-file-input
-    solo
-    flat
-    outlined
-    :height="height"
-    :hide-details="inlineHideDetails"
-    append-icon="mdi-eye-refresh"
-    prepend-inner-icon="mdi-file"
-    prepend-icon=""
-    :placeholder="_label"
-    @click:append="views"
-    v-bind="$attrs"
-    v-on="$listeners"
-  />
+  <validation-provider :name="_label" :rules="rules" #default="{ errors }">
+    <v-file-input
+      solo
+      flat
+      outlined
+      :height="height"
+      v-model="modeValue"
+      :hide-details="inlineHideDetails"
+      :error-messages="errors[0]"
+      append-icon="mdi-eye-refresh"
+      prepend-inner-icon="mdi-file"
+      prepend-icon=""
+      :placeholder="_label"
+      @click:append="views"
+      v-bind="$attrs"
+      v-on="$listeners"
+    />
+  </validation-provider>
 </template>
 
 <script lang="ts">
@@ -30,5 +34,3 @@ export default class RuleFile extends Mixins(Input) {
   }
 }
 </script>
-
-<style scoped></style>

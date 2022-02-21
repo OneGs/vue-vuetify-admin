@@ -90,6 +90,10 @@ export default class ToolAutoRender extends Vue {
     return await this.autoRender.validate();
   }
 
+  reset(): void {
+    this.autoRender.reset();
+  }
+
   getForm(slotName: string): AutoRenderForm {
     const { modes } = this.mode;
 

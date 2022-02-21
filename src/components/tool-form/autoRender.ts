@@ -16,9 +16,13 @@ type ComponentNames =
 export interface AutoRenderForm extends PureAutoRenderForm {
   key: string;
   label?: string;
-  type?: string;
   position: string;
   componentName: ComponentNames;
+
+  // ---- 每个元素可能带有的特殊元素
+
+  type?: string;
+  inline?: boolean;
 }
 
 export interface AutoRenderSampleForm extends PureAutoRenderForm {

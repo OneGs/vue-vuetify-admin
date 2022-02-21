@@ -318,5 +318,3 @@ export default class Elements extends Mixins(
   }
 }
 </script>
-
-<style scoped></style>

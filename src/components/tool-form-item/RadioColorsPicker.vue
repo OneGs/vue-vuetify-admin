@@ -1,22 +1,33 @@
 <template>
-  <div class="select-icon d-flex align-center flex-wrap">
-    <div
-      class="select-icon__item mt-2 mr-2"
-      :class="[{ 'border-color-blue': modeValue === item.icon }]"
-      v-for="(item, index) in options"
-      :key="index"
-      @click="selectIcon(item.icon)"
-    >
-      <tool-icon-svg
-        :icon-class="item.icon"
-        small
-        class="select-icon__icon"
-        :style="[
-          { background: item.color, fill: item.fill || defaultFillColor },
+  <validation-provider
+    :name="_label"
+    :rules="rules"
+    #default="{ validate, errors }"
+  >
+    <div class="select-icon d-flex align-center flex-wrap">
+      <div
+        class="select-icon__item mt-2 mr-2"
+        :class="[
+          {
+            'border-color-red': !!errors[0],
+            'border-color-blue': modeValue === item.icon,
+          },
         ]"
-      />
+        v-for="(item, index) in options"
+        :key="index"
+        @click="selectIcon(item.icon, validate)"
+      >
+        <tool-icon-svg
+          :icon-class="item.icon"
+          small
+          class="select-icon__icon"
+          :style="[
+            { background: item.color, fill: item.fill || defaultFillColor },
+          ]"
+        />
+      </div>
     </div>
-  </div>
+  </validation-provider>
 </template>
 
 <script lang="ts">
@@ -38,8 +49,10 @@ export default class RuleRadioColorsPicker extends Mixins(Input) {
 
   @Prop({ type: String, default: "white" }) defaultFillColor!: string;
 
-  selectIcon(icon: string): void {
+  selectIcon(icon: string, validate: () => boolean): void {
     this.modeValue = icon;
+
+    validate();
   }
 }
 </script>
@@ -50,6 +63,10 @@ export default class RuleRadioColorsPicker extends Mixins(Input) {
 
   .border-color-blue {
     border-color: #4e8afa;
+  }
+
+  .border-color-red {
+    border-color: #f57373;
   }
 
   &__item {

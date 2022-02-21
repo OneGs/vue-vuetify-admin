@@ -10,23 +10,26 @@
     min-width="auto"
   >
     <template #activator="{ on, attrs }">
-      <v-text-field
-        v-model="modeValue"
-        solo
-        outlined
-        flat
-        readonly
-        :placeholder="_label"
-        :hide-details="inlineHideDetails"
-        class="cursor-pointer"
-        :height="height"
-        v-on="on"
-        v-bind="attrs"
-      >
-        <template #append>
-          <v-icon small>mdi-calendar-blank</v-icon>
-        </template>
-      </v-text-field>
+      <validation-provider :name="_label" :rules="rules" #default="{ errors }">
+        <v-text-field
+          v-model="modeValue"
+          solo
+          outlined
+          flat
+          readonly
+          :placeholder="_label"
+          :hide-details="inlineHideDetails"
+          :error-messages="errors[0]"
+          class="cursor-pointer"
+          :height="height"
+          v-on="on"
+          v-bind="attrs"
+        >
+          <template #append>
+            <v-icon small>mdi-calendar-blank</v-icon>
+          </template>
+        </v-text-field>
+      </validation-provider>
     </template>
 
     <v-date-picker
