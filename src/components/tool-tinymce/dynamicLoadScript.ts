@@ -1,4 +1,4 @@
-import { staticAny } from "@/types/common";
+import { StaticAny } from "@/types/common";
 
 let callbacks: Array<
   (error: Error | null, scripts: HTMLElement) => void
@@ -62,7 +62,7 @@ const dynamicLoadScript = (
     };
   }
 
-  function ieOnEnd(script: staticAny) {
+  function ieOnEnd(script: StaticAny) {
     script.onreadystatechange = function () {
       if (this.readyState !== "complete" && this.readyState !== "loaded")
         return;

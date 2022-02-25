@@ -3,7 +3,7 @@ import { isEnvDep } from "@/utils/tools";
 import { RawLocation, Route } from "vue-router";
 
 const _routerHookPipes = require.context(
-  "./beforeEachModules",
+  "./before-each-modules",
   true,
   /\.j|ts$/
 );

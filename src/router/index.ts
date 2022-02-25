@@ -2,7 +2,7 @@ import store from "@/store";
 import Vue, { CreateElement } from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import EaRouter from "@/libs/auto-router/index";
-import page404 from "@/views-template/components/page-error/404.vue";
+import page404 from "@/components/page-error/404.vue";
 import beforeEachCombine from "@/router/beforeEachCombine";
 import config from "@/config";
 
@@ -37,19 +37,14 @@ function findDefaultMenus(routes: RouteConfig[]): RouteConfig[] {
 
 Vue.use(VueRouter);
 
-let routes: Array<RouteConfig> = generateRoutes(
-  require.context("../views-template", true, /\.vue$/),
-  true
-);
-
-const routesSetting: Array<RouteConfig> = generateRoutes(
-  require.context("../views-setting", true, /\.vue$/),
+const routes: Array<RouteConfig> = generateRoutes(
+  require.context("../views", true, /\.vue$/),
   false
 );
 
-routes[0].redirect = "/home";
+console.log(routes);
 
-routes = [...routes, ...routesSetting];
+routes[0].redirect = "/home";
 
 // 设置默认菜单
 store.commit("menus/setMenus", findDefaultMenus(routes));

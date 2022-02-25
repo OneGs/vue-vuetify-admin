@@ -1,4 +1,5 @@
 export interface Config {
+  noPermission: boolean;
   navigatorMiniVariantWidth: string;
   navigatorWidth: string;
   firstMenuName: string;
@@ -8,13 +9,22 @@ export interface Config {
 }
 
 export default <Config>{
+  // ————————————————————————————————————
+  //* ——— USUAlly
+  // ————————————————————————————————————
+  noPermission: true,
+
+  // ————————————————————————————————————
+  //* ——— navigator
+  // ————————————————————————————————————
+
   navigatorMiniVariantWidth: "56px",
   navigatorWidth: "250px",
 
   // ————————————————————————————————————
   //* ——— Menu
   // ————————————————————————————————————
-  firstMenuName: "RootLayoutSetting",
+  firstMenuName: "RootLayoutTemplate",
 
   // ————————————————————————————————————
   //* ——— Options

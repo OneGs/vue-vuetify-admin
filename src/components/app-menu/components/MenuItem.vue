@@ -4,11 +4,12 @@
     v-if="!hasChildren"
     class="menu-item ma-0"
     :class="{ 'nest-item': !menuToggle && isSub }"
-    :to="isSub ? (children.length ? children[0] : item) : ''"
+    :to="isSub ? (children.length ? children[0] : item) : item"
     color="rgba(0,0,0,.87)"
     :ripple="false"
     v-on="$listeners"
   >
+    <!-- TODO 存在bug   -->
     <v-list-item-icon :class="[{ 'my-0': isSub }]">
       <div class="d-flex align-center w-full">
         <v-icon v-if="!isSub" :color="menuColor(item)" class="lighten-2">{{

@@ -15,14 +15,6 @@
       },
     ]"
   >
-    <rule-btn
-      v-for="(menu, index) in horizontalMenu"
-      :key="menu.name + index"
-      class="ml-n3"
-      @click="changeMenu(menu.name)"
-      >{{ menu.meta && menu.meta["title"] }}</rule-btn
-    >
-
     <v-img
       v-if="false"
       src="@/assets/logo.png"

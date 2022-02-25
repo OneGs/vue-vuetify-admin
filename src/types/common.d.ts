@@ -1,5 +1,3 @@
-import Tinymce from "@cps/tool-tinymce/index.vue";
-
 export interface LoopString {
   [key: string]: string | number | boolean;
 }
@@ -10,11 +8,11 @@ export interface LoopAny {
 }
 
 // eslint-disable-next-line
-export type staticAny = any
+export type StaticAny = any
 
 declare global {
   interface Window {
-    tinymce: Tinymce;
+    tinymce: StaticAny;
   }
 }
 

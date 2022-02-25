@@ -45,7 +45,7 @@ export default class appNavigator extends Mixins(RegisterBtn) {
     return this.$store.state.menus.menus;
   }
 
-  currentMenu = sessionStorage.getItem("currentMenu") || "the-dashboards";
+  currentMenu = sessionStorage.getItem("currentMenu") || "t-dashboards";
 
   @Watch("currentMenu")
   say(): void {
