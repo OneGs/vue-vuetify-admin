@@ -3,7 +3,6 @@ import { LoopAny, StaticAny } from "@/types/common";
 import {
   getTag,
   isArray,
-  isObject,
   isPlainObject,
   isPrimitive,
   isType,
@@ -160,6 +159,19 @@ export function loosEqual(first: StaticAny, second: StaticAny): boolean {
   } else if (isType(first, "RegExp") && isType(second, "RegExp")) {
     return first.toString() === second.toString();
   } else {
-    return String(first) === String(second);
+    return false;
   }
+}
+
+export function curry(fun: (...args: StaticAny[]) => StaticAny) {
+  return function curried(...args: StaticAny[]): StaticAny {
+    if (args.length < fun.length) {
+      // eslint-disable-next-line prefer-rest-params
+      const _args = Array.from(arguments).slice(0);
+
+      return curry(fun.bind(null, ..._args));
+    }
+
+    return fun(...args);
+  };
 }
