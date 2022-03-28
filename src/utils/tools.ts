@@ -135,3 +135,31 @@ export function deepClone(target: StaticAny, cached = new Map()): StaticAny {
 
   return cloneTarget;
 }
+
+export function strictEqual(first: StaticAny, second: StaticAny): boolean {
+  return first === second;
+}
+
+export function loosEqual(first: StaticAny, second: StaticAny): boolean {
+  if (first === second) return true;
+
+  if (isArray(first) && isArray(second)) {
+    return (
+      first.length === second.length &&
+      first.every((val: StaticAny, index: string) =>
+        loosEqual(val, second[index])
+      )
+    );
+  } else if (isPlainObject(first) && isPlainObject(second)) {
+    return (
+      Object.keys(first).length === Object.keys(second).length &&
+      Object.keys(first).every((key) => loosEqual(first[key], second[key]))
+    );
+  } else if (isType(first, "date") && isType(second, "date")) {
+    return first.getTime() === second.getTime();
+  } else if (isType(first, "RegExp") && isType(second, "RegExp")) {
+    return first.toString() === second.toString();
+  } else {
+    return String(first) === String(second);
+  }
+}

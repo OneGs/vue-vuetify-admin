@@ -48,7 +48,7 @@
 import { Component, Mixins } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
 import { RegisterBtn, RegisterHeading } from "@cps/the-mixins";
-import { deepClone, shadowClone } from "@uts/tools";
+import { deepClone, loosEqual, shadowClone } from "@uts/tools";
 
 @Meta({
   title: "ThemeColor",
@@ -75,6 +75,20 @@ export default class ThemeColor extends Mixins(RegisterBtn, RegisterHeading) {
     const darkTheme = this.$vuetify.theme.dark;
 
     this.$vuetify.theme.dark = !darkTheme;
+  }
+
+  created(): void {
+    const a = {
+      a: 1,
+      b: [1, 2, 3],
+      c: new Boolean(10),
+      d: new Date("2020"),
+      e: /^\d/,
+    };
+
+    const b = { a: 1, b: [1, 2, 3], c: true, d: new Date("2020"), e: /^\d.*/ };
+
+    console.log(loosEqual(a, b));
   }
 }
 </script>

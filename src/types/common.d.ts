@@ -1,3 +1,5 @@
+import { deepClone, isEnvDep, shadowClone, strictEqual } from "@uts/tools";
+
 export interface LoopString {
   [key: string]: string | number | boolean;
 }
@@ -25,6 +27,14 @@ export interface ValidateType {
   isFalsely: (_: staticAny) => boolean;
   isTruly: (_: staticAny) => boolean;
   isEmpty: (_: staticAny) => boolean;
+}
+
+export interface CommonTool {
+  isEnvDep: () => boolean;
+  shadowClone: (_: StaticAny) => StaticAny;
+  deepClone: (_: StaticAny) => StaticAny;
+  strictEqual: (f: StaticAny, s: StaticAny) => boolean;
+  lossEqual: (f: StaticAny, s: StaticAny) => boolean;
 }
 
 declare global {
