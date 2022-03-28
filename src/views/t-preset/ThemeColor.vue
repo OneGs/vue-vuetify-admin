@@ -48,6 +48,7 @@
 import { Component, Mixins } from "vue-property-decorator";
 import { Meta } from "@/libs/auto-router/index";
 import { RegisterBtn, RegisterHeading } from "@cps/the-mixins";
+import { deepClone, shadowClone } from "@uts/tools";
 
 @Meta({
   title: "ThemeColor",
