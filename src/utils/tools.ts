@@ -167,11 +167,44 @@ export function curry(fun: (...args: StaticAny[]) => StaticAny) {
   return function curried(...args: StaticAny[]): StaticAny {
     if (args.length < fun.length) {
       // eslint-disable-next-line prefer-rest-params
-      const _args = Array.from(arguments).slice(0);
-
-      return curry(fun.bind(null, ..._args));
+      return curry(fun.bind(null, ...Array.from(arguments).slice(0)));
     }
 
     return fun(...args);
   };
 }
+
+export function debounce(
+  fn: (...a: StaticAny[]) => StaticAny,
+  delay: number
+): (...a: StaticAny[]) => StaticAny {
+  // 多少秒内重置
+  let flash: ReturnType<typeof setTimeout>;
+
+  return function debounced(...args: StaticAny[]) {
+    clearTimeout(flash);
+
+    flash = setTimeout(() => {
+      fn(...args);
+      flash && clearTimeout(flash);
+    }, delay);
+  };
+}
+
+export function throttle(
+  fn: (...a: StaticAny[]) => StaticAny,
+  delay: number
+): (...a: StaticAny[]) => StaticAny {
+  let startTime = new Date().getTime();
+
+  return function throttled(...args: StaticAny[]) {
+    const endTime = new Date().getTime();
+
+    if (endTime - startTime >= delay) {
+      fn(...args);
+      startTime = endTime;
+    }
+  };
+}
+
+// export function sleep(delay: number): void {}
