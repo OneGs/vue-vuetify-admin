@@ -1,8 +1,10 @@
 module.exports = {
   root: true,
+
   env: {
     node: true,
   },
+
   extends: [
     "plugin:vue/essential",
     "eslint:recommended",
@@ -10,9 +12,11 @@ module.exports = {
     "@vue/prettier",
     "@vue/prettier/@typescript-eslint",
   ],
+
   parserOptions: {
     ecmaVersion: 2020,
   },
+
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
@@ -82,11 +86,6 @@ module.exports = {
         prev: "multiline-const",
         next: "*",
       }, // 多个cont后空行
-      {
-        blankLine: "always",
-        prev: "const",
-        next: "*",
-      }, // 多个cont后空行
     ],
     "vue/padding-line-between-blocks": ["error", "always"],
     "max-lines-per-function": [
@@ -99,5 +98,18 @@ module.exports = {
     ],
     "vue/no-multiple-template-root": "off",
     "vue/valid-v-slot": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
   },
+
+  overrides: [
+    {
+      files: [
+        "**/__tests__/*.{j,t}s?(x)",
+        "**/tests/unit/**/*.spec.{j,t}s?(x)",
+      ],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 };
